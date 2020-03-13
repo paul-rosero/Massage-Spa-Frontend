@@ -1,0 +1,112 @@
+html, body {
+    margin: 5px;
+    padding: 2px;
+    background-color: #B0E0E6;
+}
+h1 {
+	font-size: 66px;
+	text-align: center;
+	font-family: cursive; 
+	padding: 0px;
+	margin: 0px;
+	float: top;
+}.header_image {
+	width: 100%;
+	padding: 0px;
+	float: up;
+	margin-top: 0px;
+} 
+
+.header {
+	padding: 0;
+	margin: 0;
+	border: solid;
+	border-color: white;
+	background-color: #B0E0E6;
+	width: 100%;
+}
+nav {
+	width: 100%;
+	display: inline-block;
+	font-family: cursive;
+	font-size: 22px;
+	text-align: center;
+	word-spacing: 125px;
+	background-color: #ABFF59;
+}
+.image_two {
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+}
+.image_three {
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+	border-top-style: solid;
+	border-top-color: #FFFFFF;
+}
+li {
+	display: inline;
+}
+.about_text {
+	width: 70%;
+	margin: 0 auto;
+}
+.offerings {
+	background-color: #ABFF59;
+	width: 100%;
+}
+footer {
+	text-align: center;
+	font-family: cursive;
+	font-size: 14px;
+	background-color: #ABFF59;
+	width: 100%;
+}
+.sm {
+	width: 30px;
+	height: 30px;
+}
+.table_header {
+	font-size: 18px;
+}
+table {
+	width: 60%;
+}
+.flexible {
+	font-size: 22px;
+}
+.contact_text {
+	display: inline-block;
+	text-align: left;
+	vertical-align: middle;
+	height: 200px;
+	width: 300px;
+}
+.contact_map {
+	display: inline-block;
+	vertical-align: bottom;
+}
+a:hover {
+	color:black;
+	text-decoration: none;
+}
+a:link {
+	color:black;
+}
+a:visited {
+	color:black;
+}
+.massage_name {
+	font-size: 26px;
+}
+#about {
+	font-size: 48px;
+}
+#offerings {
+	font-size: 48px;
+}
+#contact {
+	font-size: 48px;
+}

@@ -1,16 +1,33 @@
   
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
   <head>
     <meta charset="utf-8">
     <title>ScheduleAppointment</title>
     <link rel="stylesheet" href="index.css">
-   
   </head>
+
   <body>
-    <ul id='notes-list'></ul>
-    <div id='update'></div>
-    
+    <ul id='appointment-list'></ul>
+
+    <div id='new-appointment-container'>
+        <form id="appointment-form" action="index.html" method="post">
+            <label for="name">Client Name:</label>
+            <input id="client-name-input" type="text" name="name" value=""><br>
+
+            <label for="name">Massage Therapist Name:</label>
+            <input id="therapist-name-input" type="text" name="name" value=""><br>
+
+            <label for="modality">Modality:</label>
+            <input id="modality-input" type="text" name="modality" value=""><br>
+
+            <label for="time">Appointment Time:</label>
+            <input id="appointment-time-input" type="text" name="time" value=""><br>
+
+        </form>
+    </div>
+
     <script type="text/javascript" src="src/index.js" charset="utf-8"></script> 
     <script type="text/javascript" src="src/appointment.js" ></script>
     <script type="text/javascript" src="src/client.js" charset="utf-8"></script>
@@ -18,4 +35,5 @@
     <script type="text/javascript" src="src/index.js" charset="utf-8"></script>
     <script type="text/javascript" src="src/therapist.js" charset="utf-8"></script>
   </body>
+
 </html>

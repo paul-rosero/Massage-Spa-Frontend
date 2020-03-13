@@ -10,8 +10,6 @@
   </head>
 
   <body>
-    <ul id='appointment-list'></ul>
-
     <div  id='new-appointment-container'>
         <form id="appointment-form" action="index.html" method="post">
             <label for="name">Client Name:</label>
@@ -26,7 +24,18 @@
             <label for="time">Appointment Time:</label>
             <input id="appointment-time-input" type="text" name="time" value=""><br>
 
+            <button id="submit" name="button">Create Appointment</button><br>
         </form>
+    </div>
+
+    <div id='appointments-container'>
+      <ul id='appointment-list'>
+
+      </ul>
+    </div>
+    
+    <div id="appointment-info-container">
+
     </div>
 
     <script type="text/javascript" src="src/index.js" charset="utf-8"></script> 

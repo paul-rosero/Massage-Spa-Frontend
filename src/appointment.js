@@ -29,11 +29,11 @@ class Appointment {
     renderDetails(){
         return `<h4>Appointment: ${this.id}
                     <button data-id=${this.id}>Edit Appointment</button>
-                </h4><br>
-                <p>Massage Therapist: ${this.massage_therapist.name}</p><br>
-                <p>Client: ${this.client.name}</p><br>
-                <p>Modality: ${this.modality}</p><br>
-                <p>Appointment Time: ${this.appointment_time}</p><br>
+                </h4>
+                <p>Massage Therapist: ${this.massage_therapist.name}</p>
+                <p>Client: ${this.client.name}</p>
+                <p>Modality: ${this.modality}</p>
+                <p>Appointment Time: ${this.appointment_time}</p>
                 <p>Special Requests: ${this.special_request}</p><br>`
     }
 }

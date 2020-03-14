@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(res => res.json())
       .then(json => json.forEach(appointment => {
         const newAppt = new Appointment(appointment);
-        document.querySelector('#appointment-list').innerHTML += newAppt.renderDetails();
+        document.querySelector('#appointments-list').innerHTML += newAppt.renderDetails();
       })
     );
   });

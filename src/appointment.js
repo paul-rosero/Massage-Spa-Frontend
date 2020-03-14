@@ -22,6 +22,18 @@ class Appointment {
         this.special_request = apptDataObj.special_request
         Appointment.allAppointments.push(this)
     }
+    
+    renderSpan(){
+        return `<span-data id="${this.id}">${this.name}</span>`
+    }
+
+    renderDetails(){
+        return `<h4>"${this.massage_therapist}"</h4>
+                <h4>"${this.client}"</h4>        
+                <h4>"${this.modality}"</h4>
+                <h4>"${this.appointment_time}"</h4>
+                <h4>"${this.special_request}"</h4>`
+    }
 }
 
 Appointment.allAppointments = []

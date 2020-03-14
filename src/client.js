@@ -15,12 +15,11 @@ class Client {
 
     constructor(clientDataObj) {
         this.id = clientDataObj.id
-        this.massage_therapist = clientDataObj.massage_therapist
-        this.client = clientDataObj.client
-        this.modality = clientDataObj.modality
-        this.appointment_time = clientDataObj.appointment_time
-        this.special_request = clientDataObj.special_request
-        Appointment.allClients.push(this)
+        this.name = clientDataObj.name
+        this.address = clientDataObj.address
+        this.email = clientDataObj.email
+        this.medical_history = clientDataObj.medical_history
+        Client.allClients.push(this)
     }
 }
 

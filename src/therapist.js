@@ -20,6 +20,13 @@ class MassageTherapist {
         this.rating = therapistDataObj.rating
         MassageTherapist.allTherapists.push(this)
     }
+
+    renderSpan() {
+        return `<h3>Massage Therapist ${this.id}</h3>
+                <span data-id="${this.id}">Name: ${this.name}</span><br>
+                <span data-id="${this.id}">Sex: ${this.sex}</span><br>
+                <span data-id="${this.id}">Rating: ${this.rating}</span><br>`
+    }
        
 } 
 

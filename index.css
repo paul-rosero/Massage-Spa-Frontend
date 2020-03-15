@@ -3,10 +3,10 @@ html, body {
     padding: 2px;
     background-color: #B0E0E6;
 }
-h1 {
-	font-size: 66px;
+ h1{
+	font-size: 45px;
 	text-align: center;
-	font-family: cursive; 
+	font-family: Gill Sans Extrabold, sans-serif; 
 	padding: 0px;
 	margin: 0px;
 	float: top;

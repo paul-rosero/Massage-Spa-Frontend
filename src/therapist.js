@@ -22,12 +22,10 @@ class MassageTherapist {
     }
 
     renderSpan() {
-        return `<h3>Massage Therapist ${this.id}</h3>
-                <span data-id="${this.id}">Name: ${this.name}</span><br>
+        return `<span data-id="${this.id}">${this.id}. Name: ${this.name}</span><br>
                 <span data-id="${this.id}">Sex: ${this.sex}</span><br>
-                <span data-id="${this.id}">Rating: ${this.rating}</span><br>`
+                <span data-id="${this.id}">Rating: ${this.rating}</span><br><br>`
     }
-       
 } 
 
 MassageTherapist.allTherapists = []

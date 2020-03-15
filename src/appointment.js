@@ -23,18 +23,19 @@ class Appointment {
     }p
     
     renderSpan(){
-        return `<span-data id="${this.id}">${this.name}</span>`
+        return `<span data-id="${this.id}">Appointment ${this.id}</span><br><br>`
     }
 
     renderDetails(){
-        return `<h4>Appointment: ${this.id}
+        return `<br><h4>View or Edit the Appointment.</h4>
+                <p>Appointment: ${this.id}
                     <button data-id=${this.id}>Edit Appointment</button>
-                </h4>
+                </p>
                 <p>Massage Therapist: ${this.massage_therapist.name}</p>
                 <p>Client: ${this.client.name}</p>
                 <p>Modality: ${this.modality}</p>
                 <p>Appointment Time: ${this.appointment_time}</p>
-                <p>Special Requests: ${this.special_request}</p><br>`
+                <p>Special Requests: ${this.special_request}</p>`
     }
 }
 

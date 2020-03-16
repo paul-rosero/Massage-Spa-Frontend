@@ -29,7 +29,7 @@ class Appointment {
     renderDetails(){
         return `<br><h4>View or Edit the Appointment.</h4>
                 <p>Appointment: ${this.id}
-                    <button data-id=${this.id}>Edit Appointment</button>
+                    <button class="edit" data-id=${this.id} data-action="edit">Edit Appointment</button>
                 </p>
                 <p>Massage Therapist: ${this.massage_therapist.name}</p>
                 <p>Client: ${this.client.name}</p>

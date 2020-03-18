@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () =>{
   apptForm.addEventListener('submit', (e) => {
     e.preventDefault()
     const updateApptId = e.target.dataset.id
-    fetch(`http://localhost:3000/app/v1/appointments/${updateApptId}`, {
-      method: 'patch',
+    fetch(`http://localhost:3000/api/v1/appointments/${updateApptId}`, {
+      method: 'PATCH',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         massageTherapist: therapistNameInput.value,

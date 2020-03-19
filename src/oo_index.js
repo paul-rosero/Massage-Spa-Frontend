@@ -49,10 +49,11 @@ document.addEventListener('DOMContentLoaded', () =>{
   apptForm.addEventListener('submit', (e) => {
     e.preventDefault()
     const updateApptId = e.target.dataset.id
+    console.log(therapistNameInput.option)
     fetch(`http://localhost:3000/api/v1/appointments/${updateApptId}`, {
       method: 'PATCH',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
+      body: JSON.stringify({        
         massage_therapist: therapistNameInput.value,
         client: clientNameInput.value,
         appointment_time: apptTimeInput.value,
@@ -77,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     
       for (let i = 0; i < appt.length; i++) {
           option = document.createElement('option');
+        
           option.text = appt[i].massage_therapist.name;
           option.value = appt[i].massage_therapist.name;
           therapistNameInput.add(option);

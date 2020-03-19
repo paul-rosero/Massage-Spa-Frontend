@@ -66,6 +66,26 @@ document.addEventListener('DOMContentLoaded', () =>{
       apptInfoList.innerHTML = updatedAppt.renderDetails()
     })
   })  
+
+  let defaultOption = document.createElement('OPTION');
+  therapistNameInput.add(defaultOption);
+  fetch('http://localhost:3000/api/v1/appointments')  
+  .then(  
+    function(response) {   
+      response.json().then(function(appt) {  
+        let option;
+    
+      for (let i = 0; i < appt.length; i++) {
+          option = document.createElement('option');
+          option.text = appt[i].massage_therapist.name;
+          option.value = appt[i].massage_therapist.name;
+          therapistNameInput.add(option);
+        }    
+      });  
+    }  
+  )  
+
+  
 })
 
 

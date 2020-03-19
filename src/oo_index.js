@@ -33,12 +33,10 @@ document.addEventListener('DOMContentLoaded', () =>{
   })
 
   apptInfoList.addEventListener('click', (e) => {
-    //debugger
     if (e.target.className === 'edit' || e.target.dataset.action === 'edit') {
       const clickedAppt = parseInt(e.target.dataset.id);
       const foundAppt = Appointment.findAppointment(clickedAppt);
-      
-      //debugger
+
       clientNameInput.value = foundAppt.client.name
       therapistNameInput.value = foundAppt.massage_therapist.name
       modalityInput.value = foundAppt.modality
@@ -55,16 +53,15 @@ document.addEventListener('DOMContentLoaded', () =>{
       method: 'PATCH',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        massageTherapist: therapistNameInput.value,
+        massage_therapist: therapistNameInput.value,
         client: clientNameInput.value,
-        appointmentTime: apptTimeInput.value,
+        appointment_time: apptTimeInput.value,
         modality: modalityInput.value,
-        specialRequest: specialRequestInput.value
+        special_request: specialRequestInput.value
       })
     })
     .then((r) => r.json()) 
     .then((updatedApptJSON) => {
-     
       const updatedAppt = Appointment.updateAppointment(updatedApptJSON)
       apptInfoList.innerHTML = updatedAppt.renderDetails()
     })

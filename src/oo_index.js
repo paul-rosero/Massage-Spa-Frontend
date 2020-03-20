@@ -49,13 +49,13 @@ document.addEventListener('DOMContentLoaded', () =>{
   apptForm.addEventListener('submit', (e) => {
     e.preventDefault()
     const updateApptId = e.target.dataset.id
-    console.log(therapistNameInput.option)
+   //debugger
     fetch(`http://localhost:3000/api/v1/appointments/${updateApptId}`, {
       method: 'PATCH',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({        
-        massage_therapist: therapistNameInput.value,
-        client: clientNameInput.value,
+        massage_therapist_id: parseInt(therapistNameInput[therapistNameInput.selectedIndex].dataset.id),
+        client_id: parseInt(clientNameInput[clientNameInput.selectedIndex].dataset.id),
         appointment_time: apptTimeInput.value,
         modality: modalityInput.value,
         special_request: specialRequestInput.value
@@ -70,23 +70,42 @@ document.addEventListener('DOMContentLoaded', () =>{
 
   let defaultOption = document.createElement('OPTION');
   therapistNameInput.add(defaultOption);
-  fetch('http://localhost:3000/api/v1/appointments')  
+  fetch('http://localhost:3000/api/v1/massage_therapists')  
   .then(  
     function(response) {   
       response.json().then(function(appt) {  
         let option;
-    
+   
       for (let i = 0; i < appt.length; i++) {
           option = document.createElement('option');
-        
-          option.text = appt[i].massage_therapist.name;
-          option.value = appt[i].massage_therapist.name;
+          console.log(appt)
+          option.dataset.id = appt[i].id;
+          option.text = appt[i].name;
+          option.value = appt[i].name;
           therapistNameInput.add(option);
         }    
       });  
     }  
   )  
-
+  
+  let defaultClientOption = document.createElement('OPTION');
+  clientNameInput.add(defaultClientOption);
+  fetch('http://localhost:3000/api/v1/clients')  
+  .then(  
+    function(response) { 
+      response.json().then(function(appt) {  
+        let option;
+    
+      for (let i = 0; i < appt.length; i++) {
+          option = document.createElement('option');
+          option.dataset.id = appt[i].id;
+          option.text = appt[i].name;
+          option.value = appt[i].name;
+          clientNameInput.add(option);
+        }    
+      });  
+    }  
+  )  
   
 })
 

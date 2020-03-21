@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () =>{
   apptForm.addEventListener('submit', (e) => {
     e.preventDefault()
     const updateApptId = e.target.dataset.id
-   //debugger
     fetch(`http://localhost:3000/api/v1/appointments/${updateApptId}`, {
       method: 'PATCH',
       headers: {'Content-Type': 'application/json'},
@@ -78,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () =>{
    
       for (let i = 0; i < appt.length; i++) {
           option = document.createElement('option');
-          console.log(appt)
           option.dataset.id = appt[i].id;
           option.text = appt[i].name;
           option.value = appt[i].name;
@@ -90,17 +88,17 @@ document.addEventListener('DOMContentLoaded', () =>{
   
   let defaultClientOption = document.createElement('OPTION');
   clientNameInput.add(defaultClientOption);
-  fetch('http://localhost:3000/api/v1/clients')  
+  fetch('http://localhost:3000/api/v1/appointments')  
   .then(  
-    function(response) { 
+    function(response) {   
       response.json().then(function(appt) {  
         let option;
     
       for (let i = 0; i < appt.length; i++) {
           option = document.createElement('option');
-          option.dataset.id = appt[i].id;
-          option.text = appt[i].name;
-          option.value = appt[i].name;
+          option.dataset.id = appt[i].client.id;
+          option.text = appt[i].client.name;
+          option.value = appt[i].client.name;
           clientNameInput.add(option);
         }    
       });  

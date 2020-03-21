@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   
   let defaultClientOption = document.createElement('OPTION');
   clientNameInput.add(defaultClientOption);
-  fetch('http://localhost:3000/api/v1/appointments')  
+  fetch('http://localhost:3000/api/v1/clients')  
   .then(  
     function(response) {   
       response.json().then(function(appt) {  
@@ -96,9 +96,9 @@ document.addEventListener('DOMContentLoaded', () =>{
     
       for (let i = 0; i < appt.length; i++) {
           option = document.createElement('option');
-          option.dataset.id = appt[i].client.id;
-          option.text = appt[i].client.name;
-          option.value = appt[i].client.name;
+          option.dataset.id = appt[i].id;
+          option.text = appt[i].name;
+          option.value = appt[i].name;
           clientNameInput.add(option);
         }    
       });  

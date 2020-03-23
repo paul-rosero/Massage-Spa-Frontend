@@ -20,7 +20,7 @@ class Appointment {
         apptToUpdate.appointment_time = updatedApptData.appointment_time
         apptToUpdate.special_request = updatedApptData.special_request
         return apptToUpdate
-    }p
+    }
     
     renderSpan(){
         return `<span data-id="${this.id}">Appointment ${this.id}</span><br><br>`

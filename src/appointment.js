@@ -8,6 +8,7 @@ class Appointment {
         this.special_request = apptDataObj.special_request
         Appointment.allAppointments.push(this)
     }
+    
     static findAppointment(id) {
         return this.allAppointments.find((appointment) => appointment.id === id)
     }

@@ -1,4 +1,12 @@
 class MassageTherapist {
+    constructor(therapistDataObj) {
+        this.id = therapistDataObj.id
+        this.name = therapistDataObj.name
+        this.sex = therapistDataObj.sex
+        this.rating = therapistDataObj.rating
+        MassageTherapist.allTherapists.push(this)
+    }
+
     static findTherapist(id) {
         return this.allTherapists.find((therapist) => therapist.id === id)
     }
@@ -13,15 +21,7 @@ class MassageTherapist {
         return therapistToUpdate
     }
     
-    constructor(therapistDataObj) {
-        this.id = therapistDataObj.id
-        this.name = therapistDataObj.name
-        this.sex = therapistDataObj.sex
-        this.rating = therapistDataObj.rating
-        MassageTherapist.allTherapists.push(this)
-    }
-
-    renderSpan() {
+    renderDetails() {
         return `<span data-id="${this.id}">${this.id}. Name: ${this.name}</span><br>
                 <span data-id="${this.id}">Sex: ${this.sex}</span><br>
                 <span data-id="${this.id}">Rating: ${this.rating}</span><br><br>`

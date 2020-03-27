@@ -1,4 +1,13 @@
 class Client {
+    constructor(clientDataObj) {
+        this.id = clientDataObj.id
+        this.name = clientDataObj.name
+        this.address = clientDataObj.address
+        this.email = clientDataObj.email
+        this.medical_history = clientDataObj.medical_history
+        Client.allClients.push(this)
+    }
+
     static findClient(id) {
         return this.allClients.find((client) => client.id === id)
     }
@@ -12,14 +21,14 @@ class Client {
         clientToUpdate.special_request = updatedClientData.special_request
         return clientToUpdate
     }
-
-    constructor(clientDataObj) {
-        this.id = clientDataObj.id
-        this.name = clientDataObj.name
-        this.address = clientDataObj.address
-        this.email = clientDataObj.email
-        this.medical_history = clientDataObj.medical_history
-        Client.allClients.push(this)
+    
+    renderDetails() {
+        return `<br><h4>Client Info.</h4>
+                <p>Client: ${this.id}</p>
+                <p>Name: ${this.name}</p>
+                <p>Medical History: ${this.medical_history}</p>
+                <p>Address: ${this.address}</p>
+                <p>Email: ${this.email}</p>`
     }
 }
 

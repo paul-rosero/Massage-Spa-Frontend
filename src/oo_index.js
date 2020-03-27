@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   .then(therapistsDataJson => {
     therapistsDataJson.forEach(therapist =>{
       const newTherapist = new MassageTherapist(therapist)
-      therapistsList.innerHTML += newTherapist.renderSpan()
+      therapistsList.innerHTML += newTherapist.renderDetails()
     })
   })
   

@@ -1,4 +1,3 @@
-document.addEventListener('DOMContentLoaded', () =>{
   const therapistsList = document.querySelector('#all-therapists-list')
   const apptsList = document.querySelector('#appointments-list')
   const apptInfoList = document.querySelector('#appointment-info-list')
@@ -9,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () =>{
   const apptTimeInput = document.querySelector('#appointment-time-input')
   const specialRequestInput = document.querySelector('#special-request-input')
 
-  
+document.addEventListener('DOMContentLoaded', () =>{ 
   fetch('http://localhost:3000/api/v1/massage_therapists', {method: 'GET'})
   .then(resp =>resp.json())
   .then(therapistsDataJson => {
@@ -25,7 +24,14 @@ document.addEventListener('DOMContentLoaded', () =>{
     const newAppt = new Appointment(appointment);
     apptsList.innerHTML += newAppt.renderSpan();
   }))
-  
+
+
+sortButtonEvent();
+clickEvents();
+formSubmitEvent();
+})  
+
+function clickEvents() {
   apptsList.addEventListener('click', (e) => {
     const clickedAppt = parseInt(e.target.dataset.id)
     const foundAppt = Appointment.findAppointment(clickedAppt)
@@ -45,7 +51,9 @@ document.addEventListener('DOMContentLoaded', () =>{
       apptForm.dataset.id = foundAppt.id
     }
   })
+}
 
+function formSubmitEvent() {
   apptForm.addEventListener('submit', (e) => {
     e.preventDefault()
     const updateApptId = e.target.dataset.id
@@ -104,8 +112,33 @@ document.addEventListener('DOMContentLoaded', () =>{
       });  
     }  
   )  
+}
   
-})
+function sortButtonEvent() {
+    const sortButton = document.getElementById('sort-button')
+    sortButton.addEventListener('click', (e) => {
+      e.preventDefault()
+      fetch('http://localhost:3000/api/v1/massage_therapists', {method: 'GET'})
+      .then(resp =>resp.json())
+      .then(therapistsDataJson => {
+      const newTherapist = therapistsDataJson.sort(function(a, b) {
+            if (a.name < b.name ) {
+              return -1;
+            }
+            if (a.name > b.name) {
+              return 1;
+            }
+            return 0
+          })
+           therapistsList.innerHTML = ""
+            newTherapist.forEach(therapist => {
+            const finalTherapist = new MassageTherapist(therapist)
+            therapistsList.innerHTML += finalTherapist.renderDetails()
+          })
+      })
+    })
+}
+
 
 
 

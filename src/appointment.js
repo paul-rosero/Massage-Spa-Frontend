@@ -28,15 +28,17 @@ class Appointment {
     }
 
     renderDetails(){
-        return `<br><h4>View or Edit the Appointment.</h4>
-                <p>Appointment: ${this.id}
-                    <button class="edit" data-id=${this.id} data-action="edit">Edit Appointment</button>
-                </p>
-                <p>Massage Therapist: ${this.massage_therapist.name}</p>
-                <p>Client: ${this.client.name}</p>
-                <p>Modality: ${this.modality}</p>
-                <p>Appointment Time: ${this.appointment_time}</p>
-                <p>Special Requests: ${this.special_request}</p>`
+        return `
+            <br><h4>View or Edit the Appointment.</h4>
+            <p>Appointment: ${this.id}
+                <button class="edit" data-id=${this.id} data-action="edit">Edit Appointment</button>
+            </p>
+            <p>Massage Therapist: ${this.massage_therapist.name}</p>
+            <p>Client: ${this.client.name}</p>
+            <p>Modality: ${this.modality}</p>
+            <p>Appointment Time: ${this.appointment_time}</p>
+            <p>Special Requests: ${this.special_request}</p>
+        `
     }
 }
 

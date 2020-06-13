@@ -7,19 +7,19 @@ class MassageTherapist {
         MassageTherapist.allTherapists.push(this)
     }
 
-    static findTherapist(id) {
-        return this.allTherapists.find((therapist) => therapist.id === id)
-    }
+    // static findTherapist(id) {
+    //     return this.allTherapists.find((therapist) => therapist.id === id)
+    // }
     
-    static updateTherapist(updatedTherapistData) {
-        const therapistToUpdate = this.findTherapist(updatedTherapistData.id)
-        therapistToUpdate.massage_therapist = updatedTherapistData.massage_therapist
-        therapistToUpdate.client = updatedTherapistData.client
-        therapistToUpdate.modality = updatedTherapistData.modality
-        therapistToUpdate.appointment_time = updatedTherapistData.appointment_time
-        therapistToUpdate.special_request = updatedTherapistData.special_request
-        return therapistToUpdate
-    }
+    // static updateTherapist(updatedTherapistData) {
+    //     const therapistToUpdate = this.findTherapist(updatedTherapistData.id)
+    //     therapistToUpdate.massage_therapist = updatedTherapistData.massage_therapist
+    //     therapistToUpdate.client = updatedTherapistData.client
+    //     therapistToUpdate.modality = updatedTherapistData.modality
+    //     therapistToUpdate.appointment_time = updatedTherapistData.appointment_time
+    //     therapistToUpdate.special_request = updatedTherapistData.special_request
+    //     return therapistToUpdate
+    // }
     
     renderDetails() {
         return `<span data-id="${this.id}">${this.id}. Name: ${this.name}</span><br>

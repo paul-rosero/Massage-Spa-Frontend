@@ -25,10 +25,10 @@ document.addEventListener('DOMContentLoaded', () =>{
     apptsList.innerHTML += newAppt.renderSpan();
   }))
 
+  sortButtonEvent();
+  clickEvents();
+  formSubmitEvent();
 
-sortButtonEvent();
-clickEvents();
-formSubmitEvent();
 })  
 
 function clickEvents() {
@@ -82,8 +82,7 @@ function formSubmitEvent() {
     function(response) {   
       response.json().then(function(appt) {  
         let option;
-   
-      for (let i = 0; i < appt.length; i++) {
+        for (let i = 0; i < appt.length; i++) {
           option = document.createElement('option');
           option.dataset.id = appt[i].id;
           option.text = appt[i].name;
@@ -101,8 +100,7 @@ function formSubmitEvent() {
     function(response) {   
       response.json().then(function(appt) {  
         let option;
-    
-      for (let i = 0; i < appt.length; i++) {
+        for (let i = 0; i < appt.length; i++) {
           option = document.createElement('option');
           option.dataset.id = appt[i].id;
           option.text = appt[i].name;
@@ -115,28 +113,28 @@ function formSubmitEvent() {
 }
   
 function sortButtonEvent() {
-    const sortButton = document.getElementById('sort-button')
-    sortButton.addEventListener('click', (e) => {
-      e.preventDefault()
-      fetch('http://localhost:3000/api/v1/massage_therapists', {method: 'GET'})
-      .then(resp =>resp.json())
-      .then(therapistsDataJson => {
+  const sortButton = document.getElementById('sort-button')
+  sortButton.addEventListener('click', (e) => {
+    e.preventDefault()
+    fetch('http://localhost:3000/api/v1/massage_therapists', {method: 'GET'})
+    .then(resp =>resp.json())
+    .then(therapistsDataJson => {
       const newTherapist = therapistsDataJson.sort(function(a, b) {
-            if (a.name < b.name ) {
-              return -1;
-            }
-            if (a.name > b.name) {
-              return 1;
-            }
-            return 0
-          })
-           therapistsList.innerHTML = ""
-            newTherapist.forEach(therapist => {
-            const finalTherapist = new MassageTherapist(therapist)
-            therapistsList.innerHTML += finalTherapist.renderDetails()
-          })
+        if (a.name < b.name ) {
+          return -1;
+        } 
+        if (a.name > b.name) {
+          return 1;
+        }
+        return 0
+      })
+      therapistsList.innerHTML = ""
+      newTherapist.forEach(therapist => {
+        const finalTherapist = new MassageTherapist(therapist)
+        therapistsList.innerHTML += finalTherapist.renderDetails()
       })
     })
+  })
 }
 
 

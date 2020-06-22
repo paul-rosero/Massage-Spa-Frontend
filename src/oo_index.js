@@ -10,7 +10,7 @@
 const api = new apiAdapter
 
 document.addEventListener('DOMContentLoaded', () =>{ 
-  api.fetchApi("massage_therapists")
+  api.fetchApi("massage_therapists", { method: 'GET' })
   .then(therapistsDataJson => {
     therapistsDataJson.forEach(therapist =>{
       const newTherapist = new MassageTherapist(therapist)
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     })
   })
   
-  api.fetchApi("appointments")
+  api.fetchApi("appointments", { method: 'GET' })
   .then(json => json.forEach(appointment => {
     const newAppt = new Appointment(appointment);
     apptsList.innerHTML += newAppt.renderSpan();
@@ -56,7 +56,7 @@ function formSubmitEvent() {
   apptForm.addEventListener('submit', (e) => {
     e.preventDefault()
     const updateApptId = e.target.dataset.id
-    fetch(`http://localhost:3000/api/v1/appointments/${updateApptId}`, {
+    api.fetchApi(`appointments/${updateApptId}`, {
       method: 'PATCH',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({        
@@ -67,7 +67,6 @@ function formSubmitEvent() {
         special_request: specialRequestInput.value
       })
     })
-    .then((r) => r.json()) 
     .then((updatedApptJSON) => {
       const updatedAppt = Appointment.updateAppointment(updatedApptJSON)
       apptInfoList.innerHTML = updatedAppt.renderDetails()
@@ -115,7 +114,7 @@ function sortButtonEvent() {
   const sortButton = document.getElementById('sort-button')
   sortButton.addEventListener('click', (e) => {
     e.preventDefault()
-    api.fetchApi("massage_therapists")
+    api.fetchApi("massage_therapists", { method: 'GET' })
     .then(therapistsDataJson => {
       const newTherapist = therapistsDataJson.sort(function(a, b) {
         if (a.name < b.name ) {

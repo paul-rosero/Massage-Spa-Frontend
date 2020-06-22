@@ -43,10 +43,10 @@ function clickEvents() {
       const foundAppt = Appointment.findAppointment(clickedAppt);
 
       clientNameInput.value = foundAppt.client.name
-      therapistNameInput.value = foundAppt.massage_therapist.name
+      therapistNameInput.value = foundAppt.massageTherapist.name
       modalityInput.value = foundAppt.modality
-      apptTimeInput.value = foundAppt.appointment_time
-      specialRequestInput.value = foundAppt.special_request
+      apptTimeInput.value = foundAppt.appointmentTime
+      specialRequestInput.value = foundAppt.specialRequest
       apptForm.dataset.id = foundAppt.id
     }
   })

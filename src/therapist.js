@@ -22,9 +22,13 @@ class MassageTherapist {
     // }
     
     renderDetails() {
-        return `<span data-id="${this.id}">${this.id}. Name: ${this.name}</span><br>
-                <span data-id="${this.id}">Sex: ${this.sex}</span><br>
-                <span data-id="${this.id}">Rating: ${this.rating}</span><br><br>`
+        return `
+            <li data-id="${this.id}">
+                <p>${this.id}. Name: ${this.name}</p>
+                <p>Sex: ${this.sex}</p>
+                <p>Rating: ${this.rating}</p>
+            </li><br>
+        `
     }
 } 
 

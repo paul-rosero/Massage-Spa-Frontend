@@ -3,8 +3,10 @@ class apiAdapter {
         this.baseUrl = "http://localhost:3000/api/v1/"
     }
 
-    fetchApi(url) {
-        return fetch(this.baseUrl + url)
+    fetchApi(url, method) {
+        return fetch(this.baseUrl + url, method )
             .then(promise => promise.json())
     }
+
+    
 }

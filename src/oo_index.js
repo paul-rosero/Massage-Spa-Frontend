@@ -7,10 +7,10 @@
   const modalityInput = document.querySelector('#modality-input')
   const apptTimeInput = document.querySelector('#appointment-time-input')
   const specialRequestInput = document.querySelector('#special-request-input')
+const api = new apiAdapter
 
 document.addEventListener('DOMContentLoaded', () =>{ 
-  fetch('http://localhost:3000/api/v1/massage_therapists', {method: 'GET'})
-  .then(resp =>resp.json())
+  api.fetchApi("massage_therapists")
   .then(therapistsDataJson => {
     therapistsDataJson.forEach(therapist =>{
       const newTherapist = new MassageTherapist(therapist)
@@ -18,8 +18,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     })
   })
   
-  fetch('http://localhost:3000/api/v1/appointments', {method: 'GET'})
-  .then(res => res.json())
+  api.fetchApi("appointments")
   .then(json => json.forEach(appointment => {
     const newAppt = new Appointment(appointment);
     apptsList.innerHTML += newAppt.renderSpan();
@@ -116,8 +115,7 @@ function sortButtonEvent() {
   const sortButton = document.getElementById('sort-button')
   sortButton.addEventListener('click', (e) => {
     e.preventDefault()
-    fetch('http://localhost:3000/api/v1/massage_therapists', {method: 'GET'})
-    .then(resp =>resp.json())
+    api.fetchApi("massage_therapists")
     .then(therapistsDataJson => {
       const newTherapist = therapistsDataJson.sort(function(a, b) {
         if (a.name < b.name ) {

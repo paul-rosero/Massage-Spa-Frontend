@@ -1,11 +1,11 @@
 class Appointment {
     constructor(apptDataObj) {
         this.id = apptDataObj.id
-        this.massage_therapist = apptDataObj.massage_therapist
+        this.massageTherapist = apptDataObj.massage_therapist
         this.client = apptDataObj.client
         this.modality = apptDataObj.modality
-        this.appointment_time = apptDataObj.appointment_time
-        this.special_request = apptDataObj.special_request
+        this.appointmentTime = apptDataObj.appointment_time
+        this.specialRequest = apptDataObj.special_request
         Appointment.allAppointments.push(this)
     }
     
@@ -15,11 +15,11 @@ class Appointment {
 
     static updateAppointment(updatedApptData) {
         const apptToUpdate = this.findAppointment(updatedApptData.id)
-        apptToUpdate.massage_therapist = updatedApptData.massage_therapist
+        apptToUpdate.massageTherapist = updatedApptData.massage_therapist
         apptToUpdate.client = updatedApptData.client
         apptToUpdate.modality = updatedApptData.modality
-        apptToUpdate.appointment_time = updatedApptData.appointment_time
-        apptToUpdate.special_request = updatedApptData.special_request
+        apptToUpdate.appointmentTime = updatedApptData.appointment_time
+        apptToUpdate.specialRequest = updatedApptData.special_request
         return apptToUpdate
     }
     
@@ -33,11 +33,11 @@ class Appointment {
             <p>Appointment: ${this.id}
                 <button class="edit" data-id=${this.id} data-action="edit">Edit Appointment</button>
             </p>
-            <p>Massage Therapist: ${this.massage_therapist.name}</p>
+            <p>Massage Therapist: ${this.massageTherapist.name}</p>
             <p>Client: ${this.client.name}</p>
             <p>Modality: ${this.modality}</p>
-            <p>Appointment Time: ${this.appointment_time}</p>
-            <p>Special Requests: ${this.special_request}</p>
+            <p>Appointment Time: ${this.appointmentTime}</p>
+            <p>Special Requests: ${this.specialRequest}</p>
         `
     }
 }

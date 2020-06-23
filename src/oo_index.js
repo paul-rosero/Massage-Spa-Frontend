@@ -11,15 +11,14 @@ const api = new apiAdapter
 
 document.addEventListener('DOMContentLoaded', () =>{ 
   api.fetchApi("massage_therapists", { method: 'GET' })
-  .then(therapistsDataJson => {
-    therapistsDataJson.forEach(therapist =>{
+  .then(json => {json.forEach( therapist => {
       const newTherapist = new MassageTherapist(therapist)
       therapistsList.innerHTML += newTherapist.renderDetails()
     })
   })
   
   api.fetchApi("appointments", { method: 'GET' })
-  .then(json => json.forEach(appointment => {
+  .then(json => json.forEach( appointment => {
     const newAppt = new Appointment(appointment);
     apptsList.innerHTML += newAppt.renderSpan();
   }))
@@ -73,41 +72,10 @@ function formSubmitEvent() {
     })
   })  
 
-  let defaultOption = document.createElement('OPTION');
-  therapistNameInput.add(defaultOption);
-  fetch('http://localhost:3000/api/v1/massage_therapists')  
-  .then(  
-    function(response) {   
-      response.json().then(function(appt) {  
-        let option;
-        for (let i = 0; i < appt.length; i++) {
-          option = document.createElement('option');
-          option.dataset.id = appt[i].id;
-          option.text = appt[i].name;
-          option.value = appt[i].name;
-          therapistNameInput.add(option);
-        }    
-      });  
-    }  
-  )  
-  
-  let defaultClientOption = document.createElement('OPTION');
-  clientNameInput.add(defaultClientOption);
-  fetch('http://localhost:3000/api/v1/clients')  
-  .then(  
-    function(response) {   
-      response.json().then(function(appt) {  
-        let option;
-        for (let i = 0; i < appt.length; i++) {
-          option = document.createElement('option');
-          option.dataset.id = appt[i].id;
-          option.text = appt[i].name;
-          option.value = appt[i].name;
-          clientNameInput.add(option);
-        }    
-      });  
-    }  
-  )  
+  api.fetchSelect("massage_therapists", therapistNameInput)
+   
+  api.fetchSelect("clients", clientNameInput)
+
 }
   
 function sortButtonEvent() {

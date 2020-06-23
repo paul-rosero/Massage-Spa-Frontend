@@ -32,4 +32,43 @@ class apiAdapter {
         })  
     }
     
+    fetchUpdate(url, ClassObject, list ) {
+        return fetch(this.baseUrl + url, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({        
+                massage_therapist_id: parseInt(therapistNameInput[therapistNameInput.selectedIndex].dataset.id),
+                client_id: parseInt(clientNameInput[clientNameInput.selectedIndex].dataset.id),
+                appointment_time: apptTimeInput.value,
+                modality: modalityInput.value,
+                special_request: specialRequestInput.value
+            })
+        })
+        .then(promise => promise.json())
+        .then((updatedApptJSON) => {
+            const updatedAppt = ClassObject.updateAppointment(updatedApptJSON)
+            list.innerHTML = updatedAppt.renderDetails()
+        })
+    }
+
+    fetchSortButton(url, method, list, ClassObject) {
+        fetch(this.baseUrl + url, method)
+        .then(promise => promise.json())
+        .then(therapistsDataJson => {
+        const newTherapist = therapistsDataJson.sort(function(a, b) {
+            if (a.name < b.name ) {
+            return -1;
+            } 
+            if (a.name > b.name) {
+            return 1;
+            }
+            return 0
+        })
+        list.innerHTML = ""
+        newTherapist.forEach(therapist => {
+            const finalTherapist = new ClassObject(therapist)
+            list.innerHTML += finalTherapist.renderSpan()
+        })
+        })
+    }
 }

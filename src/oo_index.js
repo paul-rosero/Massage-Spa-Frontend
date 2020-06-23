@@ -1,28 +1,16 @@
-  const therapistsList = document.querySelector('#all-therapists-list')
-  const apptsList = document.querySelector('#appointments-list')
-  const apptInfoList = document.querySelector('#appointment-info-list')
-  const apptForm = document.querySelector('#appointment-form')
-  const clientNameInput = document.querySelector('#client-name-input')
-  const therapistNameInput = document.querySelector('#therapist-name-input')
-  const modalityInput = document.querySelector('#modality-input')
-  const apptTimeInput = document.querySelector('#appointment-time-input')
-  const specialRequestInput = document.querySelector('#special-request-input')
+const apptsList = document.querySelector('#appointments-list')
+const therapistsList = document.querySelector('#all-therapists-list')
+const clientNameInput = document.querySelector('#client-name-input');
+const therapistNameInput = document.querySelector('#therapist-name-input')  
+const modalityInput = document.querySelector('#modality-input')
+const apptTimeInput = document.querySelector('#appointment-time-input')
+const specialRequestInput = document.querySelector('#special-request-input')
 const api = new apiAdapter
 
-document.addEventListener('DOMContentLoaded', () =>{ 
-  api.fetchApi("massage_therapists", { method: 'GET' })
-  .then(json => {json.forEach( therapist => {
-      const newTherapist = new MassageTherapist(therapist)
-      therapistsList.innerHTML += newTherapist.renderDetails()
-    })
-  })
+document.addEventListener('DOMContentLoaded', () => { 
+  api.fetchApi("massage_therapists", { method: 'GET' }, MassageTherapist, therapistsList);
+  api.fetchApi("appointments", { method: 'GET' }, Appointment, apptsList);
   
-  api.fetchApi("appointments", { method: 'GET' })
-  .then(json => json.forEach( appointment => {
-    const newAppt = new Appointment(appointment);
-    apptsList.innerHTML += newAppt.renderSpan();
-  }))
-
   sortButtonEvent();
   clickEvents();
   formSubmitEvent();
@@ -30,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 })  
 
 function clickEvents() {
+  const apptInfoList = document.querySelector('#appointment-info-list')
   apptsList.addEventListener('click', (e) => {
     const clickedAppt = parseInt(e.target.dataset.id)
     const foundAppt = Appointment.findAppointment(clickedAppt)
@@ -52,10 +41,12 @@ function clickEvents() {
 }
 
 function formSubmitEvent() {
+  const apptForm = document.querySelector('#appointment-form');
+
   apptForm.addEventListener('submit', (e) => {
     e.preventDefault()
     const updateApptId = e.target.dataset.id
-    api.fetchApi(`appointments/${updateApptId}`, {
+    fetch(`http://localhost:3000/api/v1/appointments/${updateApptId}`, {
       method: 'PATCH',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({        
@@ -66,15 +57,15 @@ function formSubmitEvent() {
         special_request: specialRequestInput.value
       })
     })
+    .then(promise => promise.json())
     .then((updatedApptJSON) => {
       const updatedAppt = Appointment.updateAppointment(updatedApptJSON)
       apptInfoList.innerHTML = updatedAppt.renderDetails()
     })
   })  
 
-  api.fetchSelect("massage_therapists", therapistNameInput)
-   
-  api.fetchSelect("clients", clientNameInput)
+  api.fetchSelect("massage_therapists", therapistNameInput);
+  api.fetchSelect("clients", clientNameInput);
 
 }
   
@@ -82,7 +73,8 @@ function sortButtonEvent() {
   const sortButton = document.getElementById('sort-button')
   sortButton.addEventListener('click', (e) => {
     e.preventDefault()
-    api.fetchApi("massage_therapists", { method: 'GET' })
+    fetch("http://localhost:3000/api/v1/massage_therapists", { method: 'GET' })
+    .then(promise => promise.json())
     .then(therapistsDataJson => {
       const newTherapist = therapistsDataJson.sort(function(a, b) {
         if (a.name < b.name ) {
@@ -96,13 +88,8 @@ function sortButtonEvent() {
       therapistsList.innerHTML = ""
       newTherapist.forEach(therapist => {
         const finalTherapist = new MassageTherapist(therapist)
-        therapistsList.innerHTML += finalTherapist.renderDetails()
+        therapistsList.innerHTML += finalTherapist.renderSpan()
       })
     })
   })
-}
-
-
-
-
-  
+}  

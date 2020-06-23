@@ -27,7 +27,7 @@ class MassageTherapist {
                 <p>${this.id}. Name: ${this.name}</p>
                 <p>Sex: ${this.sex}</p>
                 <p>Rating: ${this.rating}</p>
-            </li><br>
+            </li>
         `
     }
 } 

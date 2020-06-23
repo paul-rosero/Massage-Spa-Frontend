@@ -21,7 +21,7 @@ class MassageTherapist {
     //     return therapistToUpdate
     // }
     
-    renderDetails() {
+    renderSpan() {
         return `
             <li data-id="${this.id}">
                 <p>${this.id}. Name: ${this.name}</p>

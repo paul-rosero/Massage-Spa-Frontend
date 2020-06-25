@@ -8,6 +8,11 @@ class Client {
         Client.allClients.push(this)
     }
 
+    capitalize = (name) => {
+        if (typeof name !== 'string') return ''
+        return name.charAt(0).toUpperCase() + name.slice(1)
+    }
+
 //     static findClient(id) {
 //         return this.allClients.find((client) => client.id === id)
 //     }
@@ -25,7 +30,7 @@ class Client {
 //     renderDetails() {
 //         return `<br><h4>Client Info.</h4>
 //                 <p>Client: ${this.id}</p>
-//                 <p>Name: ${this.name}</p>
+//                 <p>Name: ${this.capitalize(this.name)}</p>
 //                 <p>Medical History: ${this.medical_history}</p>
 //                 <p>Address: ${this.address}</p>
 //                 <p>Email: ${this.email}</p>`

@@ -7,6 +7,11 @@ class MassageTherapist {
         MassageTherapist.allTherapists.push(this)
     }
 
+    capitalize = (name) => {
+        if (typeof name !== 'string') return ''
+        return name.charAt(0).toUpperCase() + name.slice(1)
+    }
+
     // static findTherapist(id) {
     //     return this.allTherapists.find((therapist) => therapist.id === id)
     // }
@@ -24,7 +29,7 @@ class MassageTherapist {
     renderSpan() {
         return `
             <li data-id="${this.id}">
-                <p>${this.id}. Name: ${this.name}</p>
+                <p>Name: ${this.capitalize(this.name)}</p>
                 <p>Sex: ${this.sex}</p>
                 <p>Rating: ${this.rating}</p>
             </li>

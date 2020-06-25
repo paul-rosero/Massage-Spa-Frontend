@@ -20,6 +20,21 @@ h3, h4{
 	float: top;
 	
 }
+#all-therapists-container{
+	width: 160px; /* Set the width of the sidebar */
+	position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+	z-index: 1; /* Stay on top */
+	top: 0; /* Stay at the top */
+	left: 0;
+	/* background-color: #111; Black */
+	overflow-x: hidden; /* Disable horizontal scroll */
+	padding-top: 100px;
+}
+.main{
+	margin-left: 140px; /* Same width as the sidebar + left position in px */
+	font-size: 28px; /* Increased text to enable scrolling */
+	padding: 0px 10px;
+}
 ul {
     list-style-type: disc;
     margin-block-start: 10px;
@@ -32,6 +47,12 @@ li {
 	font-size: 20px;
 	display: list-item; 
 }
+
+
+
+
+
+
 .about_text {
 	width: 70%;
 	margin: 0 auto;

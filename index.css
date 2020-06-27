@@ -20,7 +20,7 @@ h3, h4{
 	float: top;
 	
 }
-#all-therapists-container{
+.sidebar{
 	width: 160px; /* Set the width of the sidebar */
 	position: fixed; /* Fixed Sidebar (stay in place on scroll) */
 	z-index: 1; /* Stay on top */
@@ -35,14 +35,14 @@ h3, h4{
 	font-size: 28px; /* Increased text to enable scrolling */
 	padding: 0px 10px;
 }
-ul {
+ul{
     list-style-type: disc;
     margin-block-start: 10px;
     margin-block-end: 10px;
 	padding-inline-start: 20px;
 	columns: auto;
 }
-li {
+li{
 	
 	font-size: 20px;
 	display: list-item; 

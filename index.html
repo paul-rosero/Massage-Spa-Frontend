@@ -1,7 +1,6 @@
   
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
   <head>
     <meta charset="utf-8">
     <title>ScheduleAppointment</title>
@@ -16,60 +15,58 @@
     </div>
 
     <div class="sidebar">
+      <div id='all-therapists-container'>
+        <h3>All Massage Therapists</h3>
 
+        <div id='sort-container'>
+          <button id="sort-button">Sort Alphabetically</button>
+        </div>
+
+         <ul id='all-therapists-list'></ul>
+      </div>
     </div>
-   
-    <div id='all-therapists-container'>
-      <h3>All Massage Therapists</h3>
 
-      <div id='sort-container'>
-        <button id="sort-button">Sort Alphabetically</button>
+    <div class="main">
+   
+      <div id='new-appointment-container'>
+        <form id="appointment-form" action="index.html" method="post">
+          <br><h3>Appointment Form</h3>
+          <label for="name">Client Name:</label>
+          <select id="client-name-input" type="text" name="name" form="appointment-form" value=""></select><br>
+
+          <label for="name">Massage Therapist Name:</label>
+          <select id="therapist-name-input" type="text" name="name" form="appointment-form" value=""></select><br>
+
+          <label for="modality">Modality:</label>
+          <input id="modality-input" type="text" name="modality" value=""><br>
+
+          <label for="time">Appointment Time:</label>
+          <input id="appointment-time-input" type="text" name="time" value=""><br>
+
+          <label for="request">Special Requests:</label>
+          <input id="special-request-input" type="text" name="request" value=""><br>
+
+          <input type="button" id="create-button" value="Create Appointment">
+          <button id="edit-button" name="button">Edit Appointment</button>
+        </form>
       </div>
 
-      <ul id='all-therapists-list'></ul>
-    </div>
-<div class="main">
-     
-   
-    <div id='new-appointment-container'>
-      <form id="appointment-form" action="index.html" method="post">
-        <br><h3>Appointment Form</h3>
-        <label for="name">Client Name:</label>
-        <select id="client-name-input" type="text" name="name" form="appointment-form" value=""></select><br>
+      <div id='appointments-container'>
+        <ul id='appointments-list'>
+          <h4>Click on an Appointment to see its details.</h4>
+        </ul>
+      </div>
+      
+      <div id='appointment-info-container'>
+        <ul id='appointment-info-list'></ul>
+      </div>
 
-        <label for="name">Massage Therapist Name:</label>
-        <select id="therapist-name-input" type="text" name="name" form="appointment-form" value=""></select><br>
+    </div>    
 
-        <label for="modality">Modality:</label>
-        <input id="modality-input" type="text" name="modality" value=""><br>
-
-        <label for="time">Appointment Time:</label>
-        <input id="appointment-time-input" type="text" name="time" value=""><br>
-
-        <label for="request">Special Requests:</label>
-        <input id="special-request-input" type="text" name="request" value=""><br>
-
-        <input type="button" id="create-button" value="Create Appointment">
-        <button id="edit-button" name="button">Edit Appointment</button>
-      </form>
-    </div>
-
-    <div id='appointments-container'>
-      <ul id='appointments-list'>
-        <h4>Click on an Appointment to see its details.</h4>
-      </ul>
-    </div>
-    
-    <div id='appointment-info-container'>
-      <ul id='appointment-info-list'></ul>
-    </div>
-
-</div>    
     <script type="text/javascript" src="src/apiAdapter.js" charset="utf-8"></script>
     <script type="text/javascript" src="src/client.js" charset="utf-8"></script>
     <script type="text/javascript" src="src/therapist.js" charset="utf-8"></script> 
     <script type="text/javascript" src="src/appointment.js" ></script>
     <script type="text/javascript" src="src/appointments.js" charset="utf-8"></script>
   </body>
-
 </html>

@@ -33,7 +33,7 @@ function clickEvents() {
       clientNameInput.value = foundAppt.client.name
       therapistNameInput.value = foundAppt.massageTherapist.name
       modalityInput.value = foundAppt.modality
-      apptTimeInput.value = foundAppt.appointmentTime
+      apptTimeInput.value = foundAppt.dateAndTime
       specialRequestInput.value = foundAppt.specialRequest
       apptForm.dataset.id = foundAppt.id
     }

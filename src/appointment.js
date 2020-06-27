@@ -1,10 +1,11 @@
 class Appointment {
     constructor(apptDataObj) {
+        console.log('apptDataObj', apptDataObj.date_and_time)
         this.id = apptDataObj.id
         this.massageTherapist = apptDataObj.massage_therapist
         this.client = apptDataObj.client
         this.modality = apptDataObj.modality
-        this.appointmentTime = apptDataObj.appointment_time
+        this.dateAndTime = apptDataObj.date_and_time
         this.specialRequest = apptDataObj.special_request
         Appointment.allAppointments.push(this)
     }
@@ -18,7 +19,8 @@ class Appointment {
         apptToUpdate.massageTherapist = updatedApptData.massage_therapist
         apptToUpdate.client = updatedApptData.client
         apptToUpdate.modality = updatedApptData.modality
-        apptToUpdate.appointmentTime = updatedApptData.appointment_time
+        apptToUpdate.dateAndTime = updatedApptData.date_and_time
+        console.log('apptToUpdate.dateAndTime', apptToUpdate.dateAndTime)
         apptToUpdate.specialRequest = updatedApptData.special_request
         return apptToUpdate
     }
@@ -36,7 +38,7 @@ class Appointment {
             <p>Massage Therapist: ${this.massageTherapist.name}</p>
             <p>Client: ${this.client.name}</p>
             <p>Modality: ${this.modality}</p>
-            <p>Appointment Time: ${this.appointmentTime}</p>
+            <p>Appointment Date & Time: ${this.dateAndTime}</p>
             <p>Special Requests: ${this.specialRequest}</p>
         `
     }

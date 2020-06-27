@@ -39,7 +39,7 @@ class apiAdapter {
             body: JSON.stringify({        
                 massage_therapist_id: parseInt(therapistNameInput[therapistNameInput.selectedIndex].dataset.id),
                 client_id: parseInt(clientNameInput[clientNameInput.selectedIndex].dataset.id),
-                appointment_time: apptTimeInput.value,
+                date_and_time: apptTimeInput.value,
                 modality: modalityInput.value,
                 special_request: specialRequestInput.value
             })

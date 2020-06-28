@@ -1,5 +1,6 @@
 class Client {
     constructor(clientDataObj) {
+        console.log("client is loaded")
         this.id = clientDataObj.id
         this.name = clientDataObj.name
         this.address = clientDataObj.address

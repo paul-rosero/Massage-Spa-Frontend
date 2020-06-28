@@ -1,6 +1,6 @@
 class Appointment {
     constructor(apptDataObj) {
-        console.log('apptDataObj', apptDataObj.date_and_time)
+        console.log('appointment is loaded ')
         this.id = apptDataObj.id
         this.massageTherapist = apptDataObj.massage_therapist
         this.client = apptDataObj.client

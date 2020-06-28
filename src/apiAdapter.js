@@ -1,5 +1,6 @@
 class ApiAdapter {
     constructor() {
+        console.log("apiadapter is loaded")
         this.baseUrl = "http://localhost:3000/api/v1/"
     }
 

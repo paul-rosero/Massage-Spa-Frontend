@@ -10,9 +10,7 @@ class Appointment {
         Appointment.allAppointments.push(this)
     }
     
-    static findAppointment(id) {
-        return this.allAppointments.find((appointment) => appointment.id === id)
-    }
+    
 
     static updateAppointment(updatedApptData) {
         const apptToUpdate = this.findAppointment(updatedApptData.id)
@@ -25,9 +23,7 @@ class Appointment {
         return apptToUpdate
     }
     
-    renderSpan(){
-        return `<span data-id="${this.id}">Appointment ${this.id}</span><br><br>`
-    }
+    
 
     renderDetails(){
         return `

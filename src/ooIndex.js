@@ -7,11 +7,14 @@ const modalityInput = document.querySelector('#modality-input')
 const apptTimeInput = document.querySelector('#appointment-time-input')
 const specialRequestInput = document.querySelector('#special-request-input')
 const apptForm = document.querySelector('#appointment-form');
+const clientsList = document.querySelector("#all-clients-container")
 const api = new ApiAdapter
+
 
 document.addEventListener('DOMContentLoaded', () => { 
   api.fetchApi("massage_therapists", { method: 'GET' }, MassageTherapist, therapistsList);
   api.fetchApi("appointments", { method: 'GET' }, Appointment, apptsList);
+  // api.fetchApi("clients", { method: 'GET' }, Client, clientsList);
   
   sortButtonEvent();
   clickEvents();

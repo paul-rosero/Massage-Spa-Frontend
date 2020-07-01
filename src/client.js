@@ -23,14 +23,14 @@ class Client {
 //         return clientToUpdate
 //     }
     
-//     renderDetails() {
-//         return `<br><h4>Client Info.</h4>
-//                 <p>Client: ${this.id}</p>
-//                 <p>Name: ${this.name}</p>
-//                 <p>Medical History: ${this.medical_history}</p>
-//                 <p>Address: ${this.address}</p>
-//                 <p>Email: ${this.email}</p>`
-//     }
+    renderDetails() {
+        return `<br><h4>Client Info.</h4>
+                <p>Client: ${this.id}</p>
+                <p>Name: ${this.name}</p>
+                <p>Medical History: ${this.medical_history}</p>
+                <p>Address: ${this.address}</p>
+                <p>Email: ${this.email}</p>`
+    }
 }
 
 Client.allClients = []

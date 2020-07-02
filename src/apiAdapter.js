@@ -10,7 +10,7 @@ class ApiAdapter {
         .then(dataJson => { 
             dataJson.forEach( data => {
                 const newClassObject = new ClassObject(data)
-                list.innerHTML += newClassObject.renderSpan()
+                list.innerHTML += newClassObject.renderDetails()
             })
         })
     }
@@ -68,7 +68,7 @@ class ApiAdapter {
         list.innerHTML = ""
         newTherapist.forEach(therapist => {
             const finalTherapist = new ClassObject(therapist)
-            list.innerHTML += finalTherapist.renderSpan()
+            list.innerHTML += finalTherapist.renderDetails()
         })
         })
     }

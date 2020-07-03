@@ -7,7 +7,7 @@ html, body {
 	font-size: 45px;
 	text-align: center;
 	font-family: Gill Sans Extrabold, sans-serif; 
-	padding: 0px;
+	padding: 10px;
 	margin: 0px;
 	float: top;
 	
@@ -24,7 +24,7 @@ h3, h4{
 	width: 160px; /* Set the width of the sidebar */
 	position: fixed; /* Fixed Sidebar (stay in place on scroll) */
 	z-index: 1; /* Stay on top */
-	top: 0; /* Stay at the top */
+	top: 10%; /* Stay at the top */
 	left: 0;
 	/* background-color: #111; Black */
 	overflow-x: hidden; /* Disable horizontal scroll */

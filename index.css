@@ -47,14 +47,14 @@ li{
 	font-size: 20px;
 	display: list-item; 
 }
-nav {
+.navbar {
 	border-bottom: 1px solid black;
-	
+	padding-left: 10px;
 }
 .nav-link {
 	display: inline-block;
 	list-style-type: none;
-	padding: 0px 2ex 10px 2ex;
+	padding-bottom: 10px;
 }
 /* This is for the navbar links, so it shows the results in the page. this just makes that look nice. */
 .nav-link::after {

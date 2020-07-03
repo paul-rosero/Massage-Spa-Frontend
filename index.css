@@ -56,8 +56,15 @@ nav {
 	list-style-type: none;
 	padding: 0px 2ex 10px 2ex;
 }
-
-
+/* This is for the navbar links, so it shows the results in the page. this just makes that look nice. */
+.nav-link::after {
+    display: inline-block;
+    color: #000;
+    content: '|';
+    font-size: 80%;
+    font-weight: bold;
+    padding: 0px 15px 0px ;
+}
 
 
 

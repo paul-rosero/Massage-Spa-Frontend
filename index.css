@@ -47,7 +47,15 @@ li{
 	font-size: 20px;
 	display: list-item; 
 }
-
+nav {
+	border-bottom: 1px solid black;
+	
+}
+.nav-link {
+	display: inline-block;
+	list-style-type: none;
+	padding: 0px 2ex 10px 2ex;
+}
 
 
 

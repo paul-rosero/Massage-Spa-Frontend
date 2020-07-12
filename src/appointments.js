@@ -7,12 +7,16 @@ class Appointments {
     // this.client = new Client()
     // this.appointment = new Appointment()
     // this.therapist = new MassageTherapist()
-    // this.bindVariables()
+    this.bindVariables()
     // this.addEventListeners()
   }
 
+  bindVariables(){
+    this.apptsList = document.querySelector('#appointments-list');
+  }
+
   getAllAppointments() {
-    this.adapter.fetchApi("appointments", { method: 'GET' }, Appointment, apptsList);
+    this.adapter.fetchApi("appointments", { method: 'GET' }, Appointment, this.apptsList);
   }
 
   static findAppointment(id) {

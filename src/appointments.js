@@ -11,6 +11,9 @@ class Appointments {
     // this.addEventListeners()
   }
 
+  getAllAppointments() {
+    this.adapter.fetchApi("appointments", { method: 'GET' }, Appointment, apptsList);
+  }
 
   static findAppointment(id) {
     return Appointments.find((appointment) => appointment.id === id)

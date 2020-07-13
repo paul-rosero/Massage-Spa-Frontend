@@ -16,14 +16,20 @@ class Appointments {
   }
 
   getAllAppointments() {
-    this.adapter.fetchApi("appointments", { method: 'GET' }, Appointment, this.apptsList);
+    this.adapter.fetchApi("appointments", { method: 'GET' })
+    .then(appointments => { 
+      appointments.forEach(appt => {
+        this.appointments.push(new Appointment(appt))
+      })
+    })
+    .then(() => { this.renderLi() })
   }
 
   static findAppointment(id) {
     return Appointments.find((appointment) => appointment.id === id)
   }
 
-  renderSpan(){
+  renderLi(){
       return `<span data-id="${this.id}">Appointment ${this.id}</span><br><br>`
   }
 

@@ -5,14 +5,13 @@ class Appointments {
     this.adapter = new ApiAdapter()
     this.getAllAppointments()
     // this.client = new Client()
-    // this.appointment = new Appointment()
     // this.therapist = new MassageTherapist()
     this.bindVariables()
     // this.addEventListeners()
   }
 
   bindVariables(){
-    this.apptsList = document.querySelector('#appointments-list');
+    this.apptsContainer = document.querySelector('#appointments-container');
   }
 
   getAllAppointments() {
@@ -25,7 +24,7 @@ class Appointments {
   }
 
   renderLi(){
-    this.apptsList.innerHTML = this.appointments.map(appt => `<li data-id="${appt.id}">Appointment ${appt.id}</li>`).join("")
+    this.apptsContainer.innerHTML = this.appointments.map(appt => `<li id="appt">Appointment ${appt.id}</li>`).join("")
   }
 
 }

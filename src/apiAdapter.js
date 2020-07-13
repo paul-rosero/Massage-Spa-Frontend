@@ -4,15 +4,10 @@ class ApiAdapter {
         this.baseUrl = "http://localhost:3000/api/v1/"
     }
 
-    fetchApi(url, method, ClassObject, list) {
+    fetchApi(url, method) {
         return fetch(this.baseUrl + url, method )
         .then(promise => promise.json())
-        .then(dataJson => { 
-            dataJson.forEach( data => {
-                const newClassObject = new ClassObject(data)
-                list.innerHTML += newClassObject.renderDetails()
-            })
-        })
+        
     }
 
     fetchSelect(url, input) {

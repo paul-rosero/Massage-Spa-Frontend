@@ -16,12 +16,7 @@ class Appointments {
   }
 
   getAllAppointments() {
-    this.adapter.fetchApi("appointments", { method: 'GET' })
-    .then(appointments => { 
-      appointments.forEach(appt => {
-        this.appointments.push(new Appointment(appt))
-      })
-    })
+    this.adapter.fetchApi("appointments", { method: 'GET' }, this.appointments, Appointment)
     .then(() => { this.renderLi() })
   }
 

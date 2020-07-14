@@ -19,7 +19,6 @@ class Appointments {
     .then(() => { this.renderLi() });
     this.adapter.fetchApi("massage_therapists", { method: 'GET' }, MassageTherapist.allTherapists, MassageTherapist)
     .then(() => { MassageTherapist.renderDetails() });
-    console.log(MassageTherapist.allTherapists)
   }
 
   static findAppointment(id) {

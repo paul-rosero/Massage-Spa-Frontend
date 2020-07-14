@@ -6,7 +6,6 @@ class Client {
         this.address = clientDataObj.address
         this.email = clientDataObj.email
         this.medical_history = clientDataObj.medical_history
-        Client.allClients.push(this)
     }
 
 //     static findClient(id) {

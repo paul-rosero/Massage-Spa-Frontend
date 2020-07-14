@@ -5,9 +5,12 @@ class MassageTherapist {
         this.name = therapistDataObj.name
         this.sex = therapistDataObj.sex
         this.rating = therapistDataObj.rating
-        MassageTherapist.allTherapists.push(this)
+        this.bindVariables()
     }
 
+    bindVariables(){
+        
+    }
     // capitalize = (fullName) => {
     //     if (typeof name !== 'string') return ''
     //     return fullName.split(' ').map(name => name[0].toUpperCase() + name.slice(1).toLowerCase()).join(' ')
@@ -27,14 +30,15 @@ class MassageTherapist {
     //     return therapistToUpdate
     // }
     
-    renderDetails() {
-        return `
-            <li data-id="${this.id}">
-                <p>Name: ${this.name}</p>
-                <p>Sex: ${this.sex}</p>
-                <p>Rating: ${this.rating}</p>
-            </li>
-        `
+    static renderDetails() {
+        this.therapistsList = document.querySelector('#all-therapists-list');
+        this.therapistsList.innerHTML = this.allTherapists.map(therapist => 
+            `<li data-id="${therapist.id}">
+                <p>Name: ${therapist.name}</p>
+                <p>Sex: ${therapist.sex}</p>
+                <p>Rating: ${therapist.rating}</p>
+            </li>`
+        ).join("")
     }
 } 
 

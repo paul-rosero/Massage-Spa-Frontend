@@ -17,9 +17,17 @@ class Appointments {
   allContentLoaded() {
     this.adapter.fetchApi("appointments", { method: 'GET' }, this.appointments, Appointment)
     .then(() => { this.renderLi() });
+    
     this.adapter.fetchApi("massage_therapists", { method: 'GET' }, MassageTherapist.allTherapists, MassageTherapist)
     .then(() => { MassageTherapist.renderDetails() });
+  }
+
+  updateAppointment(){
+    this.clientNameInput = document.querySelector('#client-name-input');
+    this.therapistNameInput = document.querySelector('#therapist-name-input');
     
+    this.adapter.fetchSelect("massage_therapists", this.therapistNameInput);
+    this.adapter.fetchSelect("clients", this.clientNameInput);
   }
 
   static findAppointment(id) {

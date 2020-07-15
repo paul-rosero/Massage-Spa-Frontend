@@ -3,7 +3,7 @@ class Appointments {
     console.log("appointments are loaded")
     this.appointments = []
     this.adapter = new ApiAdapter()
-    this.getAllAppointments()
+    this.allContentLoaded()
     // this.client = new Client()
     // this.therapist = new MassageTherapist()
     this.bindVariables()
@@ -14,11 +14,12 @@ class Appointments {
     this.apptsContainer = document.querySelector('#appointments-container');
   }
 
-  getAllAppointments() {
+  allContentLoaded() {
     this.adapter.fetchApi("appointments", { method: 'GET' }, this.appointments, Appointment)
     .then(() => { this.renderLi() });
     this.adapter.fetchApi("massage_therapists", { method: 'GET' }, MassageTherapist.allTherapists, MassageTherapist)
     .then(() => { MassageTherapist.renderDetails() });
+    
   }
 
   static findAppointment(id) {

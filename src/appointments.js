@@ -19,7 +19,6 @@ class Appointments {
     this.apptsContainer.addEventListener('click', (e) => {
       const clickedAppt = parseInt(e.path[0].id)
       const foundAppt = Appointment.findAppointment(clickedAppt)
-      console.log(Appointment.findAppointment(parseInt(e.path[0].id)))
       this.apptInfoList.innerHTML = foundAppt.renderDetails()
     })
   }
@@ -45,7 +44,7 @@ class Appointments {
   }
 
   renderLi(){
-    this.apptsContainer.innerHTML = this.appointments.map(appt => `<li id="{appt.id}">Appointment ${appt.id}</li>`).join("")
+    this.apptsContainer.innerHTML = this.appointments.map(appt => `<li id="${appt.id}">Appointment ${appt.id}</li>`).join("")
   }
 
 }

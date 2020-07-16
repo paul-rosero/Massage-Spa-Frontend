@@ -60,6 +60,11 @@ class Appointments {
         })
       }, Appointment, this.apptInfoList)
     })    
+
+    this.sortButton.addEventListener('click', (e) => {
+      e.preventDefault()
+      this.adapter.fetchSortButton("massage_therapists", { method: 'GET' }, this.therapistsList);
+    })
   }
 
   allContentLoaded() {
@@ -72,10 +77,7 @@ class Appointments {
   }
 
   sortButtonEvent() {
-    this.sortButton.addEventListener('click', (e) => {
-      e.preventDefault()
-      this.adapter.fetchSortButton("massage_therapists", { method: 'GET' }, this.therapistsList)
-    })
+    
   }  
 
   static findAppointment(id) {

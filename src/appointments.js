@@ -73,10 +73,9 @@ class Appointments {
   }
 
   sortButtonEvent() {
-      
     this.sortButton.addEventListener('click', (e) => {
       e.preventDefault()
-      this.adapter.fetchSortButton("massage_therapists", { method: 'GET' }, therapistsList, MassageTherapist)
+      this.adapter.fetchSortButton("massage_therapists", { method: 'GET' }, this.therapistsList, MassageTherapist)
     })
   }  
 

@@ -49,6 +49,7 @@ class ApiAdapter {
             if (a.name < b.name ) {
             return -1;
             } 
+            console.log(a.name < b.name)
             if (a.name > b.name) {
             return 1;
             }
@@ -57,7 +58,7 @@ class ApiAdapter {
         list.innerHTML = ""
         newTherapist.forEach(therapist => {
             const finalTherapist = new MassageTherapist(therapist)
-            list.innerHTML += finalTherapist.renderDetails()
+            list.innerHTML += finalTherapist.renderSort()
         })
         })
     }

@@ -41,7 +41,7 @@ class ApiAdapter {
         })
     }
 
-    fetchSortButton(url, method, list, ClassObject) {
+    fetchSortButton(url, method, list) {
         fetch(this.baseUrl + url, method)
         .then(promise => promise.json())
         .then(therapistsDataJson => {
@@ -56,7 +56,7 @@ class ApiAdapter {
         })
         list.innerHTML = ""
         newTherapist.forEach(therapist => {
-            const finalTherapist = new ClassObject(therapist)
+            const finalTherapist = new MassageTherapist(therapist)
             list.innerHTML += finalTherapist.renderDetails()
         })
         })

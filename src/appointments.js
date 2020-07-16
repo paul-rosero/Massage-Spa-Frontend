@@ -7,7 +7,6 @@ class Appointments {
     this.allContentLoaded();
     this.sortButtonEvent();
     // this.client = new Client();
-    this.updateAppointment();
     this.addEventListeners();
   }
 

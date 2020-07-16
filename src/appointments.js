@@ -41,6 +41,13 @@ class Appointments {
         this.apptForm.dataset.id = foundAppt.id
       }
     })
+
+    this.apptForm.addEventListener('button', (e) => {
+      e.preventDefault()
+      console.log(e.target)
+      const updateApptId = e.target.dataset.id
+      this.adapter.fetchUpdate(`appointments/${updateApptId}`, Appointment, this.apptInfoList)
+    })    
   }
 
   allContentLoaded() {

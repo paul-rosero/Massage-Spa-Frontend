@@ -23,6 +23,20 @@ class Appointments {
       const foundAppt = Appointment.findAppointment(clickedAppt)
       this.apptInfoList.innerHTML = foundAppt.renderDetails()
     })
+
+    this.apptInfoList.addEventListener('click', (e) => {
+      if (e.target.className === 'edit' || e.target.dataset.action === 'edit') {
+        const clickedAppt = parseInt(e.target.dataset.id);
+        const foundAppt = Appointment.findAppointment(clickedAppt);
+
+        this.clientNameInput.value = foundAppt.client.name
+        this.therapistNameInput.value = foundAppt.massageTherapist.name
+        this.modalityInput.value = foundAppt.modality
+        this.apptTimeInput.value = foundAppt.dateAndTime
+        this.specialRequestInput.value = foundAppt.specialRequest
+        this.apptForm.dataset.id = foundAppt.id
+      }
+    })
   }
 
   allContentLoaded() {

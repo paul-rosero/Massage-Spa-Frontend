@@ -30,7 +30,6 @@ class Appointments {
     })
 
     this.apptInfoList.addEventListener('click', (e) => {
-      console.log(e.target.className)
       if (e.target.className === 'edit' || e.target.dataset.action === 'edit') {
         const clickedAppt = parseInt(e.target.dataset.id);
         const foundAppt = Appointment.findAppointment(clickedAppt);

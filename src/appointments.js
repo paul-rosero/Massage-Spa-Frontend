@@ -1,13 +1,14 @@
 class Appointments {
   constructor() {
     console.log("appointments are loaded")
-    this.appointments = []
-    this.adapter = new ApiAdapter()
-    this.bindVariables()
-    this.allContentLoaded()
-    // this.client = new Client()
-    this.updateAppointment()
-    this.addEventListeners()
+    this.appointments = [];
+    this.adapter = new ApiAdapter();
+    this.bindVariables();
+    this.allContentLoaded();
+    this.sortButtonEvent();
+    // this.client = new Client();
+    this.updateAppointment();
+    this.addEventListeners();
   }
 
   bindVariables(){

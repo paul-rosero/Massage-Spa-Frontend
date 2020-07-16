@@ -45,7 +45,7 @@ class Appointments {
   }
 
   renderLi(){
-    this.apptsContainer.innerHTML = this.appointments.map(appt => `<li id="${appt.id}">Appointment ${appt.id}</li>`).join("")
+    this.apptsContainer.innerHTML = this.appointments.map(appt => `<li id="{appt.id}">Appointment ${appt.id}</li>`).join("")
   }
 
 }

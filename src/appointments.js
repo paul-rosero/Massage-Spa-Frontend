@@ -5,7 +5,7 @@ class Appointments {
     this.adapter = new ApiAdapter()
     this.allContentLoaded()
     // this.client = new Client()
-    // this.therapist = new MassageTherapist()
+    this.updateAppointment()
     this.bindVariables()
     this.addEventListeners()
   }

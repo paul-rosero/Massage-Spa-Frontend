@@ -31,8 +31,8 @@ class MassageTherapist {
     // }
     
     static renderDetails() {
-        this.therapistsList = document.querySelector('#all-therapists-list');
-        this.therapistsList.innerHTML = this.allTherapists.map(therapist => 
+        const therapistsList = document.querySelector('#all-therapists-list');
+        therapistsList.innerHTML = this.allTherapists.map(therapist => 
             `<li id="${therapist.id}">
                 <p>Name: ${therapist.name}</p>
                 <p>Sex: ${therapist.sex}</p>

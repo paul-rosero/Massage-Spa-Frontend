@@ -32,18 +32,8 @@ class ApiAdapter {
         })  
     }
     
-    fetchUpdate(url, ClassObject, list ) {
-        return fetch(this.baseUrl + url, {
-            method: 'PATCH',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({        
-                massage_therapist_id: parseInt(therapistNameInput[therapistNameInput.selectedIndex].dataset.id),
-                client_id: parseInt(clientNameInput[clientNameInput.selectedIndex].dataset.id),
-                date_and_time: apptTimeInput.value,
-                modality: modalityInput.value,
-                special_request: specialRequestInput.value
-            })
-        })
+    fetchUpdate(url, method, ClassObject, list ) {
+        return fetch(this.baseUrl + url, method)
         .then(promise => promise.json())
         .then((updatedApptJSON) => {
             const updatedAppt = ClassObject.updateAppointment(updatedApptJSON)

@@ -42,24 +42,24 @@ class ApiAdapter {
     }
 
     fetchSortButton(url, method, list) {
-        fetch(this.baseUrl + url, method)
+        return fetch(this.baseUrl + url, method)
         .then(promise => promise.json())
         .then(therapistsDataJson => {
-        const newTherapist = therapistsDataJson.sort(function(a, b) {
-            if (a.name < b.name ) {
-            return -1;
-            } 
-            console.log(a.name < b.name)
-            if (a.name > b.name) {
-            return 1;
-            }
-            return 0
-        })
-        list.innerHTML = ""
-        newTherapist.forEach(therapist => {
-            const finalTherapist = new MassageTherapist(therapist)
-            list.innerHTML += finalTherapist.renderSort()
-        })
+            const newTherapist = therapistsDataJson.sort(function(a, b) {
+                if (a.name < b.name ) {
+                return -1;
+                } 
+                console.log(a.name < b.name)
+                if (a.name > b.name) {
+                return 1;
+                }
+                return 0
+            })
+            list.innerHTML = ""
+            newTherapist.forEach(therapist => {
+                const finalTherapist = new MassageTherapist(therapist)
+                list.innerHTML += finalTherapist.renderSort()
+            })
         })
     }
 }

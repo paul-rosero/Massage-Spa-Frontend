@@ -46,9 +46,18 @@ class Appointments {
 
     this.editApptButton.addEventListener('click', (e) => {
       e.preventDefault()
-      console.log(e.path[0].id)
-      const updateApptId = e.target.dataset.id
-      this.adapter.fetchUpdate(`appointments/${updateApptId}`, Appointment, this.apptInfoList)
+      const updateApptId = e.path[1].dataset.id
+      this.adapter.fetchUpdate(`appointments/${updateApptId}`, {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({        
+          massage_therapist_id: parseInt(this.therapistNameInput[this.therapistNameInput.selectedIndex].dataset.id),
+          client_id: parseInt(this.clientNameInput[this.clientNameInput.selectedIndex].dataset.id),
+          date_and_time: this.apptTimeInput.value,
+          modality: this.modalityInput.value,
+          special_request: this.specialRequestInput.value
+        })
+      }, Appointment, this.apptInfoList)
     })    
   }
 

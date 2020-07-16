@@ -71,11 +71,13 @@ class Appointments {
     this.adapter.fetchSelect("clients", this.clientNameInput);
   }
 
-  updateAppointment(){
-    
-    
-   
-  }
+  sortButtonEvent() {
+      
+    this.sortButton.addEventListener('click', (e) => {
+      e.preventDefault()
+      this.adapter.fetchSortButton("massage_therapists", { method: 'GET' }, therapistsList, MassageTherapist)
+    })
+  }  
 
   static findAppointment(id) {
     return Appointments.find((appointment) => appointment.id === id)

@@ -7,11 +7,21 @@ class Appointments {
     // this.client = new Client()
     // this.therapist = new MassageTherapist()
     this.bindVariables()
-    // this.addEventListeners()
+    this.addEventListeners()
   }
 
   bindVariables(){
     this.apptsContainer = document.querySelector('#appointments-container');
+    this.apptInfoList = document.querySelector('#appointment-info-list');
+  }
+
+  addEventListeners(){
+    this.apptsContainer.addEventListener('click', (e) => {
+      const clickedAppt = parseInt(e.path[0].id)
+      const foundAppt = Appointment.findAppointment(clickedAppt)
+      console.log(Appointment.findAppointment(parseInt(e.path[0].id)))
+      this.apptInfoList.innerHTML = foundAppt.renderDetails()
+    })
   }
 
   allContentLoaded() {
@@ -35,7 +45,7 @@ class Appointments {
   }
 
   renderLi(){
-    this.apptsContainer.innerHTML = this.appointments.map(appt => `<li id="appt">Appointment ${appt.id}</li>`).join("")
+    this.apptsContainer.innerHTML = this.appointments.map(appt => `<li id="${appt.id}">Appointment ${appt.id}</li>`).join("")
   }
 
 }

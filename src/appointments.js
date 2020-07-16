@@ -5,8 +5,6 @@ class Appointments {
     this.adapter = new ApiAdapter();
     this.bindVariables();
     this.allContentLoaded();
-    this.sortButtonEvent();
-    // this.client = new Client();
     this.addEventListeners();
   }
 
@@ -74,10 +72,6 @@ class Appointments {
     
     this.adapter.fetchSelect("massage_therapists", this.therapistNameInput);
     this.adapter.fetchSelect("clients", this.clientNameInput);
-  }
-
-  sortButtonEvent() {
-    
   }  
 
   static findAppointment(id) {

@@ -19,6 +19,7 @@ class Appointments {
     this.apptTimeInput = document.querySelector('#appointment-time-input')
     this.specialRequestInput = document.querySelector('#special-request-input')
     this.apptForm = document.querySelector('#appointment-form');
+    this.editApptButton = document.querySelector('#edit-button');
   }
 
   addEventListeners(){
@@ -29,6 +30,7 @@ class Appointments {
     })
 
     this.apptInfoList.addEventListener('click', (e) => {
+      console.log(e.target.className)
       if (e.target.className === 'edit' || e.target.dataset.action === 'edit') {
         const clickedAppt = parseInt(e.target.dataset.id);
         const foundAppt = Appointment.findAppointment(clickedAppt);
@@ -42,9 +44,9 @@ class Appointments {
       }
     })
 
-    this.apptForm.addEventListener('button', (e) => {
+    this.editApptButton.addEventListener('click', (e) => {
       e.preventDefault()
-      console.log(e.target)
+      console.log(e.path[0].id)
       const updateApptId = e.target.dataset.id
       this.adapter.fetchUpdate(`appointments/${updateApptId}`, Appointment, this.apptInfoList)
     })    

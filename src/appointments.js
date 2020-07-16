@@ -15,9 +15,9 @@ class Appointments {
     this.apptInfoList = document.querySelector('#appointment-info-list');
     this.clientNameInput = document.querySelector('#client-name-input');
     this.therapistNameInput = document.querySelector('#therapist-name-input');
-    this.modalityInput = document.querySelector('#modality-input')
-    this.apptTimeInput = document.querySelector('#appointment-time-input')
-    this.specialRequestInput = document.querySelector('#special-request-input')
+    this.modalityInput = document.querySelector('#modality-input');
+    this.apptTimeInput = document.querySelector('#appointment-time-input');
+    this.specialRequestInput = document.querySelector('#special-request-input');
     this.apptForm = document.querySelector('#appointment-form');
     this.editApptButton = document.querySelector('#edit-button');
   }

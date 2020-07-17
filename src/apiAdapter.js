@@ -65,5 +65,9 @@ class ApiAdapter {
 
     fetchCreateAppointment(url, method){
         return fetch(this.baseUrl + url, method)
+        .then(promise => promise.json())
+        .then(newAppt => {
+            
+        })
     }
 }

@@ -23,7 +23,7 @@ class ApiAdapter {
                 let option;
                 for (let i = 0; i < appt.length; i++) {
                     option = document.createElement('option');
-                    option.dataset.id = appt[i].id;
+                    option.id = appt[i].id;
                     option.text = appt[i].name;
                     option.value = appt[i].name;
                     input.add(option);

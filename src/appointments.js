@@ -70,12 +70,16 @@ class Appointments {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({        
-          massage_therapist_id: e.target[0].selectedOptions[0].id,
-          client_id: e.target[1].selectedOptions[0].id,
-          date_and_time: e.target[2].value,
-          modality: e.target[3].value,
+          client_id: e.target[0].selectedOptions[0].id,
+          massage_therapist_id: e.target[1].selectedOptions[0].id,
+          modality: e.target[2].value,
+          date_and_time: e.target[3].value,
           special_request: e.target[4].value
+          
         })
+        })
+      .then(() => {
+        this.renderLi()
       })
     })
   }

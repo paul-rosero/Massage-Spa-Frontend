@@ -77,9 +77,9 @@ class Appointments {
           // special_request: this.specialRequestInput.value
         })
       })
-      console.log(e)
-      console.log(e.target[0].id)
-      console.log(e.target[1].id)
+      console.log(e.target[0].selectedOptions)
+      console.log(e.target[0].selectedOptions[0].id)
+      console.log(e.target[1].selectedOptions[0].id)
       console.log(e.target[2].value)
       console.log(e.target[3].value)
       console.log(e.target[4].value)

@@ -70,19 +70,13 @@ class Appointments {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({        
-          // massage_therapist_id: parseInt(this.therapistNameInput[this.therapistNameInput.selectedIndex].dataset.id),
-          // client_id: parseInt(this.clientNameInput[this.clientNameInput.selectedIndex].dataset.id),
-          // date_and_time: this.apptTimeInput.value,
-          // modality: this.modalityInput.value,
-          // special_request: this.specialRequestInput.value
+          massage_therapist_id: e.target[0].selectedOptions[0].id,
+          client_id: e.target[1].selectedOptions[0].id,
+          date_and_time: e.target[2].value,
+          modality: e.target[3].value,
+          special_request: e.target[4].value
         })
       })
-      console.log(e.target[0].selectedOptions)
-      console.log(e.target[0].selectedOptions[0].id)
-      console.log(e.target[1].selectedOptions[0].id)
-      console.log(e.target[2].value)
-      console.log(e.target[3].value)
-      console.log(e.target[4].value)
     })
   }
 

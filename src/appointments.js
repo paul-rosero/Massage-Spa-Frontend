@@ -77,7 +77,7 @@ class Appointments {
           special_request: e.target[4].value
           
         })
-        })
+        }, this.appointments)
       .then(() => {
         this.renderLi()
       })

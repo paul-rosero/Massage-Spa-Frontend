@@ -63,6 +63,27 @@ class Appointments {
       e.preventDefault()
       this.adapter.fetchSortButton("massage_therapists", { method: 'GET' }, this.therapistsList);
     })
+
+    this.apptForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      this.adapter.fetchCreateAppointment("appointments", {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({        
+          // massage_therapist_id: parseInt(this.therapistNameInput[this.therapistNameInput.selectedIndex].dataset.id),
+          // client_id: parseInt(this.clientNameInput[this.clientNameInput.selectedIndex].dataset.id),
+          // date_and_time: this.apptTimeInput.value,
+          // modality: this.modalityInput.value,
+          // special_request: this.specialRequestInput.value
+        })
+      })
+      console.log(e)
+      console.log(e.target[0].id)
+      console.log(e.target[1].id)
+      console.log(e.target[2].value)
+      console.log(e.target[3].value)
+      console.log(e.target[4].value)
+    })
   }
 
   allContentLoaded() {

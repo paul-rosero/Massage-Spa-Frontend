@@ -75,10 +75,14 @@ class Appointments {
           modality: e.target[2].value,
           date_and_time: e.target[3].value,
           special_request: e.target[4].value
-          
         })
         }, this.appointments)
       .then(() => {
+        this.clientNameInput.value = ""
+        this.therapistNameInput.value = ""
+        this.modalityInput.value = ""
+        this.apptTimeInput.value = ""
+        this.specialRequestInput.value = ""
         this.renderLi()
       })
     })

@@ -76,7 +76,7 @@ class Appointments {
           date_and_time: e.target[3].value,
           special_request: e.target[4].value
         })
-        }, this.appointments)
+        }, this.appointments, Appointment)
       .then(() => {
         this.clientNameInput.value = ""
         this.therapistNameInput.value = ""

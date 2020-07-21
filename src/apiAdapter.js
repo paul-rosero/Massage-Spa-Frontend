@@ -63,11 +63,11 @@ class ApiAdapter {
         })
     }
 
-    fetchCreateAppointment(url, method, dataArray){
+    fetchCreateAppointment(url, method, dataArray, ClassObject){
         return fetch(this.baseUrl + url, method)
         .then(promise => promise.json())
         .then(newAppt => {
-            dataArray.push(new Appointment(newAppt))
+            dataArray.push(new ClassObject(newAppt))
         })
     }
 }

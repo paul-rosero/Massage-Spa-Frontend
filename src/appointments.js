@@ -30,10 +30,10 @@ class Appointments {
     })
 
     this.apptInfoList.addEventListener('click', (e) => {
-      if (e.target.className === 'edit' || e.target.dataset.action === 'edit') {
-        const clickedAppt = parseInt(e.target.dataset.id);
+      if (e.target.className === 'edit' ) {
+        const clickedAppt = parseInt(e.target.id);
         const foundAppt = Appointment.findAppointment(clickedAppt);
-
+        
         this.clientNameInput.value = foundAppt.client.name
         this.therapistNameInput.value = foundAppt.massageTherapist.name
         this.modalityInput.value = foundAppt.modality

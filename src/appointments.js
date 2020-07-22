@@ -78,14 +78,18 @@ class Appointments {
         })
         }, this.appointments, Appointment)
       .then(() => {
-        this.clientNameInput.value = ""
-        this.therapistNameInput.value = ""
-        this.modalityInput.value = ""
-        this.apptTimeInput.value = ""
-        this.specialRequestInput.value = ""
+        this.clearForm();
         this.renderLi()
       })
     })
+  }
+  
+  clearForm(){
+    this.clientNameInput.value = ""
+    this.therapistNameInput.value = ""
+    this.modalityInput.value = ""
+    this.apptTimeInput.value = ""
+    this.specialRequestInput.value = ""
   }
 
   allContentLoaded() {

@@ -33,7 +33,7 @@ class Appointments {
       if (e.target.className === 'edit' ) {
         const clickedAppt = parseInt(e.target.id);
         const foundAppt = Appointment.findAppointment(clickedAppt);
-        
+       
         this.clientNameInput.value = foundAppt.client.name
         this.therapistNameInput.value = foundAppt.massageTherapist.name
         this.modalityInput.value = foundAppt.modality
@@ -46,12 +46,13 @@ class Appointments {
     this.editApptButton.addEventListener('click', (e) => {
       e.preventDefault()
       const updateApptId = e.path[1].dataset.id
+      console.log(updateApptId)
       this.adapter.fetchUpdate(`appointments/${updateApptId}`, {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({        
-          massage_therapist_id: parseInt(this.therapistNameInput[this.therapistNameInput.selectedIndex].dataset.id),
-          client_id: parseInt(this.clientNameInput[this.clientNameInput.selectedIndex].dataset.id),
+          massage_therapist_id: this.therapistNameInput[this.therapistNameInput.selectedIndex].id,
+          client_id: this.clientNameInput[this.clientNameInput.selectedIndex].id,
           date_and_time: this.apptTimeInput.value,
           modality: this.modalityInput.value,
           special_request: this.specialRequestInput.value

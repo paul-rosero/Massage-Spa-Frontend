@@ -32,6 +32,7 @@ class Appointment {
             <br><h4>View or Edit the Appointment.</h4>
             <p>Appointment: ${this.id}
                 <button class="edit" id=${this.id} action="edit">Edit Appointment</button>
+                <input  class="delete" id=${this.id} type="button" onclick="alert('Hello World!')" value="Delete Appointment">
             </p>
             <p>Massage Therapist: ${this.massageTherapist.name}</p>
             <p>Client: ${this.client.name}</p>

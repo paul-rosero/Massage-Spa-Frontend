@@ -57,6 +57,7 @@ class Appointments {
           special_request: this.specialRequestInput.value
         })
       }, Appointment, this.apptInfoList)
+      .then(() =>{ this.clearForm() })
     })    
 
     this.sortButton.addEventListener('click', (e) => {

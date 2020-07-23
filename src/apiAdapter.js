@@ -41,7 +41,8 @@ class ApiAdapter {
         })
     }
 
-    fetchSortButton(url, method, list) {
+    static fetchSortButton(url, method, list) {
+        this.baseUrl = "http://localhost:3000/api/v1/";
         return fetch(this.baseUrl + url, method)
         .then(promise => promise.json())
         .then(therapistsDataJson => {

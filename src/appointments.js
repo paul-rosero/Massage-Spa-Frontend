@@ -25,25 +25,6 @@ class Appointments {
   addEventListeners(){
     Appointment.clickToShowAppt()
     Appointment.copyToEditAppt()
-    // this.apptsContainer.addEventListener('click', (e) => {
-    //   const clickedAppt = parseInt(e.path[0].id)
-    //   const foundAppt = Appointment.findAppointment(clickedAppt)
-    //   this.apptInfoList.innerHTML = foundAppt.renderDetails()
-    // })
-
-    // this.apptInfoList.addEventListener('click', (e) => {
-    //   if (e.target.className === 'edit' ) {
-    //     const clickedAppt = parseInt(e.target.id);
-    //     const foundAppt = Appointment.findAppointment(clickedAppt);
-       
-    //     this.clientNameInput.value = foundAppt.client.name
-    //     this.therapistNameInput.value = foundAppt.massageTherapist.name
-    //     this.modalityInput.value = foundAppt.modality
-    //     this.apptTimeInput.value = foundAppt.dateAndTime
-    //     this.specialRequestInput.value = foundAppt.specialRequest
-    //     this.apptForm.dataset.id = foundAppt.id
-    //   }
-    // })
 
     this.editApptButton.addEventListener('click', (e) => {
       e.preventDefault()

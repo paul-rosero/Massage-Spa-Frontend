@@ -3,12 +3,11 @@ class Appointments {
     console.log("appointments are loaded")
     this.appointments = [];
     this.adapter = new ApiAdapter();
-    this.bindVariables();
     this.allContentLoaded();
     this.addEventListeners();
   }
 
-  bindVariables(){
+  static bindVariables(){
     this.apptsContainer = document.querySelector('#appointments-container');
     this.apptInfoList = document.querySelector('#appointment-info-list');
     this.clientNameInput = document.querySelector('#client-name-input');
@@ -25,22 +24,7 @@ class Appointments {
     Appointment.copyToEditAppt();
     MassageTherapist.sortTherapistName();
 
-    this.editApptButton.addEventListener('click', (e) => {
-      e.preventDefault()
-      const updateApptId = e.path[1].id
-      this.adapter.fetchUpdate(`appointments/${updateApptId}`, {
-        method: 'PATCH',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({        
-          massage_therapist_id: this.therapistNameInput[this.therapistNameInput.selectedIndex].id,
-          client_id: this.clientNameInput[this.clientNameInput.selectedIndex].id,
-          date_and_time: this.apptTimeInput.value,
-          modality: this.modalityInput.value,
-          special_request: this.specialRequestInput.value
-        })
-      }, Appointment, this.apptInfoList)
-      .then(() =>{ this.clearForm() })
-    })    
+    
 
     
 
@@ -73,6 +57,8 @@ class Appointments {
   }
 
   allContentLoaded() {
+    this.clientNameInput = document.querySelector('#client-name-input');
+    this.therapistNameInput = document.querySelector('#therapist-name-input');
     this.adapter.fetchApi("appointments", { method: 'GET' }, this.appointments, Appointment).then(() => { this.renderLi() });
     
     this.adapter.fetchApi("massage_therapists", { method: 'GET' }, MassageTherapist.allTherapists, MassageTherapist).then(() => { MassageTherapist.renderDetails() });
@@ -86,6 +72,7 @@ class Appointments {
   }
 
   renderLi(){
+    this.apptsContainer = document.querySelector('#appointments-container');
     this.apptsContainer.innerHTML = this.appointments.map(appt => `<li id="${appt.id}">Appointment ${appt.id}</li>`).join("")
   }
 

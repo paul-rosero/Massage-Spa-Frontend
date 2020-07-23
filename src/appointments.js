@@ -18,8 +18,6 @@ class Appointments {
     this.specialRequestInput = document.querySelector('#special-request-input');
     this.apptForm = document.querySelector('#appointment-form');
     this.editApptButton = document.querySelector('#edit-button');
-    // this.therapistsList = document.querySelector('#all-therapists-list');
-    // this.sortButton = document.getElementById('sort-button');
   }
 
   addEventListeners(){

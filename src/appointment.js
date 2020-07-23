@@ -7,6 +7,7 @@ class Appointment {
         this.modality = apptDataObj.modality
         this.dateAndTime = apptDataObj.date_and_time
         this.specialRequest = apptDataObj.special_request
+        Appointments.bindVariables()
         Appointment.allAppointments.push(this)
     }
     
@@ -15,24 +16,24 @@ class Appointment {
     }
 
     static clickToShowAppt(){
-        const apptsContainer = document.querySelector('#appointments-container');
-        const apptInfoList = document.querySelector('#appointment-info-list');
-        apptsContainer.addEventListener('click', (e) => {
-        const clickedAppt = parseInt(e.path[0].id)
-        const foundAppt = Appointment.findAppointment(clickedAppt)
-        apptInfoList.innerHTML = foundAppt.renderDetails()
-    })
+        // this.apptsContainer = document.querySelector('#appointments-container');
+        // this.apptInfoList = document.querySelector('#appointment-info-list');
+        this.apptsContainer.addEventListener('click', (e) => {
+            const clickedAppt = parseInt(e.path[0].id)
+            const foundAppt = Appointment.findAppointment(clickedAppt)
+            this.apptInfoList.innerHTML = foundAppt.renderDetails()
+        })
     }
 
     static copyToEditAppt(){
-        const apptInfoList = document.querySelector('#appointment-info-list');
-        this.clientNameInput = document.querySelector('#client-name-input');
-        this.therapistNameInput = document.querySelector('#therapist-name-input');
-        this.modalityInput = document.querySelector('#modality-input');
-        this.apptTimeInput = document.querySelector('#appointment-time-input');
-        this.specialRequestInput = document.querySelector('#special-request-input');
-        this.apptForm = document.querySelector('#appointment-form');
-        apptInfoList.addEventListener('click', (e) => {
+        // this.apptInfoList = document.querySelector('#appointment-info-list');
+        // this.clientNameInput = document.querySelector('#client-name-input');
+        // this.therapistNameInput = document.querySelector('#therapist-name-input');
+        // this.modalityInput = document.querySelector('#modality-input');
+        // this.apptTimeInput = document.querySelector('#appointment-time-input');
+        // this.specialRequestInput = document.querySelector('#special-request-input');
+        // this.apptForm = document.querySelector('#appointment-form');
+        this.apptInfoList.addEventListener('click', (e) => {
             if (e.target.className === 'edit' ) {
                 const clickedAppt = parseInt(e.target.id);
                 const foundAppt = Appointment.findAppointment(clickedAppt);
@@ -58,7 +59,24 @@ class Appointment {
         return apptToUpdate
     }
     
-    
+    static clickToEditAppt(){
+        this.editApptButton.addEventListener('click', (e) => {
+            e.preventDefault()
+            const updateApptId = e.path[1].id
+            this.adapter.fetchUpdate(`appointments/${updateApptId}`, {
+              method: 'PATCH',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({        
+                massage_therapist_id: this.therapistNameInput[this.therapistNameInput.selectedIndex].id,
+                client_id: this.clientNameInput[this.clientNameInput.selectedIndex].id,
+                date_and_time: this.apptTimeInput.value,
+                modality: this.modalityInput.value,
+                special_request: this.specialRequestInput.value
+              })
+            }, Appointment, this.apptInfoList)
+            .then(() =>{ this.clearForm() })
+          })    
+    }
 
     renderDetails(){
         return `

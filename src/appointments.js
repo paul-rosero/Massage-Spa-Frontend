@@ -23,7 +23,9 @@ class Appointments {
   addEventListeners(){
     Appointment.clickToShowAppt();
     Appointment.copyToEditAppt();
+    Appointment.clickToCreateAppt
     MassageTherapist.sortTherapistName();
+
 
     
 

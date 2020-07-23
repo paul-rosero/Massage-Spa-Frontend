@@ -62,7 +62,13 @@ class Appointment {
                 special_request: specialRequestInput.value
               })
             }, Appointment, apptInfoList)
-            .then(() =>{ this.clearForm() })
+            .then(() =>{ 
+                clientNameInput.value = ""
+                therapistNameInput.value = ""
+                modalityInput.value = ""
+                apptTimeInput.value = ""
+                specialRequestInput.value = ""
+            })
           })    
     }
 
@@ -77,7 +83,7 @@ class Appointment {
         return apptToUpdate
     }
     
-    static clickToEditAppt(){
+    static clickToCreateAppt(){
         
     }
 

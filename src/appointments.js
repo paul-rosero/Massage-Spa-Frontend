@@ -28,7 +28,7 @@ class Appointments {
 
     this.editApptButton.addEventListener('click', (e) => {
       e.preventDefault()
-      const updateApptId = e.path[1].dataset.id
+      const updateApptId = e.path[1].id
       this.adapter.fetchUpdate(`appointments/${updateApptId}`, {
         method: 'PATCH',
         headers: {'Content-Type': 'application/json'},

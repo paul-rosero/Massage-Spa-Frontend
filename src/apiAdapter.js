@@ -11,7 +11,7 @@ class ApiAdapter {
             dataJson.forEach(data => {
                 dataArray.push(new ObjectClass(data))
             })
-          })
+        })
     }
 
     fetchSelect(url, input) {

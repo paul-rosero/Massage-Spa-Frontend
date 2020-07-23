@@ -32,7 +32,8 @@ class ApiAdapter {
         })  
     }
     
-    fetchUpdate(url, method, ClassObject, list ) {
+    static fetchUpdate(url, method, ClassObject, list ) {
+        this.baseUrl = "http://localhost:3000/api/v1/";
         return fetch(this.baseUrl + url, method)
         .then(promise => promise.json())
         .then((updatedApptJSON) => {

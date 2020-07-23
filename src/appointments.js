@@ -18,13 +18,14 @@ class Appointments {
     this.specialRequestInput = document.querySelector('#special-request-input');
     this.apptForm = document.querySelector('#appointment-form');
     this.editApptButton = document.querySelector('#edit-button');
-    this.therapistsList = document.querySelector('#all-therapists-list');
-    this.sortButton = document.getElementById('sort-button');
+    // this.therapistsList = document.querySelector('#all-therapists-list');
+    // this.sortButton = document.getElementById('sort-button');
   }
 
   addEventListeners(){
-    Appointment.clickToShowAppt()
-    Appointment.copyToEditAppt()
+    Appointment.clickToShowAppt();
+    Appointment.copyToEditAppt();
+    MassageTherapist.sortTherapistName();
 
     this.editApptButton.addEventListener('click', (e) => {
       e.preventDefault()
@@ -43,10 +44,7 @@ class Appointments {
       .then(() =>{ this.clearForm() })
     })    
 
-    this.sortButton.addEventListener('click', (e) => {
-      e.preventDefault()
-      this.adapter.fetchSortButton("massage_therapists", { method: 'GET' }, this.therapistsList);
-    })
+    
 
     this.apptForm.addEventListener('submit', (e) => {
       e.preventDefault();

@@ -14,6 +14,33 @@ class Appointment {
         return this.allAppointments.find((appointment) => appointment.id === id)
     }
 
+    static clickToShowAppt(){
+        const apptsContainer = document.querySelector('#appointments-container');
+        const apptInfoList = document.querySelector('#appointment-info-list');
+        apptsContainer.addEventListener('click', (e) => {
+        const clickedAppt = parseInt(e.path[0].id)
+        const foundAppt = Appointment.findAppointment(clickedAppt)
+        apptInfoList.innerHTML = foundAppt.renderDetails()
+    })
+    }
+
+    static copyToEditAppt(){
+        const apptInfoList = document.querySelector('#appointment-info-list');
+        apptInfoList.addEventListener('click', (e) => {
+            if (e.target.className === 'edit' ) {
+                const clickedAppt = parseInt(e.target.id);
+                const foundAppt = Appointment.findAppointment(clickedAppt);
+            
+                this.clientNameInput.value = foundAppt.client.name
+                this.therapistNameInput.value = foundAppt.massageTherapist.name
+                this.modalityInput.value = foundAppt.modality
+                this.apptTimeInput.value = foundAppt.dateAndTime
+                this.specialRequestInput.value = foundAppt.specialRequest
+                this.apptForm.dataset.id = foundAppt.id
+            }
+        })
+    }
+
     static updateAppointment(updatedApptData) {
         const apptToUpdate = this.findAppointment(updatedApptData.id)
         apptToUpdate.massageTherapist = updatedApptData.massage_therapist

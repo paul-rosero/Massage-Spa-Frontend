@@ -84,7 +84,35 @@ class Appointment {
     }
     
     static clickToCreateAppt(){
-        
+        const clientNameInput = document.querySelector('#client-name-input');
+        const therapistNameInput = document.querySelector('#therapist-name-input');
+        const modalityInput = document.querySelector('#modality-input');
+        const apptTimeInput = document.querySelector('#appointment-time-input');
+        const specialRequestInput = document.querySelector('#special-request-input');
+        const apptForm = document.querySelector('#appointment-form');
+
+        apptForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            ApiAdapter.fetchCreateAppointment("appointments", {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({        
+                client_id: e.target[0].selectedOptions[0].id,
+                massage_therapist_id: e.target[1].selectedOptions[0].id,
+                modality: e.target[2].value,
+                date_and_time: e.target[3].value,
+                special_request: e.target[4].value
+              })
+              }, this.allAppointments, Appointment)
+            .then(() => {
+                clientNameInput.value = "";
+                therapistNameInput.value = "";
+                modalityInput.value = "";
+                apptTimeInput.value = "";
+                specialRequestInput.value = "";
+                this.renderLi();
+            })
+          })
     }
 
     renderDetails(){

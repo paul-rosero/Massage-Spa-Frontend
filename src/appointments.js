@@ -23,7 +23,7 @@ class Appointments {
   addEventListeners(){
     Appointment.clickToShowAppt();
     Appointment.copyToEditAppt();
-    Appointment.clickToCreateAppt
+    Appointment.clickToCreateAppt();
     MassageTherapist.sortTherapistName();
 
 
@@ -31,24 +31,7 @@ class Appointments {
 
     
 
-    this.apptForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      this.adapter.fetchCreateAppointment("appointments", {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({        
-          client_id: e.target[0].selectedOptions[0].id,
-          massage_therapist_id: e.target[1].selectedOptions[0].id,
-          modality: e.target[2].value,
-          date_and_time: e.target[3].value,
-          special_request: e.target[4].value
-        })
-        }, this.appointments, Appointment)
-      .then(() => {
-        this.clearForm();
-        this.renderLi()
-      })
-    })
+    
   }
   
   clearForm(){

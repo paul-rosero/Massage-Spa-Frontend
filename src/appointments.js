@@ -3,11 +3,12 @@ class Appointments {
     console.log("appointments are loaded")
     this.appointments = [];
     this.adapter = new ApiAdapter();
+    this.bindVariables();
     this.allContentLoaded();
     this.addEventListeners();
   }
 
-  static bindVariables(){
+  bindVariables(){
     this.apptsContainer = document.querySelector('#appointments-container');
     this.apptInfoList = document.querySelector('#appointment-info-list');
     this.clientNameInput = document.querySelector('#client-name-input');
@@ -16,7 +17,7 @@ class Appointments {
     this.apptTimeInput = document.querySelector('#appointment-time-input');
     this.specialRequestInput = document.querySelector('#special-request-input');
     this.apptForm = document.querySelector('#appointment-form');
-    this.editApptButton = document.querySelector('#edit-button');
+    
   }
 
   addEventListeners(){
@@ -57,8 +58,6 @@ class Appointments {
   }
 
   allContentLoaded() {
-    this.clientNameInput = document.querySelector('#client-name-input');
-    this.therapistNameInput = document.querySelector('#therapist-name-input');
     this.adapter.fetchApi("appointments", { method: 'GET' }, this.appointments, Appointment).then(() => { this.renderLi() });
     
     this.adapter.fetchApi("massage_therapists", { method: 'GET' }, MassageTherapist.allTherapists, MassageTherapist).then(() => { MassageTherapist.renderDetails() });
@@ -72,7 +71,6 @@ class Appointments {
   }
 
   renderLi(){
-    this.apptsContainer = document.querySelector('#appointments-container');
     this.apptsContainer.innerHTML = this.appointments.map(appt => `<li id="${appt.id}">Appointment ${appt.id}</li>`).join("")
   }
 

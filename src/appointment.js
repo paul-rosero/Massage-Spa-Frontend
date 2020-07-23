@@ -32,7 +32,8 @@ class Appointment {
         const apptTimeInput = document.querySelector('#appointment-time-input');
         const specialRequestInput = document.querySelector('#special-request-input');
         const apptForm = document.querySelector('#appointment-form');
-        
+        const editApptButton = document.querySelector('#edit-button');
+
         apptInfoList.addEventListener('click', (e) => {
             if (e.target.className === 'edit' ) {
                 const clickedAppt = parseInt(e.target.id);
@@ -46,6 +47,23 @@ class Appointment {
                 apptForm.id = foundAppt.id
             }
         })
+
+        editApptButton.addEventListener('click', (e) => {
+            e.preventDefault()
+            const updateApptId = e.path[1].id
+            ApiAdapter.fetchUpdate(`appointments/${updateApptId}`, {
+              method: 'PATCH',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({        
+                massage_therapist_id: therapistNameInput[therapistNameInput.selectedIndex].id,
+                client_id: clientNameInput[clientNameInput.selectedIndex].id,
+                date_and_time: apptTimeInput.value,
+                modality: modalityInput.value,
+                special_request: specialRequestInput.value
+              })
+            }, Appointment, apptInfoList)
+            .then(() =>{ this.clearForm() })
+          })    
     }
 
     static updateAppointment(updatedApptData) {
@@ -61,22 +79,6 @@ class Appointment {
     
     static clickToEditAppt(){
         
-        this.editApptButton.addEventListener('click', (e) => {
-            e.preventDefault()
-            const updateApptId = e.path[1].id
-            this.adapter.fetchUpdate(`appointments/${updateApptId}`, {
-              method: 'PATCH',
-              headers: {'Content-Type': 'application/json'},
-              body: JSON.stringify({        
-                massage_therapist_id: this.therapistNameInput[this.therapistNameInput.selectedIndex].id,
-                client_id: this.clientNameInput[this.clientNameInput.selectedIndex].id,
-                date_and_time: this.apptTimeInput.value,
-                modality: this.modalityInput.value,
-                special_request: this.specialRequestInput.value
-              })
-            }, Appointment, this.apptInfoList)
-            .then(() =>{ this.clearForm() })
-          })    
     }
 
     renderDetails(){

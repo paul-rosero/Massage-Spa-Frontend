@@ -112,7 +112,7 @@ class Appointment {
                 specialRequestInput.value = "";
                 this.renderLi();
             })
-          })
+        })
     }
 
     renderDetails(){

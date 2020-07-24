@@ -38,19 +38,8 @@ class MassageTherapist {
     //     therapistToUpdate.special_request = updatedTherapistData.special_request
     //     return therapistToUpdate
     // }
-    
-    static renderDetails() {
-        const therapistsList = document.querySelector('#all-therapists-list');
-        therapistsList.innerHTML = this.allTherapists.map(therapist => 
-            `<li id="${therapist.id}">
-                <p>Name: ${therapist.name}</p>
-                <p>Sex: ${therapist.sex}</p>
-                <p>Rating: ${therapist.rating}</p>
-            </li>`
-        ).join("")
-    }
 
-    renderSort(){
+    renderTherapistDetails(){
         return `
             <li id="${this.id}">
                 <p>Name: ${this.name}</p>

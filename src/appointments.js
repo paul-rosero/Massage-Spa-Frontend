@@ -48,7 +48,7 @@ class Appointments {
     this.adapter.fetchApi("massage_therapists", { method: 'GET' }, MassageTherapist.allTherapists, MassageTherapist).then(() => {  
       const therapistsList = document.querySelector('#all-therapists-list');
       therapistsList.innerHTML = MassageTherapist.allTherapists.map(therapist => 
-          therapist.renderSort()
+          therapist.renderTherapistDetails()
       ).join("") 
     });
     

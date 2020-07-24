@@ -60,7 +60,7 @@ class ApiAdapter {
             list.innerHTML = ""
             newTherapist.forEach(therapist => {
                 const finalTherapist = new MassageTherapist(therapist)
-                list.innerHTML += finalTherapist.renderSort()
+                list.innerHTML += finalTherapist.renderTherapistDetails()
             })
         })
     }

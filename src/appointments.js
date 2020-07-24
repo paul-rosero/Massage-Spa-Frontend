@@ -45,7 +45,12 @@ class Appointments {
   allContentLoaded() {
     this.adapter.fetchApi("appointments", { method: 'GET' }, this.appointments, Appointment).then(() => { this.renderLi() });
     
-    this.adapter.fetchApi("massage_therapists", { method: 'GET' }, MassageTherapist.allTherapists, MassageTherapist).then(() => { MassageTherapist.renderDetails() });
+    this.adapter.fetchApi("massage_therapists", { method: 'GET' }, MassageTherapist.allTherapists, MassageTherapist).then(() => {  
+      const therapistsList = document.querySelector('#all-therapists-list');
+      therapistsList.innerHTML = MassageTherapist.allTherapists.map(therapist => 
+          therapist.renderSort()
+      ).join("") 
+    });
     
     this.adapter.fetchSelect("massage_therapists", this.therapistNameInput);
     this.adapter.fetchSelect("clients", this.clientNameInput);
@@ -56,7 +61,7 @@ class Appointments {
   }
 
   renderLi(){
-    this.apptsContainer.innerHTML = this.appointments.map(appt => `<li id="${appt.id}">Appointment ${appt.id}</li>`).join("")
+    this.apptsContainer.innerHTML = Appointment.allAppointments.map(appt => `<li id="${appt.id}">Appointment ${appt.id}</li>`).join("")
   }
 
 }

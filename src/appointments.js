@@ -25,21 +25,6 @@ class Appointments {
     Appointment.copyToEditAppt();
     Appointment.clickToCreateAppt();
     MassageTherapist.sortTherapistName();
-
-
-    
-
-    
-
-    
-  }
-  
-  clearForm(){
-    this.clientNameInput.value = ""
-    this.therapistNameInput.value = ""
-    this.modalityInput.value = ""
-    this.apptTimeInput.value = ""
-    this.specialRequestInput.value = ""
   }
 
   allContentLoaded() {

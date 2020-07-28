@@ -70,7 +70,7 @@ class ApiAdapter {
         return fetch(this.baseUrl + url, method)
         .then(promise => promise.json())
         .then(newAppt => {
-            dataArray.push(new ClassObject(newAppt))
+            return dataArray.push(new ClassObject(newAppt))
         })
     }
 }

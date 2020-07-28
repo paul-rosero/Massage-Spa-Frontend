@@ -65,8 +65,7 @@ class ApiAdapter {
         })
     }
 
-    static fetchCreateAppointment(url, method, dataArray, ClassObject){
-        this.baseUrl = "http://localhost:3000/api/v1/";
+    fetchCreateAppointment(url, method, dataArray, ClassObject){
         return fetch(this.baseUrl + url, method)
         .then(promise => promise.json())
         .then(newAppt => {

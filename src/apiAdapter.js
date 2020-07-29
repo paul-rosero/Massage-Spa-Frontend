@@ -72,4 +72,12 @@ class ApiAdapter {
             return dataArray.push(new ClassObject(newAppt))
         })
     }
+
+    static fetchDeleteClassObject(url, method){
+        this.baseUrl = "http://localhost:3000/api/v1/";
+        return fetch(this.baseUrl + url, method)
+        .then(promise => promise.json())
+        
+    }
+
 }

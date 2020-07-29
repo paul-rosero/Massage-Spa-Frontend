@@ -87,12 +87,10 @@ class Appointment {
         apptInfoList.addEventListener('click', (e) => {
             if (e.target.className === 'delete') {
                 const clickedAppt = parseInt(e.target.id);
-                const foundAppt = Appointment.findAppointment(clickedAppt);
-
-                ApiAdapter.fetchDeleteClassObject(`appointments/${foundAppt}`, {
+                // const foundAppt = Appointment.findAppointment(clickedAppt);
+                ApiAdapter.fetchDeleteClassObject(`appointments/${clickedAppt}`, {
                     method: 'DELETE',
                     headers: {'Content-Type': 'application/json'}
-                    
                 })
             }
         })

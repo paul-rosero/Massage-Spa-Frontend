@@ -51,13 +51,13 @@ li{
 	border-bottom: 1px solid black;
 	padding-left: 10px;
 }
-#nav-link {
+.nav-link {
 	display: inline-block;
 	list-style-type: none;
 	padding-bottom: 10px;
 }
 /* This is for the navbar links, so it shows the results in the page. this just makes that look nice. */
-#nav-link::after {
+.nav-link::after {
     display: inline-block;
     color: #000;
     content: '|';

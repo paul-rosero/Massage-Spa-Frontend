@@ -85,17 +85,23 @@ class Appointment {
     static deleteAppointment(){
         const apptInfoList = document.querySelector('#appointment-info-list');
         apptInfoList.addEventListener('click', (e) => {
+            e.preventDefault()
             if (e.target.className === 'delete') {
                 const clickedAppt = parseInt(e.target.id);
-                // const foundAppt = Appointment.findAppointment(clickedAppt);
+                const foundAppt = Appointment.findAppointment(clickedAppt);
+
                 ApiAdapter.fetchDeleteClassObject(`appointments/${clickedAppt}`, {
-                    method: 'DELETE',
-                    headers: {'Content-Type': 'application/json'}
+                    method: 'DELETE'
+                })
+                .then(() => {
+                    this.apptDeleted = document.getElementById(`${clickedAppt}`);
+                    this.apptDeleted.parentNode.removeChild(this.apptDeleted);
+
+                    this.apptInfoListDeleted = document.getElementById("appointment-info-list");
+                    this.apptInfoListDeleted.parentNode.removeChild(this.apptInfoListDeleted);
                 })
             }
         })
-
-        
     }
 
     renderDetails(){

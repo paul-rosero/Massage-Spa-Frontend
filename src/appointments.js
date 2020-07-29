@@ -48,7 +48,7 @@ class Appointments {
         this.modalityInput.value = "";
         this.apptTimeInput.value = "";
         this.specialRequestInput.value = "";
-        this.apptsContainer.innerHTML = this.appointments.map(appt => `<li id="${appt.id}">Appointment ${appt.id}</li>`).join("")
+        this.renderLi()
       })
     })
   }

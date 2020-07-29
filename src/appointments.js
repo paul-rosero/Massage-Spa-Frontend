@@ -9,7 +9,7 @@ class Appointments {
   }
 
   bindVariables(){
-    this.apptInfoList = document.querySelector('#appointment-info-list');
+    // this.apptInfoList = document.querySelector('#appointment-info-list');
     this.clientNameInput = document.querySelector('#client-name-input');
     this.therapistNameInput = document.querySelector('#therapist-name-input');
     this.modalityInput = document.querySelector('#modality-input');

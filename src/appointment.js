@@ -16,16 +16,16 @@ class Appointment {
 
     static clickToShowAppt(){
         const apptsContainer = document.querySelector('#appointments-container');
-        const apptInfoList = document.querySelector('#appointment-info-list');
+        const apptInfoContainer = document.querySelector('#appointment-info-container');
         apptsContainer.addEventListener('click', (e) => {
             const clickedAppt = parseInt(e.path[0].id)
             const foundAppt = Appointment.findAppointment(clickedAppt)
-            apptInfoList.innerHTML = foundAppt.renderDetails()
+            apptInfoContainer.innerHTML = foundAppt.renderDetails()
         })
     }
 
     static copyToEditAppt(){
-        const apptInfoList = document.querySelector('#appointment-info-list');
+        const apptInfoContainer = document.querySelector('#appointment-info-container');
         const clientNameInput = document.querySelector('#client-name-input');
         const therapistNameInput = document.querySelector('#therapist-name-input');
         const modalityInput = document.querySelector('#modality-input');
@@ -34,7 +34,7 @@ class Appointment {
         const apptForm = document.querySelector('#appointment-form');
         const editApptButton = document.querySelector('#edit-button');
 
-        apptInfoList.addEventListener('click', (e) => {
+        apptInfoContainer.addEventListener('click', (e) => {
             if (e.target.className === 'edit') {
                 const clickedAppt = parseInt(e.target.id);
                 const foundAppt = Appointment.findAppointment(clickedAppt);
@@ -61,7 +61,7 @@ class Appointment {
                     modality: modalityInput.value,
                     special_request: specialRequestInput.value
                 })
-            }, Appointment, apptInfoList)
+            }, Appointment, apptInfoContainer)
             .then(() =>{ 
                 clientNameInput.value = ""
                 therapistNameInput.value = ""
@@ -83,8 +83,8 @@ class Appointment {
     }
 
     static deleteAppointment(){
-        const apptInfoList = document.querySelector('#appointment-info-list');
-        apptInfoList.addEventListener('click', (e) => {
+        const apptInfoContainer = document.querySelector('#appointment-info-container');
+        apptInfoContainer.addEventListener('click', (e) => {
             e.preventDefault()
             if (e.target.className === 'delete') {
                 const clickedAppt = parseInt(e.target.id);
@@ -93,12 +93,16 @@ class Appointment {
                 ApiAdapter.fetchDeleteClassObject(`appointments/${clickedAppt}`, {
                     method: 'DELETE'
                 })
-                .then(() => {
-                    this.apptDeleted = document.getElementById(`${clickedAppt}`);
-                    this.apptDeleted.parentNode.removeChild(this.apptDeleted);
+                .then((appt) => {
+                       console.log('appt', appt.appointmentId) 
 
-                    this.apptInfoListDeleted = document.getElementById("appointment-info-list");
-                    this.apptInfoListDeleted.parentNode.removeChild(this.apptInfoListDeleted);
+                    this.apptDeleted = document.getElementById(`${clickedAppt}`);
+                    console.log(this.apptDeleted)
+                    this.apptDeleted.parentNode.removeChild(this.apptDeleted);
+                   
+                    this.apptInfoListDeleted = document.getElementById(`appt-${appt.appointmentId}`);
+                    this.apptInfoListDeleted.remove();
+                 ;
                 })
             }
         })
@@ -106,16 +110,18 @@ class Appointment {
 
     renderDetails(){
         return `
-            <br><h4>View or Edit the Appointment.</h4>
-            <p>Appointment: ${this.id}
-                <button class="edit" id=${this.id} type="button">Edit Appointment</button>
-                <button class="delete" id=${this.id} type="button">Delete Appointment</button>
-            </p>
-            <p>Massage Therapist: ${this.massageTherapist.name}</p>
-            <p>Client: ${this.client.name}</p>
-            <p>Modality: ${this.modality}</p>
-            <p>Appointment Date & Time: ${this.dateAndTime}</p>
-            <p>Special Requests: ${this.specialRequest}</p>
+            <div id="appt-${this.id}">
+                <br><h4>View or Edit the Appointment.</h4>
+                <p>Appointment: ${this.id}
+                    <button class="edit" id=${this.id} type="button">Edit Appointment</button>
+                    <button class="delete" id=${this.id} type="button">Delete Appointment</button>
+                </p>
+                <p>Massage Therapist: ${this.massageTherapist.name}</p>
+                <p>Client: ${this.client.name}</p>
+                <p>Modality: ${this.modality}</p>
+                <p>Appointment Date & Time: ${this.dateAndTime}</p>
+                <p>Special Requests: ${this.specialRequest}</p>
+            </div>    
         `
     }
 }

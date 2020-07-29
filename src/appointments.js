@@ -3,6 +3,7 @@ class Appointments {
     console.log("appointments are loaded")
     this.appointments = [];
     this.adapter = new ApiAdapter();
+    this.forms = new Forms();
     this.bindVariables();
     this.allContentLoaded();
     this.addEventListeners();
@@ -20,6 +21,7 @@ class Appointments {
   }
 
   addEventListeners(){
+    console.log(this.forms.renderAppForm)
     Appointment.clickToShowAppt();
     Appointment.copyToEditAppt();
     Appointment.deleteAppointment();
@@ -53,6 +55,7 @@ class Appointments {
   }
 
   allContentLoaded() {
+    
     this.adapter.fetchApi("appointments", { method: 'GET' }, this.appointments, Appointment).then(() => { Appointments.renderLi() });
     
     this.adapter.fetchApi("massage_therapists", { method: 'GET' }, MassageTherapist.allTherapists, MassageTherapist).then(() => {  

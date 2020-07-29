@@ -1,6 +1,16 @@
 class Forms {
     constructor(){
-        this.renderAppForm()
+        this.renderAppForm();
+        this.renderTherapistForm();
+        this.renderClientForm();
+    }
+
+    renderTherapistForm(){
+
+    }
+
+    renderClientForm(){
+
     }
 
     renderAppForm(){
@@ -26,10 +36,6 @@ class Forms {
                 <button id="create-button" name="create-button">Create Appointment</button>
                 <input type="button" id="edit-button" name="edit-button" value="Edit Appointment"/>
             </form>
-        `
-        
-        console.log(appointmentForm)
-
-        
+        `  
     }
 }

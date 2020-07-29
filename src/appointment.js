@@ -90,19 +90,13 @@ class Appointment {
                 const clickedAppt = parseInt(e.target.id);
                 const foundAppt = Appointment.findAppointment(clickedAppt);
 
-                ApiAdapter.fetchDeleteClassObject(`appointments/${clickedAppt}`, {
-                    method: 'DELETE'
-                })
+                ApiAdapter.fetchDeleteClassObject(`appointments/${clickedAppt}`, { method: 'DELETE' })
                 .then((appt) => {
-                       console.log('appt', appt.appointmentId) 
-
                     this.apptDeleted = document.getElementById(`${clickedAppt}`);
-                    console.log(this.apptDeleted)
-                    this.apptDeleted.parentNode.removeChild(this.apptDeleted);
+                    this.apptDeleted.remove();
                    
                     this.apptInfoListDeleted = document.getElementById(`appt-${appt.appointmentId}`);
                     this.apptInfoListDeleted.remove();
-                 ;
                 })
             }
         })

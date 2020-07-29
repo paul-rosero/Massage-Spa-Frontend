@@ -9,7 +9,6 @@ class Appointments {
   }
 
   bindVariables(){
-    this.apptsContainer = document.querySelector('#appointments-container');
     this.apptInfoList = document.querySelector('#appointment-info-list');
     this.clientNameInput = document.querySelector('#client-name-input');
     this.therapistNameInput = document.querySelector('#therapist-name-input');
@@ -48,13 +47,13 @@ class Appointments {
         this.modalityInput.value = "";
         this.apptTimeInput.value = "";
         this.specialRequestInput.value = "";
-        this.renderLi()
+        Appointments.renderLi()
       })
     })
   }
 
   allContentLoaded() {
-    this.adapter.fetchApi("appointments", { method: 'GET' }, this.appointments, Appointment).then(() => { this.renderLi() });
+    this.adapter.fetchApi("appointments", { method: 'GET' }, this.appointments, Appointment).then(() => { Appointments.renderLi() });
     
     this.adapter.fetchApi("massage_therapists", { method: 'GET' }, MassageTherapist.allTherapists, MassageTherapist).then(() => {  
       const therapistsList = document.querySelector('#all-therapists-list');
@@ -71,8 +70,9 @@ class Appointments {
     return Appointments.find((appointment) => appointment.id === id)
   }
 
-  renderLi(){
-    this.apptsContainer.innerHTML = this.appointments.map(appt => `<li id="${appt.id}">Appointment ${appt.id}</li>`).join("")
+  static renderLi(){
+    this.apptsContainer = document.querySelector('#appointments-container');
+    this.apptsContainer.innerHTML = Appointment.allAppointments.map(appt => `<li id="${appt.id}">Appointment ${appt.id}</li>`).join("")
   }
 
 }

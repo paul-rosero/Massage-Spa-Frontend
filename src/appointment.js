@@ -78,7 +78,6 @@ class Appointment {
         apptToUpdate.client = updatedApptData.client
         apptToUpdate.modality = updatedApptData.modality
         apptToUpdate.dateAndTime = updatedApptData.date_and_time
-        console.log('apptToUpdate.dateAndTime', apptToUpdate.dateAndTime)
         apptToUpdate.specialRequest = updatedApptData.special_request
         return apptToUpdate
     }

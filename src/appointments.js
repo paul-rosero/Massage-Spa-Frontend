@@ -23,6 +23,7 @@ class Appointments {
   addEventListeners(){
     Appointment.clickToShowAppt();
     Appointment.copyToEditAppt();
+    Appointment.deleteAppointment();
     MassageTherapist.sortTherapistName();
     this.apptForm.addEventListener('submit', this.clickToCreateAppt())
   }

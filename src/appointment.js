@@ -35,7 +35,7 @@ class Appointment {
         const editApptButton = document.querySelector('#edit-button');
 
         apptInfoList.addEventListener('click', (e) => {
-            if (e.target.className === 'edit' ) {
+            if (e.target.className === 'edit') {
                 const clickedAppt = parseInt(e.target.id);
                 const foundAppt = Appointment.findAppointment(clickedAppt);
             
@@ -52,15 +52,15 @@ class Appointment {
             e.preventDefault()
             const updateApptId = e.path[1].id
             ApiAdapter.fetchUpdate(`appointments/${updateApptId}`, {
-              method: 'PATCH',
-              headers: {'Content-Type': 'application/json'},
-              body: JSON.stringify({        
-                massage_therapist_id: therapistNameInput[therapistNameInput.selectedIndex].id,
-                client_id: clientNameInput[clientNameInput.selectedIndex].id,
-                date_and_time: apptTimeInput.value,
-                modality: modalityInput.value,
-                special_request: specialRequestInput.value
-              })
+                method: 'PATCH',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({        
+                    massage_therapist_id: therapistNameInput[therapistNameInput.selectedIndex].id,
+                    client_id: clientNameInput[clientNameInput.selectedIndex].id,
+                    date_and_time: apptTimeInput.value,
+                    modality: modalityInput.value,
+                    special_request: specialRequestInput.value
+                })
             }, Appointment, apptInfoList)
             .then(() =>{ 
                 clientNameInput.value = ""
@@ -83,12 +83,30 @@ class Appointment {
         return apptToUpdate
     }
 
+    static deleteAppointment(){
+        const apptInfoList = document.querySelector('#appointment-info-list');
+        apptInfoList.addEventListener('click', (e) => {
+            if (e.target.className === 'delete') {
+                const clickedAppt = parseInt(e.target.id);
+                const foundAppt = Appointment.findAppointment(clickedAppt);
+
+                ApiAdapter.fetchDeleteClassObject(`appointments/${foundAppt}`, {
+                    method: 'DELETE',
+                    headers: {'Content-Type': 'application/json'}
+                    
+                })
+            }
+        })
+
+        
+    }
+
     renderDetails(){
         return `
             <br><h4>View or Edit the Appointment.</h4>
             <p>Appointment: ${this.id}
-                <button class="edit" id=${this.id} action="edit">Edit Appointment</button>
-                <input  class="delete" id=${this.id} type="button" onclick="alert('Hello World!')" value="Delete Appointment">
+                <button class="edit" id=${this.id} type="button">Edit Appointment</button>
+                <button class="delete" id=${this.id} type="button">Delete Appointment</button>
             </p>
             <p>Massage Therapist: ${this.massageTherapist.name}</p>
             <p>Client: ${this.client.name}</p>

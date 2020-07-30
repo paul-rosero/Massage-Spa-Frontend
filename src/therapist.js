@@ -12,7 +12,8 @@ class MassageTherapist {
     bindVariables(){
     }
     
-    static sortTherapistName(){
+    static sortTherapistName(e){
+        e.preventDefault()
         this.therapistsList = document.querySelector('#all-therapists-list');
         ApiAdapter.fetchSortButton("massage_therapists", { method: 'GET' }, this.therapistsList);
     }

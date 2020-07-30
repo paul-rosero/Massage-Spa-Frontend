@@ -14,7 +14,7 @@ class Forms {
     }
 
     renderAppForm(){
-        const appointmentForm = document.getElementById("new-appointment-container")
+        const appointmentForm = document.getElementById("new-forms-container")
         appointmentForm.innerHTML = `
             <form id="appointment-form" action="index.html" method="post">
                 <br/><h3>Appointment Form</h3>

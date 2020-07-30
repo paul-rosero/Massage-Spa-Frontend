@@ -11,6 +11,10 @@ class MassageTherapist {
 
     bindVariables(){
     }
+
+    static createNewTherapist(){
+        console.log("hello")
+    }
     
     static sortTherapistName(e){
         e.preventDefault()

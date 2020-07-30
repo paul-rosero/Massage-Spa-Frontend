@@ -17,6 +17,7 @@ class Appointments {
     this.apptTimeInput = document.querySelector('#appointment-time-input');
     this.specialRequestInput = document.querySelector('#special-request-input');
     this.apptForm = document.querySelector('#appointment-form');
+    this.sortButton = document.getElementById('sort-button');
     
   }
 
@@ -25,8 +26,8 @@ class Appointments {
     Appointment.clickToShowAppt();
     Appointment.copyToEditAppt();
     Appointment.deleteAppointment();
-    MassageTherapist.sortTherapistName();
     this.apptForm.addEventListener('submit', this.clickToCreateAppt())
+    this.sortButton.addEventListener('click', (e) => { MassageTherapist.sortTherapistName(e) })
   }
 
   clickToCreateAppt(){

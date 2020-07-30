@@ -14,11 +14,7 @@ class MassageTherapist {
     
     static sortTherapistName(){
         this.therapistsList = document.querySelector('#all-therapists-list');
-        this.sortButton = document.getElementById('sort-button');
-        this.sortButton.addEventListener('click', (e) => {
-            e.preventDefault()
-            ApiAdapter.fetchSortButton("massage_therapists", { method: 'GET' }, this.therapistsList);
-          })
+        ApiAdapter.fetchSortButton("massage_therapists", { method: 'GET' }, this.therapistsList);
     }
     // capitalize = (fullName) => {
     //     if (typeof name !== 'string') return ''

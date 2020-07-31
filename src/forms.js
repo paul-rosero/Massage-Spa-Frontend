@@ -6,7 +6,19 @@ class Forms {
     }
 
     renderTherapistForm(){
-
+        console.log("hello")
+        const therapistContainer = document.getElementById("new-forms-container");
+        const therapistForm = document.createElement("form");
+        therapistForm.setAttribute("id", "massage-therapist-form");
+        therapistForm.setAttribute("method", "post")
+        therapistForm.innerHTML = `
+            <form id="massage-therapist-form" method="Post">
+                <h3>Fill to Add New Massage Therapist.</h3><br>
+                <label for="name">Name:</label>
+                <input id="therapist-name-input" type="text" name="name" value="">
+            </form>
+        `
+        therapistContainer.appendChild(therapistForm)
     }
 
     renderClientForm(){
@@ -16,7 +28,7 @@ class Forms {
     renderAppForm(){
         const appointmentForm = document.getElementById("new-forms-container")
         appointmentForm.innerHTML = `
-            <form id="appointment-form" action="index.html" method="post">
+            <form id="appointment-form" action="index.html" method="Post">
                 <br/><h3>Appointment Form</h3>
                 <label for="name">Client Name:</label>
                 <select id="client-name-input" type="text" name="name" form="appointment-form" value=""><select><br/>

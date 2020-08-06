@@ -1,6 +1,6 @@
 class Forms {
     constructor(){
-        this.renderAppForm();
+        this.renderApptForm();
         this.renderTherapistForm();
         this.renderClientForm();
     }
@@ -25,8 +25,8 @@ class Forms {
 
     }
 
-    renderAppForm(){
-        const appointmentForm = document.getElementById("new-forms-container")
+    renderApptForm(){
+        const appointmentForm = document.getElementById("new-forms-container");
         appointmentForm.innerHTML = `
             <form id="appointment-form" action="index.html" method="Post">
                 <br/><h3>Appointment Form</h3>
@@ -49,5 +49,10 @@ class Forms {
                 <input type="button" id="edit-button" name="edit-button" value="Edit Appointment"/>
             </form>
         `  
+        this.clientNameInput = document.querySelector('#client-name-input');
+        this.therapistNameInput = document.querySelector('#therapist-name-input');
+        
+        ApiAdapter.fetchSelect("massage_therapists", this.therapistNameInput);
+        ApiAdapter.fetchSelect("clients", this.clientNameInput);
     }
 }

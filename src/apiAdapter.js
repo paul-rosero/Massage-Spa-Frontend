@@ -14,7 +14,8 @@ class ApiAdapter {
         })
     }
 
-    fetchSelect(url, input) {
+    static fetchSelect(url, input) {
+        this.baseUrl = "http://localhost:3000/api/v1/";
         let defaultOption = document.createElement('OPTION');
         input.add(defaultOption);
         return fetch(this.baseUrl + url)  

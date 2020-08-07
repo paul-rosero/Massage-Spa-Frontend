@@ -18,6 +18,8 @@ class Forms {
 
                 <label for="sex">Gender:</label>
                 <input id="therapist-sex-input" type="text" name="sex" value="">
+
+                <button id="create-therapist" name="create-therapist">Add Therapist</button>
             </form>
         `
         therapistContainer.appendChild(therapistForm)
@@ -30,7 +32,7 @@ class Forms {
     static renderApptForm(){
         const appointmentForm = document.getElementById("new-appt-form-container");
         appointmentForm.innerHTML = `
-            <form id="appointment-form"  method="Post">  
+            <form id="appointment-form" method="Post">  
                 <br/><h3>Appointment Form</h3>
                 <label for="name">Client Name:</label>
                 <select id="client-name-input" type="text" name="name" form="appointment-form" value=""><select><br/>

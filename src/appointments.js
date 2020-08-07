@@ -25,11 +25,12 @@ class Appointments {
   addEventListeners(){
         this.clickApptForm.addEventListener("click", appt => { 
           Appointment.clickToRenderApptForm(appt) 
-          // Appointment.clickToShowAppt();
-          // Appointment.copyToEditAppt();
-          // Appointment.deleteAppointment();
+          
           // this.apptForm.addEventListener('submit', this.clickToCreateAppt())
         })
+        
+    Appointment.deleteAppointment();
+    Appointment.clickToShowAppt();
     this.sortButton.addEventListener('click', (e) => { MassageTherapist.sortTherapistName(e) })
     this.newTherapistButton.addEventListener('click', (therapist) => { MassageTherapist.createNewTherapist(therapist) })
   }

@@ -3,7 +3,7 @@ class Appointments {
     console.log("appointments are loaded")
     this.appointments = [];
     this.adapter = new ApiAdapter();
-    this.forms = new Forms();
+    // this.forms = new Forms();
     this.bindVariables();
     this.allContentLoaded();
     this.addEventListeners();
@@ -19,19 +19,19 @@ class Appointments {
     this.apptForm = document.querySelector('#appointment-form');
     this.sortButton = document.getElementById('sort-button');
     this.newTherapistButton = document.getElementById("therapist")
+    this.clickApptForm = document.getElementById("appointment");
   }
 
   addEventListeners(){
-    console.log(this.forms.renderAppForm)
-    Appointment.clickToShowAppt();
-    Appointment.copyToEditAppt();
-    Appointment.deleteAppointment();
-    this.apptForm.addEventListener('submit', this.clickToCreateAppt())
+        this.clickApptForm.addEventListener("click", appt => { 
+          Appointment.clickToRenderApptForm(appt) 
+          // Appointment.clickToShowAppt();
+          // Appointment.copyToEditAppt();
+          // Appointment.deleteAppointment();
+          // this.apptForm.addEventListener('submit', this.clickToCreateAppt())
+        })
     this.sortButton.addEventListener('click', (e) => { MassageTherapist.sortTherapistName(e) })
-    this.newTherapistButton.addEventListener('click', (e) => { 
-      MassageTherapist.createNewTherapist(e); 
-      this.forms.renderTherapistForm();
-    })
+    this.newTherapistButton.addEventListener('click', (therapist) => { MassageTherapist.createNewTherapist(therapist) })
   }
 
   clickToCreateAppt(){
@@ -70,8 +70,8 @@ class Appointments {
       ).join("") 
     });
     
-    this.adapter.fetchSelect("massage_therapists", this.therapistNameInput);
-    this.adapter.fetchSelect("clients", this.clientNameInput);
+    // this.adapter.fetchSelect("massage_therapists", this.therapistNameInput);
+    // this.adapter.fetchSelect("clients", this.clientNameInput);
   }  
 
   static findAppointment(id) {

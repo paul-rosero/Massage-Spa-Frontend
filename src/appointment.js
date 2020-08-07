@@ -8,6 +8,7 @@ class Appointment {
         this.dateAndTime = apptDataObj.date_and_time
         this.specialRequest = apptDataObj.special_request
         Appointment.allAppointments.push(this)
+
     }
     
     static findAppointment(id) {
@@ -100,6 +101,11 @@ class Appointment {
                 })
             }
         })
+    }
+
+    static clickToRenderApptForm(appt){
+        appt.preventDefault()
+        console.log('appt', appt)
     }
 
     renderDetails(){

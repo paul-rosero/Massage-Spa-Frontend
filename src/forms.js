@@ -6,7 +6,6 @@ class Forms {
     }
 
     static renderTherapistForm(){
-        
         const therapistContainer = document.getElementById("new-therapist-form-container");
         const therapistForm = document.createElement("form");
         therapistForm.setAttribute("id", "massage-therapist-form");
@@ -29,7 +28,6 @@ class Forms {
     }
 
     static renderApptForm(){
-        console.log("hi")
         const appointmentForm = document.getElementById("new-appt-form-container");
         appointmentForm.innerHTML = `
             <form id="appointment-form"  method="Post">  

@@ -106,6 +106,7 @@ class Appointment {
     static clickToRenderApptForm(appt){
         appt.preventDefault()
         console.log('appt', appt)
+        Forms.renderApptForm()
     }
 
     renderDetails(){

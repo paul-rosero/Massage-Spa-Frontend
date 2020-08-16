@@ -15,7 +15,7 @@ class MassageTherapist {
     static createNewTherapist(therapist){
         therapist.preventDefault()
         console.log("therapist", therapist)
-        Forms.renderTherapistForm()
+        
     }
     
     static sortTherapistName(e){

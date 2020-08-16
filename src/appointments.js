@@ -27,7 +27,10 @@ class Appointments {
     Appointment.deleteAppointment();
     Appointment.clickToShowAppt();
     sortButton.addEventListener('click', (e) => { MassageTherapist.sortTherapistName(e) })
-    newTherapistButton.addEventListener('click', (therapist) => { MassageTherapist.createNewTherapist(therapist) })
+    newTherapistButton.addEventListener('click', (therapist) => {
+      Forms.renderTherapistForm()
+      MassageTherapist.createNewTherapist(therapist) 
+    })
   }
 
   clickToCreateAppt(){

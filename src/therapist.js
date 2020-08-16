@@ -46,7 +46,7 @@ class MassageTherapist {
         return `
             <li id="${this.id}">
                 <p>Name: ${this.name}</p>
-                <p>Sex: ${this.sex}</p>
+                <p>Gender: ${this.sex}</p>
                 <p>Rating: ${this.rating}</p>
             </li>
         `

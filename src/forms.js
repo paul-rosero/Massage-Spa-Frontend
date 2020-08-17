@@ -17,7 +17,12 @@ class Forms {
                 <input id="therapist-name-input" type="text" name="name" value="">
 
                 <label for="sex">Gender:</label>
-                <input id="therapist-sex-input" type="text" name="sex" value="">
+                <select id="therapist-sex-input" type="text" name="sex" value="">
+                    <option value=""></option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="other">Other</option>
+                </select>
 
                 <label for="rating">Rating:</label>
                 <input id="therapist-rating-input" type="text" name="rating" value="0">

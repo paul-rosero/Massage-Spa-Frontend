@@ -29,7 +29,6 @@ class Appointment {
     static copyToEditAppt(){
         const apptInfoContainer = document.querySelector('#appointment-info-container');
         
-
         apptInfoContainer.addEventListener('click', (e) => {
             Forms.renderApptForm();
             const clientNameInput = document.querySelector('#client-name-input');
@@ -65,7 +64,11 @@ class Appointment {
                         modality: modalityInput.value,
                         special_request: specialRequestInput.value
                     })
-                }, Appointment, apptInfoContainer)
+                }, Appointment, )
+                .then((updatedApptJSON) => {
+                    const updatedAppt = Appointment.updateAppointment(updatedApptJSON)
+                    apptInfoContainer.innerHTML = updatedAppt.renderDetails()
+                })
                 .then(() =>{ 
                     clientNameInput.value = ""
                     therapistNameInput.value = ""

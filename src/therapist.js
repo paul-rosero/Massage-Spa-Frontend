@@ -13,13 +13,29 @@ class MassageTherapist {
 
     static createNewTherapist(e){
         const newTherapistForm = document.getElementById("massage-therapist-form")
-        console.log('this.allTherapists', this.allTherapists)
+        const NameInput = document.getElementById('therapist-name-input');
+        const SexInput = document.getElementById('therapist-sex-input');
+        const RatingInput =document.getElementById('therapist-rating-input');
+
         newTherapistForm.addEventListener('submit', (e) => {
-            ApiAdapter.fetchCreateClassObject("massage_therapists", {}, this.allTherapists, MassageTherapist)
+            e.preventDefault();
+            ApiAdapter.fetchCreateClassObject("massage_therapists", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    therapist: {
+                        name: e.target[0].value,
+                        sex: e.target[1].value,
+                        rating: e.target[2].value
+                    }
+                })
+            }, this.allTherapists, MassageTherapist)
+            .then(() => {
+                NameInput.value = "";
+                SexInput.value = "";
+                MassageTherapist.renderTherapistDetails();
+            })
         })
-        console.log('newTherapistForm', newTherapistForm)
-        console.log("therapist", e)
-        console.log("therapist", e.target)
     }
     
     static sortTherapistName(e){

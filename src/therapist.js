@@ -66,6 +66,8 @@ class MassageTherapist {
         const therapistsList = document.querySelector('#all-therapists-list');
         therapistsList.innerHTML = MassageTherapist.allTherapists.map(therapist => 
             `<li id="${therapist.id}">
+                <button class="edit" id=${therapist.id} type="button">Edit</button>
+                <button class="delete" id=${therapist.id} type="button">Delete Appointment</button>
                 <p>Name: ${therapist.name}</p>
                 <p>Gender: ${therapist.sex}</p>
                 <p>Rating: ${therapist.rating}</p>

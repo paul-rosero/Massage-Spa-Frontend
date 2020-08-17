@@ -33,14 +33,11 @@ class ApiAdapter {
         })  
     }
     
-    static fetchUpdate(url, method, ClassObject, list ) {
+    static fetchUpdate(url, method) {
         this.baseUrl = "http://localhost:3000/api/v1/";
         return fetch(this.baseUrl + url, method)
         .then(promise => promise.json())
-        .then((updatedApptJSON) => {
-            const updatedAppt = ClassObject.updateAppointment(updatedApptJSON)
-            list.innerHTML = updatedAppt.renderDetails()
-        })
+        
     }
 
     static fetchSortButton(url, method, list) {

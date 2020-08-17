@@ -64,7 +64,7 @@ class Appointment {
                         modality: modalityInput.value,
                         special_request: specialRequestInput.value
                     })
-                }, Appointment, )
+                })
                 .then((updatedApptJSON) => {
                     const updatedAppt = Appointment.updateAppointment(updatedApptJSON)
                     apptInfoContainer.innerHTML = updatedAppt.renderDetails()

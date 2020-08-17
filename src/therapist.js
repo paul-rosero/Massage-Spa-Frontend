@@ -5,17 +5,21 @@ class MassageTherapist {
         this.name = therapistDataObj.name
         this.sex = therapistDataObj.sex
         this.rating = therapistDataObj.rating
-        this.bindVariables()
-        
+        this.bindVariables();
     }
 
     bindVariables(){
     }
 
-    static createNewTherapist(therapist){
-        therapist.preventDefault()
-        console.log("therapist", therapist)
-        
+    static createNewTherapist(e){
+        const newTherapistForm = document.getElementById("massage-therapist-form")
+        console.log('this.allTherapists', this.allTherapists)
+        newTherapistForm.addEventListener('submit', (e) => {
+            ApiAdapter.fetchCreateClassObject("massage_therapists", {}, this.allTherapists, MassageTherapist)
+        })
+        console.log('newTherapistForm', newTherapistForm)
+        console.log("therapist", e)
+        console.log("therapist", e.target)
     }
     
     static sortTherapistName(e){
@@ -42,14 +46,16 @@ class MassageTherapist {
     //     return therapistToUpdate
     // }
 
-    renderTherapistDetails(){
-        return `
-            <li id="${this.id}">
-                <p>Name: ${this.name}</p>
-                <p>Gender: ${this.sex}</p>
-                <p>Rating: ${this.rating}</p>
-            </li>
-        `
+    static renderTherapistDetails(){
+        const therapistsList = document.querySelector('#all-therapists-list');
+        therapistsList.innerHTML = MassageTherapist.allTherapists.map(therapist => 
+            `<li id="${therapist.id}">
+                <p>Name: ${therapist.name}</p>
+                <p>Gender: ${therapist.sex}</p>
+                <p>Rating: ${therapist.rating}</p>
+            </li>`
+        ).join("")  
+        
     }
 } 
 

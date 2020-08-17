@@ -27,16 +27,17 @@ class Appointments {
     Appointment.deleteAppointment();
     Appointment.clickToShowAppt();
     sortButton.addEventListener('click', (e) => { MassageTherapist.sortTherapistName(e) })
-    newTherapistButton.addEventListener('click', (therapist) => {
-      Forms.renderTherapistForm()
-      MassageTherapist.createNewTherapist(therapist) 
+    newTherapistButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      Forms.renderTherapistForm();
+      MassageTherapist.createNewTherapist(e); 
     })
   }
 
   clickToCreateAppt(){
     this.apptForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      this.adapter.fetchCreateAppointment("appointments", {
+      ApiAdapter.fetchCreateClassObject("appointments", {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({        
@@ -62,10 +63,7 @@ class Appointments {
     this.adapter.fetchApi("appointments", { method: 'GET' }, this.appointments, Appointment).then(() => { Appointments.renderLi() });
     
     this.adapter.fetchApi("massage_therapists", { method: 'GET' }, MassageTherapist.allTherapists, MassageTherapist).then(() => {  
-      const therapistsList = document.querySelector('#all-therapists-list');
-      therapistsList.innerHTML = MassageTherapist.allTherapists.map(therapist => 
-          therapist.renderTherapistDetails()
-      ).join("") 
+      MassageTherapist.renderTherapistDetails();
     });
   }  
 

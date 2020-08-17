@@ -19,6 +19,9 @@ class Forms {
                 <label for="sex">Gender:</label>
                 <input id="therapist-sex-input" type="text" name="sex" value="">
 
+                <label for="rating">Rating:</label>
+                <input id="therapist-rating-input" type="text" name="rating" value="0">
+
                 <button id="create-therapist" name="create-therapist">Add Therapist</button>
             </form>
         `

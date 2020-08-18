@@ -9,9 +9,10 @@ class MassageTherapist {
     }
 
     bindVariables(){
+        this.renderTherapistDetails();
     }
 
-    static createNewTherapist(e){
+    createNewTherapist(e){
         const newTherapistForm = document.getElementById("massage-therapist-form")
         const NameInput = document.getElementById('therapist-name-input');
         const SexInput = document.getElementById('therapist-sex-input');
@@ -33,7 +34,7 @@ class MassageTherapist {
             .then(() => {
                 NameInput.value = "";
                 SexInput.value = "";
-                MassageTherapist.renderTherapistDetails();
+                this.renderTherapistDetails();
             })
         })
     }
@@ -62,7 +63,7 @@ class MassageTherapist {
     //     return therapistToUpdate
     // }
 
-    static renderTherapistDetails(){
+    renderTherapistDetails(){
         const therapistsList = document.querySelector('#all-therapists-list');
         therapistsList.innerHTML = MassageTherapist.allTherapists.map(therapist => 
             `<li id="therapist-${therapist.id}">

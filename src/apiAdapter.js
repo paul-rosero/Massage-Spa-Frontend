@@ -49,7 +49,6 @@ class ApiAdapter {
                 if (a.name < b.name ) {
                 return -1;
                 } 
-                console.log(a.name < b.name)
                 if (a.name > b.name) {
                 return 1;
                 }

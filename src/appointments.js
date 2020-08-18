@@ -73,7 +73,7 @@ class Appointments {
 
   static renderLi(){
     const apptsContainer = document.querySelector('#appointments-container');
-    apptsContainer.innerHTML = Appointment.allAppointments.map(appt => `<li id="${appt.id}">Appointment ${appt.id}</li>`).join("")
+    apptsContainer.innerHTML = Appointment.allAppointments.map(appt => `<li id="appointment-${appt.id}">Appointment ${appt.id}</li>`).join("")
   }
 
 }

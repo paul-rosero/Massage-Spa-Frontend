@@ -4,16 +4,6 @@ class ApiAdapter {
         this.baseUrl = "http://localhost:3000/api/v1/"
     }
 
-    fetchApi(url, method, dataArray, ObjectClass) {
-        return fetch(this.baseUrl + url, method )
-        .then(promise => promise.json())
-        .then(dataJson => { 
-            dataJson.forEach(data => {
-                dataArray.push(new ObjectClass(data))
-            })
-        })
-    }
-
     static fetchSelect(url, input) {
         this.baseUrl = "http://localhost:3000/api/v1/";
         let defaultOption = document.createElement('OPTION');
@@ -31,13 +21,6 @@ class ApiAdapter {
                 }    
             });  
         })  
-    }
-    
-    static fetchUpdate(url, method) {
-        this.baseUrl = "http://localhost:3000/api/v1/";
-        return fetch(this.baseUrl + url, method)
-        .then(promise => promise.json())
-        
     }
 
     static fetchSortButton(url, method, list) {
@@ -70,6 +53,23 @@ class ApiAdapter {
             return dataArray.push(new ClassObject(newAppt))
         })
     }
+    
+    fetchApi(url, method, dataArray, ObjectClass) {
+        return fetch(this.baseUrl + url, method )
+        .then(promise => promise.json())
+        .then(dataJson => { 
+            dataJson.forEach(data => {
+                dataArray.push(new ObjectClass(data))
+            })
+        })
+    }
+
+    static fetchUpdate(url, method) {
+        this.baseUrl = "http://localhost:3000/api/v1/";
+        return fetch(this.baseUrl + url, method)
+        .then(promise => promise.json())
+        
+    }
 
     static fetchDeleteClassObject(url, method){
         this.baseUrl = "http://localhost:3000/api/v1/";
@@ -77,5 +77,5 @@ class ApiAdapter {
         .then(promise => promise.json())
         
     }
-
+    
 }

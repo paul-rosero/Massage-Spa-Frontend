@@ -19,7 +19,7 @@ class Appointment {
         const apptsContainer = document.querySelector('#appointments-container');
         const apptInfoContainer = document.querySelector('#appointment-info-container');
         apptsContainer.addEventListener('click', (e) => {
-            const clickedAppt = parseInt(e.path[0].id);
+            const clickedAppt = parseInt(e.path[0].id.split("-")[1]);
             const foundAppt = Appointment.findAppointment(clickedAppt);
             apptInfoContainer.innerHTML = foundAppt.renderDetails();
             Appointment.copyToEditAppt();
@@ -31,15 +31,15 @@ class Appointment {
         
         apptInfoContainer.addEventListener('click', (e) => {
             Forms.renderApptForm();
-            const clientNameInput = document.querySelector('#client-name-input');
-            const therapistNameInput = document.querySelector('#therapist-name-input');
+            const clientNameInput = document.getElementById('client-name-input');
+            const therapistNameInput = document.getElementById('therapist-name-input');
             const modalityInput = document.querySelector('#modality-input');
             const apptTimeInput = document.querySelector('#appointment-time-input');
             const specialRequestInput = document.querySelector('#special-request-input');
             const apptForm = document.querySelector('#appointment-form');
             const editApptButton = document.querySelector('#edit-button');
 
-            if (e.target.className === 'edit') {
+            if (e.target.className === 'appointment-edit') {
                 const clickedAppt = parseInt(e.target.id);
                 const foundAppt = Appointment.findAppointment(clickedAppt);
                 clientNameInput.value = foundAppt.client.name
@@ -51,7 +51,6 @@ class Appointment {
             }
             
             editApptButton.addEventListener('click', (e) => {
-                console.log(e)
                 e.preventDefault()
                 const updateApptId = e.path[1].id
                 ApiAdapter.fetchUpdate(`appointments/${updateApptId}`, {
@@ -94,13 +93,15 @@ class Appointment {
         const apptInfoContainer = document.querySelector('#appointment-info-container');
         apptInfoContainer.addEventListener('click', (e) => {
             e.preventDefault()
-            if (e.target.className === 'delete') {
+            if (e.target.className === 'appointment-delete') {
                 const clickedAppt = parseInt(e.target.id);
                 const foundAppt = Appointment.findAppointment(clickedAppt);
 
                 ApiAdapter.fetchDeleteClassObject(`appointments/${clickedAppt}`, { method: 'DELETE' })
                 .then((appt) => {
-                    this.apptDeleted = document.getElementById(`${clickedAppt}`);
+                    console.log(appt)
+                    this.apptDeleted = document.getElementById(`appointment-${appt.appointmentId}`);
+                    console.log('apptDeleted', this.apptDeleted)
                     this.apptDeleted.remove();
                    
                     this.apptInfoListDeleted = document.getElementById(`appt-${appt.appointmentId}`);
@@ -120,8 +121,8 @@ class Appointment {
             <div id="appt-${this.id}">
                 <br><h4>View or Edit the Appointment.</h4>
                 <p>Appointment: ${this.id}
-                    <button class="edit" id=${this.id} type="button">Edit</button>
-                    <button class="delete" id=${this.id} type="button">Delete Appointment</button>
+                    <button class="appointment-edit" id=${this.id} type="button">Edit</button>
+                    <button class="appointment-delete" id=${this.id} type="button">Delete Appointment</button>
                 </p>
                 <p>Massage Therapist: ${this.massageTherapist.name}</p>
                 <p>Client: ${this.client.name}</p>

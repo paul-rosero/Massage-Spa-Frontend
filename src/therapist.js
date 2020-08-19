@@ -6,19 +6,30 @@ class MassageTherapist {
         this.sex = therapistDataObj.sex
         this.rating = therapistDataObj.rating
         this.bindVariables();
+        this.renderTherapistDetails();
+        
     }
 
     bindVariables(){
-        this.renderTherapistDetails();
+        this.therapistsList = document.querySelector('#all-therapists-list');
+    
+    }
+
+    renderNewTherapistForm(){
+        const newTherapistButton = document.getElementById("therapist");
+        newTherapistButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            Forms.renderTherapistForm();
+            const newTherapistForm = document.getElementById("massage-therapist-form")
+            newTherapistForm.addEventListener('submit', this.createNewTherapist.bind(this))
+          })
     }
 
     createNewTherapist(e){
-        const newTherapistForm = document.getElementById("massage-therapist-form")
-        const NameInput = document.getElementById('therapist-name-input');
-        const SexInput = document.getElementById('therapist-sex-input');
-        const RatingInput =document.getElementById('therapist-rating-input');
+            console.log(e)
+            const NameInput = document.getElementById('therapist-name-input');
+            const SexInput = document.getElementById('therapist-sex-input');
 
-        newTherapistForm.addEventListener('submit', (e) => {
             e.preventDefault();
             ApiAdapter.fetchCreateClassObject("massage_therapists", {
                 method: "POST",
@@ -30,13 +41,12 @@ class MassageTherapist {
                         rating: e.target[2].value
                     }
                 })
-            }, this.allTherapists, MassageTherapist)
+            }, MassageTherapist.allTherapists, MassageTherapist)
             .then(() => {
                 NameInput.value = "";
                 SexInput.value = "";
                 this.renderTherapistDetails();
             })
-        })
     }
     
     static sortTherapistName(e){
@@ -64,8 +74,8 @@ class MassageTherapist {
     // }
 
     renderTherapistDetails(){
-        const therapistsList = document.querySelector('#all-therapists-list');
-        therapistsList.innerHTML = MassageTherapist.allTherapists.map(therapist => 
+        this.therapistsList = document.querySelector('#all-therapists-list');
+        this.therapistsList.innerHTML = MassageTherapist.allTherapists.map(therapist => 
             `<li id="therapist-${therapist.id}">
                 <button class="therapist-edit" id=${therapist.id} type="button">Edit</button>
                 <button class="therapist-delete" id=${therapist.id} type="button">Delete Therapist</button>

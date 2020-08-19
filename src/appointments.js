@@ -10,7 +10,6 @@ class Appointments {
   addEventListeners(){ 
     const clickApptForm = document.getElementById("appointment");
     const sortButton = document.getElementById('sort-button');
-    const newTherapistButton = document.getElementById("therapist");
     
     clickApptForm.addEventListener("click", appt => { 
       Appointment.clickToRenderApptForm(appt) 
@@ -23,15 +22,11 @@ class Appointments {
 
       this.apptForm.addEventListener('submit', this.clickToCreateAppt())
     })
-        
+    
     Appointment.deleteAppointment();
     Appointment.clickToShowAppt();
     sortButton.addEventListener('click', (e) => { MassageTherapist.sortTherapistName(e) })
-    newTherapistButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      Forms.renderTherapistForm();
-      MassageTherapist.createNewTherapist(e); 
-    })
+    MassageTherapist.prototype.renderNewTherapistForm()
   }
 
   clickToCreateAppt(){
@@ -54,13 +49,13 @@ class Appointments {
         this.modalityInput.value = "";
         this.apptTimeInput.value = "";
         this.specialRequestInput.value = "";
-        Appointments.renderLi()
+        this.renderLi()
       })
     })
   }
 
   allContentLoaded() {
-    this.adapter.fetchApi("appointments", { method: 'GET' }, this.appointments, Appointment).then(() => { Appointments.renderLi() });
+    this.adapter.fetchApi("appointments", { method: 'GET' }, this.appointments, Appointment).then(() => { this.renderLi() });
     
     this.adapter.fetchApi("massage_therapists", { method: 'GET' }, MassageTherapist.allTherapists, MassageTherapist)
   }  
@@ -69,7 +64,7 @@ class Appointments {
     return Appointments.find((appointment) => appointment.id === id)
   }
 
-  static renderLi(){
+  renderLi(){
     const apptsContainer = document.querySelector('#appointments-container');
     apptsContainer.innerHTML = Appointment.allAppointments.map(appt => `<li id="appointment-${appt.id}">Appointment ${appt.id}</li>`).join("")
   }

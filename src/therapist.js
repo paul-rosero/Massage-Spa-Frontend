@@ -26,7 +26,6 @@ class MassageTherapist {
     }
 
     createNewTherapist(e){
-            console.log(e)
             const NameInput = document.getElementById('therapist-name-input');
             const SexInput = document.getElementById('therapist-sex-input');
 

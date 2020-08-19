@@ -8,8 +8,45 @@ class Appointment {
         this.dateAndTime = apptDataObj.date_and_time
         this.specialRequest = apptDataObj.special_request
         Appointment.allAppointments.push(this)
-
+        this.bindVariables();
     }
+
+    bindVariables(){
+        
+        this.apptForm = document.querySelector('#appointment-form');
+        this.apptInfoContainer = document.querySelector('#appointment-info-container');
+    }
+
+    clickToCreateAppt(){
+        this.apptForm = document.querySelector('#appointment-form');
+        this.clientNameInput = document.getElementById('client-name-input');
+        this.therapistNameInput = document.getElementById('therapist-name-input');
+        this.modalityInput = document.querySelector('#modality-input');
+        this.apptTimeInput = document.querySelector('#appointment-time-input');
+        this.specialRequestInput = document.querySelector('#special-request-input');
+        this.apptForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          ApiAdapter.fetchCreateClassObject("appointments", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({        
+              client_id: e.target[0].selectedOptions[0].id,
+              massage_therapist_id: e.target[1].selectedOptions[0].id,
+              modality: e.target[2].value,
+              date_and_time: e.target[3].value,
+              special_request: e.target[4].value
+            })
+          }, Appointment.allAppointments, Appointment)
+          .then(() => {
+            this.clientNameInput.value = "";
+            this.therapistNameInput.value = "";
+            this.modalityInput.value = "";
+            this.apptTimeInput.value = "";
+            this.specialRequestInput.value = "";
+            Appointments.prototype.renderLi()
+          })
+        })
+      }
     
     findAppointment(id) {
         return Appointment.allAppointments.find((appointment) => appointment.id === id)
@@ -27,9 +64,9 @@ class Appointment {
     }
 
     copyToEditAppt(){
-        const apptInfoContainer = document.querySelector('#appointment-info-container');
+        this.apptInfoContainer = document.querySelector('#appointment-info-container');
         
-        apptInfoContainer.addEventListener('click', (e) => {
+        this.apptInfoContainer.addEventListener('click', (e) => {
             Forms.renderApptForm();
             const clientNameInput = document.getElementById('client-name-input');
             const therapistNameInput = document.getElementById('therapist-name-input');
@@ -66,7 +103,7 @@ class Appointment {
                 })
                 .then((updatedApptJSON) => {
                     const updatedAppt = this.updateAppointment(updatedApptJSON)
-                    apptInfoContainer.innerHTML = updatedAppt.renderDetails()
+                    this.apptInfoContainer.innerHTML = updatedAppt.renderDetails()
                 })
                 .then(() =>{ 
                     clientNameInput.value = ""
@@ -99,9 +136,7 @@ class Appointment {
 
                 ApiAdapter.fetchDeleteClassObject(`appointments/${clickedAppt}`, { method: 'DELETE' })
                 .then((appt) => {
-                    console.log(appt)
                     this.apptDeleted = document.getElementById(`appointment-${appt.appointmentId}`);
-                    console.log('apptDeleted', this.apptDeleted)
                     this.apptDeleted.remove();
                    
                     this.apptInfoListDeleted = document.getElementById(`appt-${appt.appointmentId}`);

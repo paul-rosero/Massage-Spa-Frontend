@@ -11,22 +11,22 @@ class Appointment {
 
     }
     
-    static findAppointment(id) {
-        return this.allAppointments.find((appointment) => appointment.id === id)
+    findAppointment(id) {
+        return Appointment.allAppointments.find((appointment) => appointment.id === id)
     }
 
-    static clickToShowAppt(){
+    clickToShowAppt(){
         const apptsContainer = document.querySelector('#appointments-container');
         const apptInfoContainer = document.querySelector('#appointment-info-container');
         apptsContainer.addEventListener('click', (e) => {
             const clickedAppt = parseInt(e.path[0].id.split("-")[1]);
-            const foundAppt = Appointment.findAppointment(clickedAppt);
+            const foundAppt = this.findAppointment(clickedAppt);
             apptInfoContainer.innerHTML = foundAppt.renderDetails();
-            Appointment.copyToEditAppt();
+            this.copyToEditAppt();
         })
     }
 
-    static copyToEditAppt(){
+    copyToEditAppt(){
         const apptInfoContainer = document.querySelector('#appointment-info-container');
         
         apptInfoContainer.addEventListener('click', (e) => {
@@ -41,7 +41,7 @@ class Appointment {
 
             if (e.target.className === 'appointment-edit') {
                 const clickedAppt = parseInt(e.target.id);
-                const foundAppt = Appointment.findAppointment(clickedAppt);
+                const foundAppt = this.findAppointment(clickedAppt);
                 clientNameInput.value = foundAppt.client.name
                 therapistNameInput.value = foundAppt.massageTherapist.name
                 modalityInput.value = foundAppt.modality
@@ -65,7 +65,7 @@ class Appointment {
                     })
                 })
                 .then((updatedApptJSON) => {
-                    const updatedAppt = Appointment.updateAppointment(updatedApptJSON)
+                    const updatedAppt = this.updateAppointment(updatedApptJSON)
                     apptInfoContainer.innerHTML = updatedAppt.renderDetails()
                 })
                 .then(() =>{ 
@@ -79,7 +79,7 @@ class Appointment {
         })
     }
 
-    static updateAppointment(updatedApptData) {
+    updateAppointment(updatedApptData) {
         const apptToUpdate = this.findAppointment(updatedApptData.id)
         apptToUpdate.massageTherapist = updatedApptData.massage_therapist
         apptToUpdate.client = updatedApptData.client
@@ -89,13 +89,13 @@ class Appointment {
         return apptToUpdate
     }
 
-    static deleteAppointment(){
+    deleteAppointment(){
         const apptInfoContainer = document.querySelector('#appointment-info-container');
         apptInfoContainer.addEventListener('click', (e) => {
             e.preventDefault()
             if (e.target.className === 'appointment-delete') {
                 const clickedAppt = parseInt(e.target.id);
-                const foundAppt = Appointment.findAppointment(clickedAppt);
+                const foundAppt = this.findAppointment(clickedAppt);
 
                 ApiAdapter.fetchDeleteClassObject(`appointments/${clickedAppt}`, { method: 'DELETE' })
                 .then((appt) => {
@@ -111,7 +111,7 @@ class Appointment {
         })
     }
 
-    static clickToRenderApptForm(appt){
+    clickToRenderApptForm(appt){
         appt.preventDefault()
         Forms.renderApptForm()
     }

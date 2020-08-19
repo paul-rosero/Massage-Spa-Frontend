@@ -12,7 +12,7 @@ class Appointments {
     const sortButton = document.getElementById('sort-button');
     
     clickApptForm.addEventListener("click", appt => { 
-      Appointment.clickToRenderApptForm(appt) 
+      Appointment.prototype.clickToRenderApptForm(appt) 
       this.apptForm = document.querySelector('#appointment-form');
       this.clientNameInput = document.querySelector('#client-name-input');
       this.therapistNameInput = document.querySelector('#therapist-name-input');
@@ -23,8 +23,8 @@ class Appointments {
       this.apptForm.addEventListener('submit', this.clickToCreateAppt())
     })
     
-    Appointment.deleteAppointment();
-    Appointment.clickToShowAppt();
+    Appointment.prototype.deleteAppointment();
+    Appointment.prototype.clickToShowAppt();
     sortButton.addEventListener('click', (e) => { MassageTherapist.sortTherapistName(e) })
     MassageTherapist.prototype.renderNewTherapistForm()
   }
@@ -60,9 +60,9 @@ class Appointments {
     this.adapter.fetchApi("massage_therapists", { method: 'GET' }, MassageTherapist.allTherapists, MassageTherapist)
   }  
 
-  static findAppointment(id) {
-    return Appointments.find((appointment) => appointment.id === id)
-  }
+  // findAppointment(id) {
+  //   return Appointments.find((appointment) => appointment.id === id)
+  // }
 
   renderLi(){
     const apptsContainer = document.querySelector('#appointments-container');

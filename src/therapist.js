@@ -47,6 +47,12 @@ class MassageTherapist {
                 this.renderTherapistDetails();
             })
     }
+
+    clickToEditTherapist(therapist){
+        if (therapist.target.className === "therapist-edit") {
+            console.log("edit")
+        }
+    }
     
     sortTherapistName(e){
         e.preventDefault()
@@ -73,12 +79,10 @@ class MassageTherapist {
     // }
 
     deleteTherapist(therapist){
-        console.log('therapist.target.className', therapist.target.className)
         if (therapist.target.className === "therapist-delete") {
             const id = therapist.target.id.split("-")[2]
             ApiAdapter.fetchDeleteClassObject(`massage_therapists/${id}`, { method: "DELETE"})
             .then((therapist) => {
-                console.log('therapist', therapist)
                 this.therapistDeleted = document.getElementById(`therapist-${therapist.therapistId}`);
                 this.therapistDeleted.remove();
             })

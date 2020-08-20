@@ -60,6 +60,7 @@ class Appointment {
             const foundAppt = this.findAppointment(clickedAppt);
             apptInfoContainer.innerHTML = foundAppt.renderDetails();
             this.copyToEditAppt();
+            this.deleteAppointment();
         })
     }
 

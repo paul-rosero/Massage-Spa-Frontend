@@ -16,8 +16,8 @@ class MassageTherapist {
     }
 
     renderNewTherapistForm(){
-        this.newTherapistButton = document.getElementById("therapist");
-        this.newTherapistButton.addEventListener('click', (e) => {
+        const newTherapistButton = document.getElementById("therapist");
+        newTherapistButton.addEventListener('click', (e) => {
             e.preventDefault();
             Forms.renderTherapistForm();
             const newTherapistForm = document.getElementById("massage-therapist-form")
@@ -26,8 +26,8 @@ class MassageTherapist {
     }
 
     createNewTherapist(e){
-            const NameInput = document.getElementById('therapist-name-input');
-            const SexInput = document.getElementById('therapist-sex-input');
+            const nameInput = document.getElementById('therapist-name-input');
+            const sexInput = document.getElementById('therapist-sex-input');
 
             e.preventDefault();
             ApiAdapter.fetchCreateClassObject("massage_therapists", {
@@ -42,16 +42,28 @@ class MassageTherapist {
                 })
             }, MassageTherapist.allTherapists, MassageTherapist)
             .then(() => {
-                NameInput.value = "";
-                SexInput.value = "";
+                nameInput.value = "";
+                sexInput.value = "";
                 this.renderTherapistDetails();
             })
     }
 
-    clickToEditTherapist(therapist){
+    clickToEditTherapist(therapist){ 
+        Forms.renderTherapistForm()
         if (therapist.target.className === "therapist-edit") {
-            console.log("edit")
+            const nameInput = document.getElementById('therapist-name-input');
+            const sexInput = document.getElementById('therapist-sex-input');
+            const ratingInput = document.getElementById('therapist-rating-input');
+            const foundTherapist = this.findTherapist(parseInt(therapist.target.id.split("-")[2]))
+
+            nameInput.value = foundTherapist.name;
+            sexInput.value = foundTherapist.sex;
+            ratingInput.value = foundTherapist.rating;           
         }
+
+        editTherapist(){
+
+        }    
     }
     
     sortTherapistName(e){
@@ -64,19 +76,11 @@ class MassageTherapist {
     //     return fullName.split(' ').map(name => name[0].toUpperCase() + name.slice(1).toLowerCase()).join(' ')
     // }
 
-    // static findTherapist(id) {
-    //     return this.allTherapists.find((therapist) => therapist.id === id)
-    // }
+    findTherapist(id) {
+        return MassageTherapist.allTherapists.find((therapist) => therapist.id === id)
+    }
     
-    // static updateTherapist(updatedTherapistData) {
-    //     const therapistToUpdate = this.findTherapist(updatedTherapistData.id)
-    //     therapistToUpdate.massage_therapist = updatedTherapistData.massage_therapist
-    //     therapistToUpdate.client = updatedTherapistData.client
-    //     therapistToUpdate.modality = updatedTherapistData.modality
-    //     therapistToUpdate.appointment_time = updatedTherapistData.appointment_time
-    //     therapistToUpdate.special_request = updatedTherapistData.special_request
-    //     return therapistToUpdate
-    // }
+
 
     deleteTherapist(therapist){
         if (therapist.target.className === "therapist-delete") {

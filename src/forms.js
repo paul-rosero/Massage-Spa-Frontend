@@ -28,6 +28,7 @@ class Forms {
                 <input id="therapist-rating-input" type="text" name="rating" value="0">
 
                 <button id="create-therapist" name="create-therapist">Add Therapist</button>
+                <button id="edit-therapist" name="edit-therapist">Edit Therapist</button>
             </form>
         `
         therapistContainer.appendChild(therapistForm)

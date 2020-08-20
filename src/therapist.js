@@ -16,8 +16,8 @@ class MassageTherapist {
     }
 
     renderNewTherapistForm(){
-        const newTherapistButton = document.getElementById("therapist");
-        newTherapistButton.addEventListener('click', (e) => {
+        this.newTherapistButton = document.getElementById("therapist");
+        this.newTherapistButton.addEventListener('click', (e) => {
             e.preventDefault();
             Forms.renderTherapistForm();
             const newTherapistForm = document.getElementById("massage-therapist-form")
@@ -50,7 +50,7 @@ class MassageTherapist {
     
     sortTherapistName(e){
         e.preventDefault()
-        this.therapistsList = document.querySelector('#all-therapists-list');
+        
         ApiAdapter.fetchSortButton("massage_therapists", { method: 'GET' }, this.therapistsList);
     }
     // capitalize = (fullName) => {
@@ -72,12 +72,26 @@ class MassageTherapist {
     //     return therapistToUpdate
     // }
 
+    deleteTherapist(therapist){
+        console.log('therapist.target.className', therapist.target.className)
+        if (therapist.target.className === "therapist-delete") {
+            const id = therapist.target.id.split("-")[2]
+            ApiAdapter.fetchDeleteClassObject(`massage_therapists/${id}`, { method: "DELETE"})
+            .then((therapist) => {
+                console.log('therapist', therapist)
+                this.therapistDeleted = document.getElementById(`therapist-${therapist.therapistId}`);
+                this.therapistDeleted.remove();
+            })
+        } 
+       
+    }
+
     renderTherapistDetails(){
         this.therapistsList = document.querySelector('#all-therapists-list');
         this.therapistsList.innerHTML = MassageTherapist.allTherapists.map(therapist => 
             `<li id="therapist-${therapist.id}">
-                <button class="therapist-edit" id=${therapist.id} type="button">Edit</button>
-                <button class="therapist-delete" id=${therapist.id} type="button">Delete Therapist</button>
+                <button class="therapist-edit" id=edit-therapist-${therapist.id} type="button">Edit Therapist</button>
+                <button class="therapist-delete" id=delete-therapist-${therapist.id} type="button">Delete Therapist</button>
                 <p>Name: ${therapist.name}</p>
                 <p>Gender: ${therapist.sex}</p>
                 <p>Rating: ${therapist.rating}</p>

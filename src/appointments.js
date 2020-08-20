@@ -15,7 +15,8 @@ class Appointments {
     this.specialRequestInput = document.querySelector('#special-request-input');
     this.clickApptForm = document.getElementById("appointment");
     this.sortButton = document.getElementById('sort-button');
-    
+    this.deleteTherapistList = document.getElementById("all-therapists-list")
+
   }
 
   addEventListeners(){ 
@@ -24,10 +25,12 @@ class Appointments {
       Appointment.prototype.clickToCreateAppt()
     })
     
-    Appointment.prototype.deleteAppointment();
     Appointment.prototype.clickToShowAppt();
-    this.sortButton.addEventListener('click', (e) => { MassageTherapist.prototype.sortTherapistName(e) })
     MassageTherapist.prototype.renderNewTherapistForm()
+    
+    this.sortButton.addEventListener('click', (e) => { MassageTherapist.prototype.sortTherapistName(e) })
+    
+    this.deleteTherapistList.addEventListener('click', (therapist) => {MassageTherapist.prototype.deleteTherapist(therapist) })
   }
 
   allContentLoaded() {

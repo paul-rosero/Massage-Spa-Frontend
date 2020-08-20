@@ -50,25 +50,27 @@ class MassageTherapist {
 
     clickToEditTherapist(therapist){ 
         Forms.renderTherapistForm()
+        const editTherapist = document.getElementById("edit-therapist")
+
         if (therapist.target.className === "therapist-edit") {
             const nameInput = document.getElementById('therapist-name-input');
             const sexInput = document.getElementById('therapist-sex-input');
             const ratingInput = document.getElementById('therapist-rating-input');
             const foundTherapist = this.findTherapist(parseInt(therapist.target.id.split("-")[2]))
-
+        
             nameInput.value = foundTherapist.name;
             sexInput.value = foundTherapist.sex;
             ratingInput.value = foundTherapist.rating;           
         }
 
-        editTherapist(){
-
-        }    
+        editTherapist.addEventListener("click", (e) => {
+            e.preventDefault()
+            console.log("object")
+        })
     }
     
     sortTherapistName(e){
         e.preventDefault()
-        
         ApiAdapter.fetchSortButton("massage_therapists", { method: 'GET' }, this.therapistsList);
     }
     // capitalize = (fullName) => {

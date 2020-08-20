@@ -5,14 +5,7 @@ class MassageTherapist {
         this.name = therapistDataObj.name
         this.sex = therapistDataObj.sex
         this.rating = therapistDataObj.rating
-        this.bindVariables();
-        this.renderTherapistDetails();
         
-    }
-
-    bindVariables(){
-        this.therapistsList = document.querySelector('#all-therapists-list');
-    
     }
 
     renderNewTherapistForm(){
@@ -22,42 +15,41 @@ class MassageTherapist {
             Forms.renderTherapistForm();
             const newTherapistForm = document.getElementById("massage-therapist-form")
             newTherapistForm.addEventListener('submit', this.createNewTherapist.bind(this))
-          })
+        })
     }
 
     createNewTherapist(e){
-            const nameInput = document.getElementById('therapist-name-input');
-            const sexInput = document.getElementById('therapist-sex-input');
+        const nameInput = document.getElementById('therapist-name-input');
+        const sexInput = document.getElementById('therapist-sex-input');
 
-            e.preventDefault();
-            ApiAdapter.fetchCreateClassObject("massage_therapists", {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({
-                    therapist: {
-                        name: e.target[0].value,
-                        sex: e.target[1].value,
-                        rating: e.target[2].value
-                    }
-                })
-            }, MassageTherapist.allTherapists, MassageTherapist)
-            .then(() => {
-                nameInput.value = "";
-                sexInput.value = "";
-                this.renderTherapistDetails();
+        e.preventDefault();
+        ApiAdapter.fetchCreateClassObject("massage_therapists", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                therapist: {
+                    name: e.target[0].value,
+                    sex: e.target[1].value,
+                    rating: e.target[2].value
+                }
             })
+        }, MassageTherapist.allTherapists, MassageTherapist)
+        .then(() => {
+            nameInput.value = "";
+            sexInput.value = "";
+            this.renderTherapistDetails();
+        })
     }
 
     clickToEditTherapist(therapist){ 
         Forms.renderTherapistForm()
         const editTherapist = document.getElementById("edit-therapist")
-
-        if (therapist.target.className === "therapist-edit") {
-            const nameInput = document.getElementById('therapist-name-input');
-            const sexInput = document.getElementById('therapist-sex-input');
-            const ratingInput = document.getElementById('therapist-rating-input');
-            const foundTherapist = this.findTherapist(parseInt(therapist.target.id.split("-")[2]))
+        const foundTherapist = this.findTherapist(parseInt(therapist.target.id.split("-")[2]))
+        const nameInput = document.getElementById('therapist-name-input');
+        const sexInput = document.getElementById('therapist-sex-input');
+        const ratingInput = document.getElementById('therapist-rating-input');
         
+        if (therapist.target.className === "therapist-edit") {
             nameInput.value = foundTherapist.name;
             sexInput.value = foundTherapist.sex;
             ratingInput.value = foundTherapist.rating;           
@@ -65,7 +57,23 @@ class MassageTherapist {
 
         editTherapist.addEventListener("click", (e) => {
             e.preventDefault()
-            console.log("object")
+            ApiAdapter.updateOrDeleteClassObject(`massage_therapists/${foundTherapist.id}`, {
+                method: "PATCH",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    therapist: {
+                        name: nameInput.value,
+                        sex: sexInput.value,
+                        rating: ratingInput.value
+                    }
+                })
+            })
+            .then((updatedTherapistJson) => {
+                foundTherapist.name = updatedTherapistJson.name
+                foundTherapist.sex = updatedTherapistJson.sex
+                foundTherapist.rating = updatedTherapistJson.rating
+                this.renderTherapistDetails()
+            })
         })
     }
     
@@ -81,19 +89,16 @@ class MassageTherapist {
     findTherapist(id) {
         return MassageTherapist.allTherapists.find((therapist) => therapist.id === id)
     }
-    
-
 
     deleteTherapist(therapist){
         if (therapist.target.className === "therapist-delete") {
             const id = therapist.target.id.split("-")[2]
-            ApiAdapter.fetchDeleteClassObject(`massage_therapists/${id}`, { method: "DELETE"})
+            ApiAdapter.updateOrDeleteClassObject(`massage_therapists/${id}`, { method: "DELETE"})
             .then((therapist) => {
                 this.therapistDeleted = document.getElementById(`therapist-${therapist.therapistId}`);
                 this.therapistDeleted.remove();
             })
         } 
-       
     }
 
     renderTherapistDetails(){

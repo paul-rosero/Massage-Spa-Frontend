@@ -64,14 +64,7 @@ class ApiAdapter {
         })
     }
 
-    static fetchUpdate(url, method) {
-        this.baseUrl = "http://localhost:3000/api/v1/";
-        return fetch(this.baseUrl + url, method)
-        .then(promise => promise.json())
-        
-    }
-
-    static fetchDeleteClassObject(url, method){
+    static updateOrDeleteClassObject(url, method){
         this.baseUrl = "http://localhost:3000/api/v1/";
         return fetch(this.baseUrl + url, method)
         .then(promise => promise.json())

@@ -88,7 +88,7 @@ class Appointment {
             editApptButton.addEventListener('click', (e) => {
                 e.preventDefault()
                 const updateApptId = e.path[1].id
-                ApiAdapter.fetchUpdate(`appointments/${updateApptId}`, {
+                ApiAdapter.updateOrDeleteClassObject(`appointments/${updateApptId}`, {
                     method: 'PATCH',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({        
@@ -101,7 +101,7 @@ class Appointment {
                 })
                 .then((updatedApptJSON) => {
                     const updatedAppt = this.updateAppointment(updatedApptJSON)
-                    this.apptInfoContainer.innerHTML = updatedAppt.renderDetails()
+                    apptInfoContainer.innerHTML = updatedAppt.renderDetails()
                 })
                 .then(() =>{ 
                     clientNameInput.value = ""

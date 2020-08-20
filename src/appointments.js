@@ -30,7 +30,10 @@ class Appointments {
     
     this.sortButton.addEventListener('click', (e) => { MassageTherapist.prototype.sortTherapistName(e) })
     
-    this.deleteTherapistList.addEventListener('click', (therapist) => {MassageTherapist.prototype.deleteTherapist(therapist) })
+    this.deleteTherapistList.addEventListener('click', (therapist) => {
+      MassageTherapist.prototype.deleteTherapist(therapist)
+      MassageTherapist.prototype.clickToEditTherapist(therapist)
+    })
   }
 
   allContentLoaded() {

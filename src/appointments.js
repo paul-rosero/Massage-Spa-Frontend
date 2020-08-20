@@ -22,7 +22,6 @@ class Appointments {
   addEventListeners(){ 
     this.clickApptForm.addEventListener("click", appt => { 
       Appointment.prototype.clickToRenderApptForm(appt) 
-      Appointment.prototype.clickToCreateAppt()
     })
     
     Appointment.prototype.clickToShowAppt();

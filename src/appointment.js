@@ -13,18 +13,16 @@ class Appointment {
 
     bindVariables(){
         
-        this.apptForm = document.querySelector('#appointment-form');
-        this.apptInfoContainer = document.querySelector('#appointment-info-container');
     }
 
     clickToCreateAppt(){
-        this.apptForm = document.querySelector('#appointment-form');
+        const apptForm = document.querySelector('#appointment-form');
         this.clientNameInput = document.getElementById('client-name-input');
         this.therapistNameInput = document.getElementById('therapist-name-input');
         this.modalityInput = document.querySelector('#modality-input');
         this.apptTimeInput = document.querySelector('#appointment-time-input');
         this.specialRequestInput = document.querySelector('#special-request-input');
-        this.apptForm.addEventListener('submit', (e) => {
+        apptForm.addEventListener('submit', (e) => {
           e.preventDefault();
           ApiAdapter.fetchCreateClassObject("appointments", {
             method: 'POST',
@@ -65,9 +63,8 @@ class Appointment {
     }
 
     copyToEditAppt(){
-        this.apptInfoContainer = document.querySelector('#appointment-info-container');
-        
-        this.apptInfoContainer.addEventListener('click', (e) => {
+        const apptInfoContainer = document.querySelector('#appointment-info-container');
+        apptInfoContainer.addEventListener('click', (e) => {
             Forms.renderApptForm();
             const clientNameInput = document.getElementById('client-name-input');
             const therapistNameInput = document.getElementById('therapist-name-input');
@@ -148,8 +145,9 @@ class Appointment {
     }
 
     clickToRenderApptForm(appt){
-        appt.preventDefault()
-        Forms.renderApptForm()
+        appt.preventDefault();
+        Forms.renderApptForm();
+        this.clickToCreateAppt();
     }
 
     renderDetails(){

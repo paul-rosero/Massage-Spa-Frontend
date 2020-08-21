@@ -33,14 +33,10 @@ class Appointments {
 
     this.clientSortButton.addEventListener("click", (e) => { Client.prototype.sortClientName(e) })
 
-    this.editOrDeleteTherapist.addEventListener('click', (therapist) => {
-      MassageTherapist.prototype.deleteTherapist(therapist)
-      MassageTherapist.prototype.clickToEditTherapist(therapist)
-    })
+    this.editOrDeleteTherapist.addEventListener('click', (therapist) => { MassageTherapist.prototype.clickToEditOrDeleteTherapist(therapist) })
 
     this.deleteOrEditClient.addEventListener("click", (client) => {
       Client.prototype.clickToEditClient(client);
-      Client.prototype.deleteClient(client);
     })
 
     Appointment.prototype.clickToShowAppt();

@@ -13,6 +13,10 @@ class Client {
         return Client.allClients.find((client) => client.id === id)
     }
 
+    sortClientName(){
+
+    }
+
     renderNewClientForm(){
         Forms.renderClientForm();
         this.createNewClient()
@@ -54,6 +58,7 @@ class Client {
     }
     
     renderDetails() {
+        const clientContainer = document.getElementById("")
         return `
             <br><h4>Client Info.</h4>
             <button class="client-edit" id="client-edit-${this.id}">Edit Client</button>

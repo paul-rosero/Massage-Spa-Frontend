@@ -57,14 +57,53 @@ class Client {
 
     clickToEditClient(client){
         Forms.renderClientForm()
-        const editClientButton = document.getElementById("")
+        const editClientButton = document.getElementById("edit-client");
+        const clientNameInput = document.getElementById("client-name");
+        const clientMedicalHistoryInput = document.getElementById("medical_history");
+        const clientAddressInput = document.getElementById("address");
+        const clientEmailInput = document.getElementById("email");
+        const foundClient = this.findClient(parseInt(client.target.id.split("-")[2]))
+
         if (client.target.className === "client-edit"){
-
+            clientNameInput.value = foundClient.name
+            clientMedicalHistoryInput.value = foundClient.medical-history
+            clientAddressInput.value = foundClient.address
+            clientEmailInput.value = foundClient.email
         }
-
+        
+        editClientButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            ApiAdapter.updateOrDeleteClassObject(`clients/${foundClient.id}`, {
+                method: "PATCH",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    client: {
+                        name: clientNameInput.value,
+                        medical_history: clientMedicalHistoryInput.value,
+                        address: clientAddressInput.value,
+                        email: clientEmailInput.value
+                    }
+                })
+            })
+            .then((updatedClientJson) => {
+                console.log(updatedClientJson)
+                foundClient.name = updatedClientJson.name
+                foundClient.medicalHistory = updatedClientJson.medicalHistory
+                foundClient.address = updatedClientJson.address
+                foundClient.email = updatedClientJson.email
+                this.renderDetails()
+            })
+            .then(() => {
+                clientNameInput.value = ""
+                clientMedicalHistoryInput.value = ""
+                clientAddressInput.value = ""
+                clientEmailInput.value = ""
+            })
+        })
     }
 
     deleteClient(client){
+        client.preventDefault()
 
     }
     

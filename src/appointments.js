@@ -21,20 +21,19 @@ class Appointments {
   }
 
   addEventListeners(){ 
-    this.clickApptForm.addEventListener("click", appt => { 
-      Appointment.prototype.clickToRenderApptForm(appt); 
-    })
+    this.clickApptForm.addEventListener("click", () => { Appointment.prototype.clickToRenderApptForm() });
+    
     this.clickClientForm.addEventListener("click", () => { Client.prototype.renderNewClientForm() });
 
-    Appointment.prototype.clickToShowAppt();
-    MassageTherapist.prototype.renderNewTherapistForm();
-    
     this.sortButton.addEventListener('click', (e) => { MassageTherapist.prototype.sortTherapistName(e) })
-    
+
     this.deleteTherapistList.addEventListener('click', (therapist) => {
       MassageTherapist.prototype.deleteTherapist(therapist)
       MassageTherapist.prototype.clickToEditTherapist(therapist)
     })
+    
+    Appointment.prototype.clickToShowAppt();
+    MassageTherapist.prototype.renderNewTherapistForm();
   }
 
   allContentLoaded() {

@@ -14,32 +14,43 @@ class Client {
     }
 
     renderNewClientForm(){
-        Forms.renderClientForm()
+        Forms.renderClientForm();
         this.createNewClient()
     }
-
-    createNewClient(){
-        const createNewClientForm = document.getElementById("client-form")
+    
+    createNewClient(e){
         const clientNameInput = document.getElementById("client-name");
         const clientMedicalHistory = document.getElementById("medical_history");
         const clientAddress = document.getElementById("address");
         const clientEmail = document.getElementById("email");
-
-        createNewClientForm.addEventListener("submit", (e) => {
+        const createNewClientForm = document.getElementById("create-client")
+        
+        createNewClientForm.addEventListener("click", (e) => {
             e.preventDefault();
             console.log(e)
-            // ApiAdapter.fetchCreateClassObject("clients", {
-            //     method: "POST",
-            //     headers: { "Content-Type": "application/json" },
-            //     body: JSON.stringify(
-            //         // clientNameInput: ,
-            //         // clientMedicalHistory: ,
-            //         // clientAddress: ,
-            //         // clientEmail: 
-            //     )
-            // }, Client.allClients, Client)
-            console.log("object")
+            console.log(e.path[1][0].value)
+            ApiAdapter.fetchCreateClassObject("clients", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    client: { 
+                        name: e.path[1][0].value,
+                        medical_history: e.path[1][0].value,
+                        address: e.path[1][0].value,
+                        email: e.path[1][0].value 
+                    }
+                })
+            }, Client.allClients, Client)
+            .then(() => {
+                clientNameInput.value = ""
+                clientMedicalHistory.value = ""
+                clientAddress.value = ""
+                clientEmail.value = ""
+                this.renderDetails()
+            })
         })
+            
+            
     }
     
     renderDetails() {

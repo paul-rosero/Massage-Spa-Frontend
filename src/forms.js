@@ -41,7 +41,7 @@ class Forms {
             <h3>Create New Client</h3>
 
             <label for="name">Name: </label>
-            <input id="name" type="text" name="name" value="">
+            <input id="client-name" type="text" name="name" value="">
 
             <label for="medical_history">Medical History: </label>
             <input id="medical_history" type="text" name="medical_history" value="">
@@ -51,9 +51,9 @@ class Forms {
 
             <label for="email">Email: </label>
             <input id="email" type="text" name="email" value="">
-
-            <button id="edit-client" name="edit-client">Edit Client</button>
+            
             <button id="create-client" name="create-client">Create Client</button>
+            <button id="edit-client" name="edit-client">Edit Client</button>
         `
         clientContainer.appendChild(clientForm)
     }

@@ -7,29 +7,27 @@ class Forms {
 
     static renderTherapistForm(){
         const therapistContainer = document.getElementById("new-therapist-form-container");
-        const therapistForm = document.createElement("form");
-        therapistForm.setAttribute("id", "massage-therapist-form");
-        therapistForm.setAttribute("method", "POST")
-        therapistForm.innerHTML = `
-            <h3>Fill to Add New Massage Therapist.</h3><br>
-            <label for="name">Name:</label>
-            <input id="therapist-name-input" type="text" name="name" value="">
+        therapistContainer.innerHTML = `
+            <form id="massage-therapist-form" method="POST">
+                <h3>Fill to Add New Massage Therapist.</h3><br>
+                <label for="name">Name:</label>
+                <input id="therapist-name-input" type="text" name="name" value="">
 
-            <label for="sex">Gender:</label>
-            <select id="therapist-sex-input" type="text" name="sex" value="">
-                <option value=""></option>
-                <option value="female">Female</option>
-                <option value="male">Male</option>
-                <option value="other">Other</option>
-            </select>
+                <label for="sex">Gender:</label>
+                <select id="therapist-sex-input" type="text" name="sex" value="">
+                    <option value=""></option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="other">Other</option>
+                </select>
 
-            <label for="rating">Rating:</label>
-            <input id="therapist-rating-input" type="text" name="rating" value="0">
+                <label for="rating">Rating:</label>
+                <input id="therapist-rating-input" type="text" name="rating" value="0">
 
-            <button id="create-therapist" name="create-therapist">Add Therapist</button>
-            <button id="edit-therapist" name="edit-therapist">Edit Therapist</button>
+                <button id="create-therapist" name="create-therapist">Add Therapist</button>
+                <button id="edit-therapist" name="edit-therapist">Edit Therapist</button>
+            </form>
         `
-        therapistContainer.appendChild(therapistForm)
     }
 
     static renderClientForm(){
@@ -38,24 +36,25 @@ class Forms {
         clientForm.setAttribute("id", "client-form");
         clientForm.setAttribute("method", "POST");
         clientForm.innerHTML = `
-            <h3>Create New Client</h3>
+            <form id="client-form" method="POST">
+                <h3>Create New Client</h3>
 
-            <label for="name">Name: </label>
-            <input id="client-name" type="text" name="name" value="">
+                <label for="name">Name: </label>
+                <input id="client-name" type="text" name="name" value="">
 
-            <label for="medical_history">Medical History: </label>
-            <input id="medical_history" type="text" name="medical_history" value="">
+                <label for="medical_history">Medical History: </label>
+                <input id="medical_history" type="text" name="medical_history" value="">
 
-            <label for="address">Address: </label>
-            <input id="address" type="text" name="address" value="">
+                <label for="address">Address: </label>
+                <input id="address" type="text" name="address" value="">
 
-            <label for="email">Email: </label>
-            <input id="email" type="text" name="email" value="">
-            
-            <button id="create-client" name="create-client">Create Client</button>
-            <button id="edit-client" name="edit-client">Edit Client</button>
+                <label for="email">Email: </label>
+                <input id="email" type="text" name="email" value="">
+                
+                <button id="create-client" name="create-client">Create Client</button>
+                <button id="edit-client" name="edit-client">Edit Client</button>
+            </form>
         `
-        clientContainer.appendChild(clientForm)
     }
 
     static renderApptForm(){

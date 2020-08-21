@@ -21,6 +21,8 @@ class Client {
     renderDetails() {
         return `
             <br><h4>Client Info.</h4>
+            <button class="client-edit" id="client-edit-${this.id}">Edit Client</button>
+            <button class="client-delete" id="client-delete-${this.id}">Delete Client</button>
             <p>Client: ${this.id}</p>
             <p>Name: ${this.name}</p>
             <p>Medical History: ${this.medical_history}</p>

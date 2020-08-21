@@ -144,8 +144,6 @@ class Appointment {
         })
     }
 
-   
-
     renderDetails(){
         return `
             <div id="appt-${this.id}">

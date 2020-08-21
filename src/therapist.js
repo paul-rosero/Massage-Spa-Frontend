@@ -10,24 +10,24 @@ class MassageTherapist {
 
     renderNewTherapistForm(){
         Forms.renderTherapistForm();
-        this.createNewTherapist.bind(this);
+        this.createNewTherapist();
     }
     
     createNewTherapist(){
         const nameInput = document.getElementById('therapist-name-input');
         const sexInput = document.getElementById('therapist-sex-input');
-        const newTherapistForm = document.getElementById("massage-therapist-form")
+        const newTherapistForm = document.getElementById("create-therapist")
         
-        newTherapistForm.addEventListener('submit', (e) => {
+        newTherapistForm.addEventListener('click', (e) => {
             e.preventDefault();
             ApiAdapter.fetchCreateClassObject("massage_therapists", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
                     therapist: {
-                        name: e.target[0].value,
-                        sex: e.target[1].value,
-                        rating: e.target[2].value
+                        name: e.path[1][0].value,
+                        sex: e.path[1][1].value,
+                        rating: e.path[1][2].value
                     }
                 })
             }, MassageTherapist.allTherapists, MassageTherapist)

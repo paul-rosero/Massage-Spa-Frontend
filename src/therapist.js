@@ -40,7 +40,7 @@ class MassageTherapist {
         
     }
 
-    clickToEditTherapist(therapist){ 
+    clickToEditOrDeleteTherapist(therapist){ 
         Forms.renderTherapistForm()
         const editTherapist = document.getElementById("edit-therapist")
         const foundTherapist = this.findTherapist(parseInt(therapist.target.id.split("-")[2]))
@@ -52,33 +52,42 @@ class MassageTherapist {
             nameInput.value = foundTherapist.name;
             sexInput.value = foundTherapist.sex;
             ratingInput.value = foundTherapist.rating;           
-        }
-
-        editTherapist.addEventListener("click", (e) => {
-            e.preventDefault()
-            ApiAdapter.updateOrDeleteClassObject(`massage_therapists/${foundTherapist.id}`, {
-                method: "PATCH",
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    therapist: {
-                        name: nameInput.value,
-                        sex: sexInput.value,
-                        rating: ratingInput.value
-                    }
+            
+            editTherapist.addEventListener("click", (e) => {
+                e.preventDefault()
+                ApiAdapter.updateOrDeleteClassObject(`massage_therapists/${foundTherapist.id}`, {
+                    method: "PATCH",
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        therapist: {
+                            name: nameInput.value,
+                            sex: sexInput.value,
+                            rating: ratingInput.value
+                        }
+                    })
+                })
+                .then((updatedTherapistJson) => {
+                    foundTherapist.name = updatedTherapistJson.name
+                    foundTherapist.sex = updatedTherapistJson.sex
+                    foundTherapist.rating = updatedTherapistJson.rating
+                    this.renderTherapistDetails()
+                })
+                .then(() => {
+                    nameInput.value = ""
+                    sexInput.value = ""
+                    ratingInput.value = ""
                 })
             })
-            .then((updatedTherapistJson) => {
-                foundTherapist.name = updatedTherapistJson.name
-                foundTherapist.sex = updatedTherapistJson.sex
-                foundTherapist.rating = updatedTherapistJson.rating
-                this.renderTherapistDetails()
+        }
+
+        if (therapist.target.className === "therapist-delete") {
+            const id = therapist.target.id.split("-")[2]
+            ApiAdapter.updateOrDeleteClassObject(`massage_therapists/${id}`, { method: "DELETE"})
+            .then((therapist) => {
+                this.therapistDeleted = document.getElementById(`therapist-${therapist.therapistId}`);
+                this.therapistDeleted.remove();
             })
-            .then(() => {
-                nameInput.value = ""
-                sexInput.value = ""
-                ratingInput.value = ""
-            })
-        })
+        } 
     }
     
     sortTherapistName(e){
@@ -92,17 +101,6 @@ class MassageTherapist {
 
     findTherapist(id) {
         return MassageTherapist.allTherapists.find((therapist) => therapist.id === id)
-    }
-
-    deleteTherapist(therapist){
-        if (therapist.target.className === "therapist-delete") {
-            const id = therapist.target.id.split("-")[2]
-            ApiAdapter.updateOrDeleteClassObject(`massage_therapists/${id}`, { method: "DELETE"})
-            .then((therapist) => {
-                this.therapistDeleted = document.getElementById(`therapist-${therapist.therapistId}`);
-                this.therapistDeleted.remove();
-            })
-        } 
     }
 
     renderTherapistDetails(){

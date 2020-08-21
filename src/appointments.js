@@ -15,9 +15,10 @@ class Appointments {
     this.specialRequestInput = document.querySelector('#special-request-input');
     this.clickApptForm = document.getElementById("appointment");
     this.clickClientForm = document.getElementById("client");
-    this.clickTherapistForm = document.getElementById("therapist")
-    this.sortButton = document.getElementById('sort-button');
-    this.deleteTherapistList = document.getElementById("all-therapists-list")
+    this.clickTherapistForm = document.getElementById("therapist");
+    this.therapistSortButton = document.getElementById('therapist-sort-button');
+    this.clientSortButton = document.getElementById("client-sort_button");
+    this.deleteTherapistList = document.getElementById("all-therapists-list");
 
   }
 
@@ -28,7 +29,9 @@ class Appointments {
 
     this.clickTherapistForm.addEventListener("click", () => { MassageTherapist.prototype.renderNewTherapistForm() })
 
-    this.sortButton.addEventListener('click', (e) => { MassageTherapist.prototype.sortTherapistName(e) })
+    this.therapistSortButton.addEventListener('click', (e) => { MassageTherapist.prototype.sortTherapistName(e) })
+
+    this.clientSortButton.addEventListener("click", (e) => { Client.prototype.sortClientName(e) })
 
     this.deleteTherapistList.addEventListener('click', (therapist) => {
       MassageTherapist.prototype.deleteTherapist(therapist)
@@ -43,6 +46,8 @@ class Appointments {
     
     this.adapter.fetchApi("massage_therapists", { method: 'GET' }, MassageTherapist.allTherapists, MassageTherapist)
     .then(() => { MassageTherapist.prototype.renderTherapistDetails() })
+
+    this.adapter.fetchApi("clients", { method: "GET" }, Client.allClients, Client).then(() => { Client.prototype.renderDetails() })
   }   
 
   renderLi(){

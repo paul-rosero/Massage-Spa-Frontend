@@ -20,12 +20,23 @@ h3, h4{
 	float: top;
 	
 }
-.sidebar{
+.left-sidebar{
 	width: 160px; /* Set the width of the sidebar */
 	position: absolute; /* Fixed Sidebar (stay in place on scroll) */
 	z-index: 1; /* Stay on top */
 	top: 10%; /* Stay at the top */
 	left: 0;
+	
+	/* background-color: #111; Black */
+	overflow-x: hidden; /* Disable horizontal scroll */
+	padding-top: 100px;
+}
+.right-sidebar{
+	width: 160px; /* Set the width of the sidebar */
+	position: absolute; /* Fixed Sidebar (stay in place on scroll) */
+	z-index: 1; /* Stay on top */
+	top: 10%; /* Stay at the top */
+	right: 0;
 	/* background-color: #111; Black */
 	overflow-x: hidden; /* Disable horizontal scroll */
 	padding-top: 100px;

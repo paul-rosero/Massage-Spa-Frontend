@@ -6,7 +6,7 @@ class Client {
         this.address = clientDataObj.address
         this.email = clientDataObj.email
         this.medical_history = clientDataObj.medical_history
-        this.renderNewClientForm()
+     
     }
 
     findClient(id) {
@@ -58,17 +58,20 @@ class Client {
     }
     
     renderDetails() {
-        const clientContainer = document.getElementById("")
-        return `
-            <br><h4>Client Info.</h4>
-            <button class="client-edit" id="client-edit-${this.id}">Edit Client</button>
-            <button class="client-delete" id="client-delete-${this.id}">Delete Client</button>
-            <p>Client: ${this.id}</p>
-            <p>Name: ${this.name}</p>
-            <p>Medical History: ${this.medical_history}</p>
-            <p>Address: ${this.address}</p>
-            <p>Email: ${this.email}</p>
-        `
+        const clientContainer = document.getElementById("all-clients-list");
+        clientContainer.innerHTML = Client.allClients.map(client => {
+            return `
+                <br><h4>Client Info.</h4>
+                <button class="client-edit" id="client-edit-${client.id}">Edit Client</button>
+                <button class="client-delete" id="client-delete-${client.id}">Delete Client</button>
+                <p>Client: ${client.id}</p>
+                <p>Name: ${client.name}</p>
+                <p>Medical History: ${client.medical_history}</p>
+                <p>Address: ${client.address}</p>
+                <p>Email: ${client.email}</p>
+            `
+        }).join("")
+        
     }
 }
 

@@ -32,10 +32,7 @@ class Forms {
 
     static renderClientForm(){
         const clientContainer = document.getElementById("new-client-form-container");
-        const clientForm = document.createElement("form");
-        clientForm.setAttribute("id", "client-form");
-        clientForm.setAttribute("method", "POST");
-        clientForm.innerHTML = `
+        clientContainer.innerHTML = `
             <form id="client-form" method="POST">
                 <h3>Create New Client</h3>
 

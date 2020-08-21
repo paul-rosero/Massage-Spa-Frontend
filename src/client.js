@@ -32,16 +32,16 @@ class Client {
         createNewClientForm.addEventListener("click", (e) => {
             e.preventDefault();
             console.log(e)
-            console.log(e.path[1][0].value)
+            console.log(e.path[1][1].value)
             ApiAdapter.fetchCreateClassObject("clients", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     client: { 
                         name: e.path[1][0].value,
-                        medical_history: e.path[1][0].value,
-                        address: e.path[1][0].value,
-                        email: e.path[1][0].value 
+                        medical_history: e.path[1][1].value,
+                        address: e.path[1][2].value,
+                        email: e.path[1][3].value 
                     }
                 })
             }, Client.allClients, Client)
@@ -53,8 +53,19 @@ class Client {
                 this.renderDetails()
             })
         })
-            
-            
+    }
+
+    clickToEditClient(client){
+        Forms.renderClientForm()
+        const editClientButton = document.getElementById("")
+        if (client.target.className === "client-edit"){
+
+        }
+
+    }
+
+    deleteClient(client){
+
     }
     
     renderDetails() {

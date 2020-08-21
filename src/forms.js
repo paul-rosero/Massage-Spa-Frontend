@@ -39,6 +39,21 @@ class Forms {
         clientForm.setAttribute("method", "POST");
         clientForm.innerHTML = `
             <h3>Create New Client</h3>
+
+            <label for="name">Name: </label>
+            <input id="name" type="text" name="name" value="">
+
+            <label for="medical_history">Medical History: </label>
+            <input id="medical_history" type="text" name="medical_history" value="">
+
+            <label for="address">Address: </label>
+            <input id="address" type="text" name="address" value="">
+
+            <label for="email">Email: </label>
+            <input id="email" type="text" name="email" value="">
+
+            <button id="edit-client" name="edit-client">Edit Client</button>
+            <button id="create-client" name="create-client">Create Client</button>
         `
         clientContainer.appendChild(clientForm)
     }
@@ -46,7 +61,7 @@ class Forms {
     static renderApptForm(){
         const appointmentForm = document.getElementById("new-appt-form-container");
         appointmentForm.innerHTML = `
-            <form id="appointment-form" method="Post">  
+            <form id="appointment-form" method="POST">  
                 <br/><h3>Appointment Form</h3>
                 <label for="name">Client Name:</label>
                 <select id="client-name-input" type="text" name="name" form="appointment-form" value=""><select><br/>

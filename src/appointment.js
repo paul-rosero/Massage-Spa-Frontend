@@ -7,12 +7,12 @@ class Appointment {
         this.modality = apptDataObj.modality
         this.dateAndTime = apptDataObj.date_and_time
         this.specialRequest = apptDataObj.special_request
-        this.bindVariables();
         
     }
 
-    bindVariables(){
-        
+    clickToRenderApptForm(){
+        Forms.renderApptForm();
+        this.clickToCreateAppt();
     }
 
     clickToCreateAppt(){
@@ -144,11 +144,7 @@ class Appointment {
         })
     }
 
-    clickToRenderApptForm(appt){
-        appt.preventDefault();
-        Forms.renderApptForm();
-        this.clickToCreateAppt();
-    }
+   
 
     renderDetails(){
         return `

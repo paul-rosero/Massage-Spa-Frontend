@@ -9,36 +9,35 @@ class MassageTherapist {
     }
 
     renderNewTherapistForm(){
-        const newTherapistButton = document.getElementById("therapist");
-        newTherapistButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            Forms.renderTherapistForm();
-            const newTherapistForm = document.getElementById("massage-therapist-form")
-            newTherapistForm.addEventListener('submit', this.createNewTherapist.bind(this))
-        })
+        Forms.renderTherapistForm();
+        this.createNewTherapist.bind(this);
     }
-
-    createNewTherapist(e){
+    
+    createNewTherapist(){
         const nameInput = document.getElementById('therapist-name-input');
         const sexInput = document.getElementById('therapist-sex-input');
-
-        e.preventDefault();
-        ApiAdapter.fetchCreateClassObject("massage_therapists", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                therapist: {
-                    name: e.target[0].value,
-                    sex: e.target[1].value,
-                    rating: e.target[2].value
-                }
+        const newTherapistForm = document.getElementById("massage-therapist-form")
+        
+        newTherapistForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            ApiAdapter.fetchCreateClassObject("massage_therapists", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    therapist: {
+                        name: e.target[0].value,
+                        sex: e.target[1].value,
+                        rating: e.target[2].value
+                    }
+                })
+            }, MassageTherapist.allTherapists, MassageTherapist)
+            .then(() => {
+                nameInput.value = "";
+                sexInput.value = "";
+                this.renderTherapistDetails();
             })
-        }, MassageTherapist.allTherapists, MassageTherapist)
-        .then(() => {
-            nameInput.value = "";
-            sexInput.value = "";
-            this.renderTherapistDetails();
         })
+        
     }
 
     clickToEditTherapist(therapist){ 

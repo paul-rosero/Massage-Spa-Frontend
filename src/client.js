@@ -15,7 +15,31 @@ class Client {
 
     renderNewClientForm(){
         Forms.renderClientForm()
-        console.log("object")
+        this.createNewClient()
+    }
+
+    createNewClient(){
+        const createNewClientForm = document.getElementById("client-form")
+        const clientNameInput = document.getElementById("client-name");
+        const clientMedicalHistory = document.getElementById("medical_history");
+        const clientAddress = document.getElementById("address");
+        const clientEmail = document.getElementById("email");
+
+        createNewClientForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            console.log(e)
+            // ApiAdapter.fetchCreateClassObject("clients", {
+            //     method: "POST",
+            //     headers: { "Content-Type": "application/json" },
+            //     body: JSON.stringify(
+            //         // clientNameInput: ,
+            //         // clientMedicalHistory: ,
+            //         // clientAddress: ,
+            //         // clientEmail: 
+            //     )
+            // }, Client.allClients, Client)
+            console.log("object")
+        })
     }
     
     renderDetails() {

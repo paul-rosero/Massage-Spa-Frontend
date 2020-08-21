@@ -74,6 +74,11 @@ class MassageTherapist {
                 foundTherapist.rating = updatedTherapistJson.rating
                 this.renderTherapistDetails()
             })
+            .then(() => {
+                nameInput.value = ""
+                sexInput.value = ""
+                ratingInput.value = ""
+            })
         })
     }
     

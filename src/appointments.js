@@ -16,8 +16,8 @@ class Appointments {
     this.clickApptForm = document.getElementById("appointment");
     this.clickClientForm = document.getElementById("client");
     this.clickTherapistForm = document.getElementById("therapist");
-    this.therapistSortButton = document.getElementById('therapist-sort-button');
-    this.clientSortButton = document.getElementById("client-sort_button");
+    this.therapistSortButton = document.getElementById("therapist-sort-button");
+    this.clientSortButton = document.getElementById("client-sort-button");
     this.deleteTherapistList = document.getElementById("all-therapists-list");
 
   }

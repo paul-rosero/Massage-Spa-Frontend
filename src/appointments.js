@@ -40,6 +40,7 @@ class Appointments {
     })
 
     Appointment.prototype.clickToShowAppt();
+    Appointment.prototype.deleteAppointment();
   }
 
   allContentLoaded() {

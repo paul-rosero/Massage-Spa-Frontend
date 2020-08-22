@@ -58,7 +58,6 @@ class Appointment {
             const foundAppt = this.findAppointment(clickedAppt);
             apptInfoContainer.innerHTML = foundAppt.renderDetails();
             this.copyToEditAppt();
-            this.deleteAppointment();
         })
     }
 
@@ -132,7 +131,7 @@ class Appointment {
                 const clickedAppt = parseInt(e.target.id);
                 const foundAppt = this.findAppointment(clickedAppt);
 
-                ApiAdapter.fetchDeleteClassObject(`appointments/${clickedAppt}`, { method: 'DELETE' })
+                ApiAdapter.updateOrDeleteClassObject(`appointments/${clickedAppt}`, { method: 'DELETE' })
                 .then((appt) => {
                     this.apptDeleted = document.getElementById(`appointment-${appt.appointmentId}`);
                     this.apptDeleted.remove();

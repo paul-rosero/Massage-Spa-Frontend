@@ -66,7 +66,7 @@ class Client {
 
         if (client.target.className === "client-edit"){
             clientNameInput.value = foundClient.name
-            clientMedicalHistoryInput.value = foundClient.medical-history
+            clientMedicalHistoryInput.value = foundClient.medical_history
             clientAddressInput.value = foundClient.address
             clientEmailInput.value = foundClient.email
             
@@ -85,9 +85,8 @@ class Client {
                 })
                 })
                 .then((updatedClientJson) => {
-                    console.log(updatedClientJson)
                     foundClient.name = updatedClientJson.name
-                    foundClient.medicalHistory = updatedClientJson.medicalHistory
+                    foundClient.medical_history = updatedClientJson.medical_history
                     foundClient.address = updatedClientJson.address
                     foundClient.email = updatedClientJson.email
                     this.renderDetails()

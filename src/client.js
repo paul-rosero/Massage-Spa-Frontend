@@ -56,15 +56,15 @@ class Client {
     }
 
     clickToEditClient(client){
-        Forms.renderClientForm()
-        const editClientButton = document.getElementById("edit-client");
-        const clientNameInput = document.getElementById("client-name");
-        const clientMedicalHistoryInput = document.getElementById("medical_history");
-        const clientAddressInput = document.getElementById("address");
-        const clientEmailInput = document.getElementById("email");
         const foundClient = this.findClient(parseInt(client.target.id.split("-")[2]))
-
         if (client.target.className === "client-edit"){
+            Forms.renderClientForm()
+            const editClientButton = document.getElementById("edit-client");
+            const clientNameInput = document.getElementById("client-name");
+            const clientMedicalHistoryInput = document.getElementById("medical_history");
+            const clientAddressInput = document.getElementById("address");
+            const clientEmailInput = document.getElementById("email");
+
             clientNameInput.value = foundClient.name
             clientMedicalHistoryInput.value = foundClient.medical_history
             clientAddressInput.value = foundClient.address

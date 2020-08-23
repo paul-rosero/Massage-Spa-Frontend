@@ -64,16 +64,16 @@ class Appointment {
     copyToEditAppt(){
         const apptInfoContainer = document.querySelector('#appointment-info-container');
         apptInfoContainer.addEventListener('click', (e) => {
-            Forms.renderApptForm();
-            const clientNameInput = document.getElementById('client-name-input');
-            const therapistNameInput = document.getElementById('therapist-name-input');
-            const modalityInput = document.querySelector('#modality-input');
-            const apptTimeInput = document.querySelector('#appointment-time-input');
-            const specialRequestInput = document.querySelector('#special-request-input');
-            const apptForm = document.querySelector('#appointment-form');
-            const editApptButton = document.querySelector('#edit-button');
-
             if (e.target.className === 'appointment-edit') {
+                Forms.renderApptForm();
+                const clientNameInput = document.getElementById('client-name-input');
+                const therapistNameInput = document.getElementById('therapist-name-input');
+                const modalityInput = document.querySelector('#modality-input');
+                const apptTimeInput = document.querySelector('#appointment-time-input');
+                const specialRequestInput = document.querySelector('#special-request-input');
+                const apptForm = document.querySelector('#appointment-form');
+                const editApptButton = document.querySelector('#edit-button');
+
                 const clickedAppt = parseInt(e.target.id);
                 const foundAppt = this.findAppointment(clickedAppt);
                 clientNameInput.value = foundAppt.client.name
@@ -82,34 +82,34 @@ class Appointment {
                 apptTimeInput.value = foundAppt.dateAndTime
                 specialRequestInput.value = foundAppt.specialRequest
                 apptForm.id = foundAppt.id
-            }
-            
-            editApptButton.addEventListener('click', (e) => {
-                e.preventDefault()
-                const updateApptId = e.path[1].id
-                ApiAdapter.updateOrDeleteClassObject(`appointments/${updateApptId}`, {
-                    method: 'PATCH',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({        
-                        massage_therapist_id: therapistNameInput[therapistNameInput.selectedIndex].id,
-                        client_id: clientNameInput[clientNameInput.selectedIndex].id,
-                        date_and_time: apptTimeInput.value,
-                        modality: modalityInput.value,
-                        special_request: specialRequestInput.value
+                
+                editApptButton.addEventListener('click', (e) => {
+                    e.preventDefault()
+                    const updateApptId = e.path[1].id
+                    ApiAdapter.updateOrDeleteClassObject(`appointments/${updateApptId}`, {
+                        method: 'PATCH',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({        
+                            massage_therapist_id: therapistNameInput[therapistNameInput.selectedIndex].id,
+                            client_id: clientNameInput[clientNameInput.selectedIndex].id,
+                            date_and_time: apptTimeInput.value,
+                            modality: modalityInput.value,
+                            special_request: specialRequestInput.value
+                        })
                     })
-                })
-                .then((updatedApptJSON) => {
-                    const updatedAppt = this.updateAppointment(updatedApptJSON)
-                    apptInfoContainer.innerHTML = updatedAppt.renderDetails()
-                })
-                .then(() =>{ 
-                    clientNameInput.value = ""
-                    therapistNameInput.value = ""
-                    modalityInput.value = ""
-                    apptTimeInput.value = ""
-                    specialRequestInput.value = ""
-                })
-            })    
+                    .then((updatedApptJSON) => {
+                        const updatedAppt = this.updateAppointment(updatedApptJSON)
+                        apptInfoContainer.innerHTML = updatedAppt.renderDetails()
+                    })
+                    .then(() =>{ 
+                        clientNameInput.value = ""
+                        therapistNameInput.value = ""
+                        modalityInput.value = ""
+                        apptTimeInput.value = ""
+                        specialRequestInput.value = ""
+                    })
+                })    
+            }
         })
     }
 

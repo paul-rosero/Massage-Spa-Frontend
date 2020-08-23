@@ -41,14 +41,14 @@ class MassageTherapist {
     }
 
     clickToEditOrDeleteTherapist(therapist){ 
-        Forms.renderTherapistForm()
-        const editTherapist = document.getElementById("edit-therapist")
         const foundTherapist = this.findTherapist(parseInt(therapist.target.id.split("-")[2]))
-        const nameInput = document.getElementById('therapist-name-input');
-        const sexInput = document.getElementById('therapist-sex-input');
-        const ratingInput = document.getElementById('therapist-rating-input');
-        
         if (therapist.target.className === "therapist-edit") {
+            Forms.renderTherapistForm()
+            const editTherapist = document.getElementById("edit-therapist")
+            const nameInput = document.getElementById('therapist-name-input');
+            const sexInput = document.getElementById('therapist-sex-input');
+            const ratingInput = document.getElementById('therapist-rating-input');
+        
             nameInput.value = foundTherapist.name;
             sexInput.value = foundTherapist.sex;
             ratingInput.value = foundTherapist.rating;           

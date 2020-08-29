@@ -67,7 +67,7 @@ class MassageTherapist {
                     })
                 })
                 .then((updatedTherapistJson) => {
-                    foundTherapist.name = updatedTherapistJson.name
+                    foundTherapist.name = this.capitalize(updatedTherapistJson.name)
                     foundTherapist.sex = updatedTherapistJson.sex
                     foundTherapist.rating = updatedTherapistJson.rating
                     this.renderTherapistDetails()
@@ -95,8 +95,8 @@ class MassageTherapist {
         ApiAdapter.fetchSortButton("massage_therapists", { method: 'GET' }, this.therapistsList);
     }
 
-    capitalize = (fullName) => {
-        if (typeof name !== 'string') return ''
+    capitalize(fullName) {
+        if (typeof name !== 'string') {return ''}
         return fullName.split(' ').map(name => name[0].toUpperCase() + name.slice(1).toLowerCase()).join(' ')
     }
 

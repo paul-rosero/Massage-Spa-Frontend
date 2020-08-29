@@ -66,7 +66,14 @@ class Forms {
                 <select id="therapist-name-input" type="text" name="name" form="appointment-form" value=""></select><br/>
     
                 <label for="modality">Modality:</label>
-                <input id="modality-input" type="text" name="modality" value=""/><br/>
+                <select id="modality-input" type="text" name="modality" value="">
+                    <option value=""></option>
+                    <option value="Swedish">Swedish</option>
+                    <option value="Deep Tissue">Deep Tissue</option>
+                    <option value="Hot Stones">Hot Stones</option>
+                    <option value="Sports Massage">Sports Massage</option>
+                    <option value="Medical Massage">Medical Massage</option>
+                </select><br/>
     
                 <label for="time">Appointment Time:</label>
                 <input id="appointment-time-input" type="text" name="time" value=""/><br/>

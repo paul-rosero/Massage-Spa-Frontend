@@ -67,7 +67,7 @@ class MassageTherapist {
                     })
                 })
                 .then((updatedTherapistJson) => {
-                    foundTherapist.name = this.capitalize(updatedTherapistJson.name)
+                    foundTherapist.name = updatedTherapistJson.name
                     foundTherapist.sex = updatedTherapistJson.sex
                     foundTherapist.rating = updatedTherapistJson.rating
                     this.renderTherapistDetails()

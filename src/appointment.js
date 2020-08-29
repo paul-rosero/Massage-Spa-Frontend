@@ -151,7 +151,7 @@ class Appointment {
                     <button class="appointment-edit" id=${this.id} type="button">Edit</button>
                     <button class="appointment-delete" id=${this.id} type="button">Delete Appointment</button>
                 </p>
-                <p>Massage Therapist: ${this.massageTherapist.name}</p>
+                <p>Massage Therapist: ${MassageTherapist.prototype.capitalize(this.massageTherapist.name)}</p>
                 <p>Client: ${this.client.name}</p>
                 <p>Modality: ${this.modality}</p>
                 <p>Appointment Date & Time: ${this.dateAndTime}</p>

@@ -119,7 +119,7 @@ class Client {
                 <button class="client-edit" id="client-edit-${client.id}">Edit Client</button>
                 <button class="client-delete" id="client-delete-${client.id}">Delete Client</button>
                 <p>Client: ${client.id}</p>
-                <p>Name: ${client.name}</p>
+                <p>Name: ${MassageTherapist.prototype.capitalize(client.name)}</p>
                 <p>Medical History: ${client.medical_history}</p>
                 <p>Address: ${client.address}</p>
                 <p>Email: ${client.email}</p>

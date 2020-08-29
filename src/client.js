@@ -65,7 +65,7 @@ class Client {
             const clientAddressInput = document.getElementById("address");
             const clientEmailInput = document.getElementById("email");
 
-            clientNameInput.value = foundClient.name
+            clientNameInput.value = MassageTherapist.prototype.capitalize(foundClient.name)
             clientMedicalHistoryInput.value = foundClient.medical_history
             clientAddressInput.value = foundClient.address
             clientEmailInput.value = foundClient.email

@@ -94,10 +94,11 @@ class MassageTherapist {
         e.preventDefault()
         ApiAdapter.fetchSortButton("massage_therapists", { method: 'GET' }, this.therapistsList);
     }
-    // capitalize = (fullName) => {
-    //     if (typeof name !== 'string') return ''
-    //     return fullName.split(' ').map(name => name[0].toUpperCase() + name.slice(1).toLowerCase()).join(' ')
-    // }
+
+    capitalize = (fullName) => {
+        if (typeof name !== 'string') return ''
+        return fullName.split(' ').map(name => name[0].toUpperCase() + name.slice(1).toLowerCase()).join(' ')
+    }
 
     findTherapist(id) {
         return MassageTherapist.allTherapists.find((therapist) => therapist.id === id)

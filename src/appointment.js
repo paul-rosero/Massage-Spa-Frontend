@@ -76,7 +76,7 @@ class Appointment {
 
                 const clickedAppt = parseInt(e.target.id);
                 const foundAppt = this.findAppointment(clickedAppt);
-                clientNameInput.value = foundAppt.client.name
+                clientNameInput.textContent = foundAppt.client.name
                 therapistNameInput.value = foundAppt.massageTherapist.name
                 modalityInput.value = foundAppt.modality
                 apptTimeInput.value = foundAppt.dateAndTime

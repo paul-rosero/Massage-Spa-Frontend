@@ -49,7 +49,7 @@ class MassageTherapist {
             const sexInput = document.getElementById('therapist-sex-input');
             const ratingInput = document.getElementById('therapist-rating-input');
         
-            nameInput.value = foundTherapist.name;
+            nameInput.value = this.capitalize(foundTherapist.name);
             sexInput.value = foundTherapist.sex;
             ratingInput.value = foundTherapist.rating;           
             

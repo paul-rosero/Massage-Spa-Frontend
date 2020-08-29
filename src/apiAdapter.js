@@ -15,7 +15,7 @@ class ApiAdapter {
                 for (let i = 0; i < appt.length; i++) {
                     option = document.createElement('option');
                     option.id = appt[i].id;
-                    option.text = appt[i].name;
+                    option.text = MassageTherapist.prototype.capitalize(appt[i].name);
                     option.value = appt[i].name;
                     input.add(option);
                 }    

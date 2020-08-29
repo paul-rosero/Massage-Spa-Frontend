@@ -110,7 +110,7 @@ class MassageTherapist {
             `<li id="therapist-${therapist.id}">
                 <button class="therapist-edit" id=edit-therapist-${therapist.id} type="button">Edit Therapist</button>
                 <button class="therapist-delete" id=delete-therapist-${therapist.id} type="button">Delete Therapist</button>
-                <p>Name: ${therapist.name}</p>
+                <p>Name: ${this.capitalize(therapist.name)}</p>
                 <p>Gender: ${therapist.sex}</p>
                 <p>Rating: ${therapist.rating}</p>
             </li>`

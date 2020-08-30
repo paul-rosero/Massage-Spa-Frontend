@@ -27,12 +27,12 @@ class Appointment {
           ApiAdapter.fetchCreateClassObject("appointments", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({        
-              client_id: e.target[0].selectedOptions[0].id,
-              massage_therapist_id: e.target[1].selectedOptions[0].id,
-              modality: e.target[2].value,
-              date_and_time: e.target[3].value,
-              special_request: e.target[4].value
+            body: JSON.stringify({ 
+                client_id: e.target[0].selectedOptions[0].id,
+                massage_therapist_id: e.target[1].selectedOptions[0].id,
+                modality: e.target[2].value,
+                date_and_time: e.target[3].value,
+                special_request: e.target[4].value
             })
           }, Appointment.allAppointments, Appointment)
           .then(() => {
@@ -61,6 +61,17 @@ class Appointment {
         })
     }
 
+    editDateAndTimeInput(input) {
+        console.log(input)
+        const dateArray = input.split("T")[0]
+        const timeArray = input.split("T")[1].split(":")
+        const poppedtime = timeArray.pop()
+        const newDateAndTime = dateArray + " " + timeArray.join(":")
+        console.log(timeArray)
+        console.log(newDateAndTime)
+        return newDateAndTime
+    }
+
     copyToEditAppt(){
         const apptInfoContainer = document.querySelector('#appointment-info-container');
         apptInfoContainer.addEventListener('click', (e) => {
@@ -73,13 +84,13 @@ class Appointment {
                 const specialRequestInput = document.querySelector('#special-request-input');
                 const apptForm = document.querySelector('#appointment-form');
                 const editApptButton = document.querySelector('#edit-button');
-
                 const clickedAppt = parseInt(e.target.id);
                 const foundAppt = this.findAppointment(clickedAppt);
+                
                 clientNameInput.textContent = foundAppt.client.name
                 therapistNameInput.textContent = foundAppt.massageTherapist.name
                 modalityInput.value = foundAppt.modality
-                apptTimeInput.value = foundAppt.dateAndTime
+                apptTimeInput.value = this.editDateAndTimeInput(foundAppt.dateAndTime)
                 specialRequestInput.value = foundAppt.specialRequest
                 apptForm.id = foundAppt.id
                 
@@ -154,7 +165,7 @@ class Appointment {
                 <p>Massage Therapist: ${MassageTherapist.prototype.capitalize(this.massageTherapist.name)}</p>
                 <p>Client: ${MassageTherapist.prototype.capitalize(this.client.name)}</p>
                 <p>Modality: ${this.modality}</p>
-                <p>Appointment Date & Time: ${this.dateAndTime}</p>
+                <p>Date & Time: ${this.editDateAndTimeInput(this.dateAndTime)}</p>
                 <p>Special Requests: ${this.specialRequest}</p>
             </div>    
         `

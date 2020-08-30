@@ -47,6 +47,7 @@ class MassageTherapist {
             const nameInput = document.getElementById('therapist-name-input');
             const sexInput = document.getElementById('therapist-sex-input');
             const ratingInput = document.getElementById('therapist-rating-input');
+            const apptContainer = document.getElementById("massage-therapist-form")
         
             nameInput.value = this.capitalize(foundTherapist.name);
             sexInput.value = foundTherapist.sex;
@@ -72,9 +73,7 @@ class MassageTherapist {
                     this.renderTherapistDetails()
                 })
                 .then(() => {
-                    nameInput.value = ""
-                    sexInput.value = ""
-                    ratingInput.value = ""
+                    apptContainer.innerHTML = ""
                 })
             })
         }

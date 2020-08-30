@@ -1,6 +1,5 @@
 class Client {
     constructor(clientDataObj) {
-        console.log("client is loaded")
         this.id = clientDataObj.id
         this.name = clientDataObj.name
         this.address = clientDataObj.address
@@ -31,8 +30,6 @@ class Client {
         
         createNewClientForm.addEventListener("click", (e) => {
             e.preventDefault();
-            console.log(e)
-            console.log(e.path[1][1].value)
             ApiAdapter.fetchCreateClassObject("clients", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -101,10 +98,8 @@ class Client {
         }
 
         if(client.target.className === "client-delete"){
-            console.log(foundClient.id)
             ApiAdapter.updateOrDeleteClassObject(`clients/${foundClient.id}`, { method: "DELETE"})
             .then((client) => {
-                console.log(client.clientId)
                 this.clientDeleted = document.getElementById(`client-${client.clientId}`);
                 this.clientDeleted.remove();
             })

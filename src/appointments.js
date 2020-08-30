@@ -1,6 +1,5 @@
 class Appointments {
   constructor() {
-    console.log("appointments are loaded")
     this.adapter = new ApiAdapter();
     this.allContentLoaded();
     this.bindVariables();

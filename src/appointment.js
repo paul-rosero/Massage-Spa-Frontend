@@ -1,6 +1,5 @@
 class Appointment {
     constructor(apptDataObj) {
-        console.log('appointment is loaded ')
         this.id = apptDataObj.id
         this.massageTherapist = apptDataObj.massage_therapist
         this.client = apptDataObj.client
@@ -62,13 +61,10 @@ class Appointment {
     }
 
     editDateAndTimeInput(input) {
-        console.log(input)
         const dateArray = input.split("T")[0]
         const timeArray = input.split("T")[1].split(":")
         const poppedtime = timeArray.pop()
         const newDateAndTime = dateArray + " " + timeArray.join(":")
-        console.log(timeArray)
-        console.log(newDateAndTime)
         return newDateAndTime
     }
 

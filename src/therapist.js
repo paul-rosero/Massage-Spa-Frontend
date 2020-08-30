@@ -1,6 +1,5 @@
 class MassageTherapist {
     constructor(therapistDataObj) {
-        console.log("therapist is loaded")
         this.id = therapistDataObj.id
         this.name = therapistDataObj.name
         this.sex = therapistDataObj.sex

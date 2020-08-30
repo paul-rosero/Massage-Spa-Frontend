@@ -61,6 +61,7 @@ class Client {
             const clientMedicalHistoryInput = document.getElementById("medical_history");
             const clientAddressInput = document.getElementById("address");
             const clientEmailInput = document.getElementById("email");
+            const clientContainer = document.getElementById("new-client-form-container")
 
             clientNameInput.value = MassageTherapist.prototype.capitalize(foundClient.name)
             clientMedicalHistoryInput.value = foundClient.medical_history
@@ -89,10 +90,7 @@ class Client {
                     this.renderDetails()
                 })
                 .then(() => {
-                    clientNameInput.value = ""
-                    clientMedicalHistoryInput.value = ""
-                    clientAddressInput.value = ""
-                    clientEmailInput.value = ""
+                    clientContainer.innerHTML = ""
                 })
             })
         }

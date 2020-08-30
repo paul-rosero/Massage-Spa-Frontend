@@ -75,7 +75,7 @@ class Forms {
                     <option value="Medical Massage">Medical Massage</option>
                 </select><br/>
     
-                <label for="time">Appointment Time:</label>
+                <label for="time">Date & Time:</label>
                 <input id="appointment-time-input" type="text" name="time" value=""/><br/>
     
                 <label for="request">Special Requests:</label>

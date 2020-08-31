@@ -18,6 +18,8 @@ class Appointment {
         const apptForm = document.querySelector('#appointment-form');
         this.clientNameInput = document.getElementById('client-name-input');
         this.therapistNameInput = document.getElementById('therapist-name-input');
+        ApiAdapter.fetchSelect("massage_therapists", this.therapistNameInput);
+        ApiAdapter.fetchSelect("clients", this.clientNameInput);
         this.modalityInput = document.querySelector('#modality-input');
         this.apptTimeInput = document.querySelector('#appointment-time-input');
         this.specialRequestInput = document.querySelector('#special-request-input');
@@ -75,6 +77,8 @@ class Appointment {
                 Forms.renderApptForm();
                 const clientNameInput = document.getElementById('client-name-input');
                 const therapistNameInput = document.getElementById('therapist-name-input');
+                ApiAdapter.fetchSelect("massage_therapists", therapistNameInput);
+                ApiAdapter.fetchSelect("clients", clientNameInput);
                 const modalityInput = document.querySelector('#modality-input');
                 const apptTimeInput = document.querySelector('#appointment-time-input');
                 const specialRequestInput = document.querySelector('#special-request-input');
@@ -82,9 +86,10 @@ class Appointment {
                 const editApptButton = document.querySelector('#edit-button');
                 const clickedAppt = parseInt(e.target.id);
                 const foundAppt = this.findAppointment(clickedAppt);
+                console.log(therapistNameInput.textContent = foundAppt.massageTherapist.name)
                 
-                clientNameInput.textContent = foundAppt.client.name
-                therapistNameInput.textContent = foundAppt.massageTherapist.name
+                clientNameInput.value = foundAppt.client.name
+                therapistNameInput.value = foundAppt.massageTherapist.name
                 modalityInput.value = foundAppt.modality
                 apptTimeInput.value = this.editDateAndTimeInput(foundAppt.dateAndTime)
                 specialRequestInput.value = foundAppt.specialRequest

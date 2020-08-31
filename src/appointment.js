@@ -86,7 +86,6 @@ class Appointment {
                 const editApptButton = document.querySelector('#edit-button');
                 const clickedAppt = parseInt(e.target.id);
                 const foundAppt = this.findAppointment(clickedAppt);
-                console.log(therapistNameInput.textContent = foundAppt.massageTherapist.name)
                 
                 clientNameInput.value = foundAppt.client.name
                 therapistNameInput.value = foundAppt.massageTherapist.name

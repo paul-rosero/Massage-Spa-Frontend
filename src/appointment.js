@@ -111,7 +111,6 @@ class Appointment {
                     .then(() =>{ 
                         const newApptContainer = document.getElementById("new-appt-form-container")
                         newApptContainer.innerHTML = ""
-                        
                     })
                 })    
             }

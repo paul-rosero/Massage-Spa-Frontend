@@ -60,10 +60,10 @@ class Forms {
             <form id="appointment-form" method="POST">  
                 <br/><h3>Appointment Form</h3>
                 <label for="name">Client Name:</label>
-                <select id="client-name-input" type="text" name="name" form="appointment-form" value=""><select><br/>
+                <select id="client-name-input" type="text" name="name" value=""><select><br/>
     
                 <label for="name">Massage Therapist Name:</label>
-                <select id="therapist-name-input" type="text" name="name" form="appointment-form" value=""></select><br/>
+                <select id="therapist-name-input" type="text" name="name" value=""></select><br/>
     
                 <label for="modality">Modality:</label>
                 <select id="modality-input" type="text" name="modality" value="">

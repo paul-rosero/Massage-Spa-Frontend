@@ -109,7 +109,8 @@ class Appointment {
                         apptInfoContainer.innerHTML = updatedAppt.renderDetails()
                     })
                     .then(() =>{ 
-                        const apptContainer = document.getElementById("new-appt-form-container")
+                        const newApptContainer = document.getElementById("new-appt-form-container")
+                        newApptContainer.innerHTML = ""
                         
                     })
                 })    

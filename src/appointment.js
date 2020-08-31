@@ -109,11 +109,8 @@ class Appointment {
                         apptInfoContainer.innerHTML = updatedAppt.renderDetails()
                     })
                     .then(() =>{ 
-                        clientNameInput.value = ""
-                        therapistNameInput.value = ""
-                        modalityInput.value = ""
-                        apptTimeInput.value = ""
-                        specialRequestInput.value = ""
+                        const apptContainer = document.getElementById("new-appt-form-container")
+                        
                     })
                 })    
             }

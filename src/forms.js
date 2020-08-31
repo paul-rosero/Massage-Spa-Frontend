@@ -85,10 +85,5 @@ class Forms {
                 <input type="button" id="edit-button" name="edit-button" value="Edit Appointment"/>
             </form>
         `  
-        this.clientNameInput = document.querySelector('#client-name-input');
-        this.therapistNameInput = document.querySelector('#therapist-name-input');
-        
-        ApiAdapter.fetchSelect("massage_therapists", this.therapistNameInput);
-        ApiAdapter.fetchSelect("clients", this.clientNameInput);
     }
 }

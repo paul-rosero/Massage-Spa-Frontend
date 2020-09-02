@@ -1,10 +1,10 @@
 class ApiAdapter {
     constructor() {
-        this.baseUrl = "http://localhost:3000/api/v1/"
+        this.baseUrl = "https://massage-spa-api.herokuapp.com/api/v1/"
     }
 
     static fetchSelect(url, input) {
-        this.baseUrl = "http://localhost:3000/api/v1/";
+        this.baseUrl = "https://massage-spa-api.herokuapp.com/api/v1/";
         let defaultOption = document.createElement('OPTION');
         input.add(defaultOption);
         return fetch(this.baseUrl + url)  
@@ -23,7 +23,7 @@ class ApiAdapter {
     }
 
     static fetchCreateClassObject(url, method, dataArray, ClassObject){
-        this.baseUrl = "http://localhost:3000/api/v1/";
+        this.baseUrl = "https://massage-spa-api.herokuapp.com/api/v1/";
         return fetch(this.baseUrl + url, method)
         .then(promise => promise.json())
         .then(newAppt => {
@@ -42,7 +42,7 @@ class ApiAdapter {
     }
 
     static updateOrDeleteClassObject(url, method){
-        this.baseUrl = "http://localhost:3000/api/v1/";
+        this.baseUrl = "https://massage-spa-api.herokuapp.com/api/v1/";
         return fetch(this.baseUrl + url, method)
         .then(promise => promise.json())
         
